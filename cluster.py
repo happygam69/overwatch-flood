@@ -18,7 +18,7 @@ def norm(body):
 def main(start, end):
     fams = collections.defaultdict(list)  # hash -> [(addr, bytes, body)]
     for n in range(start, end + 1):
-        text = open('chunk_%04d.txt' % n, encoding='utf-8', errors='replace').read()
+        text = open('chunks/chunk_%04d.txt' % n, encoding='utf-8', errors='replace').read()
         parts = re.split(r'(?m)^(?=// [0-9a-f]{16}_FUN_)', text)
         for p in parts:
             m = HDR.match(p)

@@ -83,7 +83,7 @@ def measure(lo, hi):
     }
     prev_class = None
     for n in range(lo, hi + 1):
-        with open(os.path.join(FLOOD, 'chunk_%04d.txt' % n), encoding='utf-8',
+        with open(os.path.join(FLOOD, 'chunks', 'chunk_%04d.txt' % n), encoding='utf-8',
                   errors='replace') as f:
             text = f.read()
         m['disk'] += len(text)

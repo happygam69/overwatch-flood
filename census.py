@@ -12,7 +12,7 @@ META = re.compile(
 
 def main(start, end):
     for n in range(start, end + 1):
-        path = 'chunk_%04d.txt' % n
+        path = 'chunks/chunk_%04d.txt' % n
         text = open(path, encoding='utf-8', errors='replace').read()
         lines = text.splitlines()
         funcs = 0

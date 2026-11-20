@@ -6,7 +6,7 @@ leave one detailed record per pass. Nothing skipped, nothing sampled.
 ## Source
 
 `corpus/b5120..b5167` — 119,757 Ghidra `.c` files, one per function, named by entry
-address. `tools/flood_build.py` repacks them into `work/flood/chunk_NNNN.txt`:
+address. `tools/flood_build.py` repacks them into `work/flood/chunks/chunk_NNNN.txt`:
 function-aligned, ~128 KiB raw each, ordered by entry address.
 **The byte-identical one-line `/* WARNING: Removing unreachable block … */` comments
 were stripped from the chunk bodies on 2026-11-21** (`tools/flood_strip.py`; 668,998

@@ -10,7 +10,7 @@ map (988 lines, pass narrative chains) is preserved verbatim in `CODE_MAP_ARCHIV
 
 | file | role |
 |---|---|
-| `chunk_NNNN.txt` | corpus, address order; the one-line `Removing unreachable block` warnings were stripped in place 2026-11-21 (668,998 lines / 42,145,998 B; per-chunk counts in `index.json`, pre-strip index `index.pre_strip.json`). Every code line is present. |
+| `chunks/chunk_NNNN.txt` | corpus, address order; the one-line `Removing unreachable block` warnings were stripped in place 2026-11-21 (668,998 lines / 42,145,998 B; per-chunk counts in `index.json`, pre-strip index `index.pre_strip.json`). Every code line is present. |
 | `index.json` | per-chunk bytes / first / last — source of truth for coverage |
 | `state.json` | machine ledger: next_chunk, per-pass entries, cumulative totals, all 7,390 registration hashes, all 266 `{id,hash}` rows with match flags |
 | `scripts/pass_measure.py` | the canonical per-pass measurement; its stdout is quoted verbatim in every record |
