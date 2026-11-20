@@ -27,8 +27,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FLOOD = os.path.dirname(HERE)
 STATE = os.path.join(FLOOD, 'state.json')
 
-HDR = re.compile(r'^// ([0-9a-f]{16})_FUN_([0-9a-f]+)\s+\((\d+) B\)', re.M)
-META = re.compile(r'^// ([0-9a-f]+) FUN_\S+ size=(\d+) callers', re.M)
+HDR = re.compile(r'^// ([0-9a-f]{16})_(\S+)\s+\((\d+) B\)', re.M)
+META = re.compile(r'^// ([0-9a-f]+) \S+ size=(\d+) callers', re.M)
 REG = re.compile(r'func_0x0001421cd360\((.*?)\);', re.S)
 DEC = re.compile(r'func_0x0001421(d4f30|d4f70)\((.*?)\);', re.S)
 C2D50 = re.compile(r'func_0x0001421c2d50\((.*?)\);', re.S)
@@ -39,13 +39,13 @@ FUNREF = re.compile(r'\bFUN_[0-9a-f]{9,12}\b')
 
 def functions(text):
     """Yield (addr, declared_bytes, size, body) per function."""
-    parts = re.split(r'(?m)^(?=// [0-9a-f]{16}_FUN_)', text)
+    parts = re.split(r'(?m)^(?=// [0-9a-f]{16}_)', text)
     for p in parts:
         m = HDR.match(p)
         if not m:
             continue
         mm = META.search(p)
-        yield '0x' + m.group(2), int(m.group(3)), int(mm.group(2)) if mm else 0, p
+        yield '0x%x' % int(m.group(1), 16), int(m.group(3)), int(mm.group(2)) if mm else 0, p
 
 
 def classify(body):
@@ -274,7 +274,7 @@ def main():
     for d in ('d4f30', 'd4f70'):
         t['d4_' + d[2:]] += sum(m['dec_hashes'][d].values())
     state['next_chunk'] = hi + 1
-    with open(STATE, 'w') as f:
+    with open(STATE, 'w', newline='\n') as f:
         json.dump({'next_chunk': state['next_chunk'], 'passes': state['passes'],
                    'totals': dict(state['totals']), 'reg_hashes': state['reg_hashes'],
                    'record_rows': state['record_rows'], 'targets': state['targets']},

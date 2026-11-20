@@ -13,7 +13,7 @@ map (988 lines, pass narrative chains) is preserved verbatim in `CODE_MAP_ARCHIV
 | `chunks/chunk_NNNN.txt` | corpus, address order; the one-line `Removing unreachable block` warnings were stripped in place 2026-11-21 (668,998 lines / 42,145,998 B; per-chunk counts in `index.json`, pre-strip index `index.pre_strip.json`). Every code line is present. |
 | `index.json` | per-chunk bytes / first / last — source of truth for coverage |
 | `state.json` | machine ledger: next_chunk, per-pass entries, cumulative totals, all 7,390 registration hashes, all 266 `{id,hash}` rows with match flags |
-| `scripts/pass_measure.py` | the canonical per-pass measurement; its stdout is quoted verbatim in every record |
+| `scripts/pass_measure.py` | the canonical per-pass measurement; stdout quoted verbatim in records; matches any function header name (1,204 Ghidra-named functions in chunks ≥235 are not `FUN_`-named) |
 | `census.py` / `cluster.py` | ad-hoc per-chunk census / body-normalized family clustering (skeleton detector) |
 | `ranges/*.md` | per-pass records, named by `.text` range — the evidence base |
 
@@ -23,7 +23,7 @@ Total corpus: 2,228 chunks, 119,757 functions, 42,864,695 B `.text` (raw index b
 
 | pass | chunks | `.text` range | functions | Σ `size=` | record |
 |---|---|---|---|---|---|
-| 1 (only `0000`–`0008` read; `0009`–`0013` pending) | `0000`–`0013` | `0x140001000`–`0x1400c2ed0` | 2,303 | 412,670 | `ranges/0x140001000-0x1400c2ed0.md` |
+| 1 (pre-protocol) | `0000`–`0013` | `0x140001000`–`0x1400c2ed0` | 2,303 | 412,670 | `ranges/0x140001000-0x1400c2ed0.md` |
 | 2 (partial) | `0014`–`0022` | `0x1400c2f90`–`0x14010bf30` | 1,183 | 228,057 | `ranges/0x1400c2f90-0x14010bf30.md` |
 | 3 | `0023`–`0029` | `0x14010c120`–`0x14012bcd0` | 408 | 117,713 | `ranges/0x14010c120-0x14012bcd0.md` |
 | 4 | `0030`–`0037` | `0x14012bee0`–`0x140156840` | 524 | 155,444 | `ranges/0x14012bee0-0x140156840.md` |
@@ -48,7 +48,6 @@ Total corpus: 2,228 chunks, 119,757 functions, 42,864,695 B `.text` (raw index b
 | 23 (10-chunk) | `0193`–`0202` | `0x1404192e0`–`0x140451060` | 738 | 203,154 | `ranges/0x1404192e0-0x140451060.md` |
 | 24 (11-chunk override) | `0203`–`0213` | `0x140451160`–`0x140473f50` | 457 | 132,700 | `ranges/0x140451160-0x140473f50.md` |
 | **total** | **214, contiguous** | `0x140001000`–`0x140473f50` | **14,855** | **3,851,446** | machine-verified (`state.json`) |
-| debt re-read (override) | `0009`–`0013` | `0x140093150`–`0x1400c2ed0` | 865 | 156,518 | `ranges/0x140093150-0x1400c2ed0.md` — **inside pass 1, no new chunks** |
 | pending | `0214`–`2227` | `0x1404740d0`→ | — | — | resume at `chunk_0214` |
 
 Machine-verified cumulative (`state.json` after pass 24): files 14,855 (12.40 % of functions),
@@ -56,7 +55,7 @@ Machine-verified cumulative (`state.json` after pass 24): files 14,855 (12.40 % 
 sorted 249 / atexit 251 / record 266 / other 3,283; registrations 7,390, all hashes distinct;
 `d4f30` 1,086, `d4f70` 1,251, `d4fb0` 4,165, `c2d70` 3,916, `c2d50` 266, `c7880` 251,
 `atexit` 256; records 266, **264/266 matched** (two stale flags = Corrections 11); other unchanged
-since pass 11. Pass-1 `0009`–`0013` read via debt record; pass 24 was an 11-chunk override whose
+since pass 11. Pass 24 was an 11-chunk override whose
 prior 10-chunk note was stale on length only, not on resume point.
 
 ## Corrections ledger (machine-derived; supersedes prose in older records)
@@ -65,11 +64,12 @@ prior 10-chunk note was stale on length only, not on resume point.
    `0x3fd91271` (id `0x35`) is the registration hash of `FUN_140290c50` (chunk `0114`,
    pass 14 block G). Thread 43 CLOSED. Pass 16 adds 23 rows (98/98 at that time); pass 17 adds 45.
 2. **Sorted-insert builders: 249 cumulative** after pass 24 (115→130→150 through pass 17); use `state.json`.
-3. **Nested-atexit builders: 250 cumulative**; shapes 558/574/542/526; initializer families grow per pass.
-4. **Provenance caveat:** the pass-14/15 method notes cite `scripts/pass14/15_*.py` that were never
-   saved. All published numbers are reproduced by `scripts/pass_measure.py`; cite that instead.
-5. **Debt `--update` is not a coverage increment.** `pass_measure.py 9 13 --update` produced
-   `next_chunk=14` and double-counted totals; reverted with `--init 0 123`. Do not re-run it.
+3. **Nested-atexit builders: 251 cumulative**; shapes 558/574/542/526; initializer families grow per pass.
+4. **Provenance caveat:** passes 1–15 records state counts without a quoting script (their ad-hoc
+   scripts were not kept). All 24 passes' `files`/Σ `size=` are reproduced by `scripts/pass_measure.py`.
+5. **`--update` is forward-only; `--init` wipes the pass list.** `--update` over an already-counted
+   range double-counts totals and rewinds `next_chunk`; the only repair is `--init`, which recomputes
+   totals but starts `passes` empty — that is why `state.json` lists only passes 16–24.
 6. **There is no shutdown table and no "move".** Shutdown rows are per-object global slots scattered
    by the linker (`0x1438e…`, `0x143ce7…`, `0x143e5e/5f/6a/6e/77/7c…`, plus pass 17's
    `0x143e94720`, `0x143e92cc0`, `0x143ec5860/6248/3ab20`). The code addresses each absolutely.
@@ -118,7 +118,7 @@ later, unread corpus — not missing.
    MSVC magic-static descriptor (**2,451** instances: `{+0x20 tag 1|2, +0x40 ctor, +0x48 vtable/FUN,
    +0x50 third, +0x58 payload, +0x60 shared PTR}` under a TLS guard), 209-B locale/facet statics
    (354), 58-B event-registration thunks (284), 134-B XOR-40 + cipher registrations (61), 37-B
-   `_onexit` stubs; debt read (`0009`–`0013`): 864 descriptors + 39 shared `PTR_DAT_14386a…` markers.
+   `_onexit` stubs; pass-1 tail (`0009`–`0013`): 864 descriptors + 39 shared `PTR_DAT_14386a…` markers.
    [inference: generated per-record class/vtable descriptors; consumer ahead.]
 4. **Typed registry machine** `0x1400fbcb0`–`0x140473f50` (passes 2-tail–24) — the substance of the
    read, described next. No gameplay, network, asset or UI code; the only named subsystem is
@@ -210,8 +210,8 @@ two-buffer hash `0x64adb587`, rootless sorted-insert `0x14045bcb0`, one atexit `
 | `0x143e4ac90`–`0x143ed6f90` + `0x143f198d8`–`0x143fe0b00` | `{id,hash,alias}` source rows, interleaved with output bands |
 | `0x1438e…`, `0x143ce7…`, `0x143e5e/…`, `0x143e92/94…`, `0x143ec5/6…`, `0x143f1…`–`0x143f3…`, `0x143c3ab20`, `0x143c4c730`, `0x143e2bc10`, `0x143fc13f0`, `0x143fc1a90`, `0x143c3d0f8`, `0x143950a88/ae8/ba8`, `0x143953668/6c8`, `0x143fea2d0`, `0x143ff9810`, `0x1440459b0/9d8`, `0x14404d0b0`, `0x14405a3e0/408/410`, `0x14405c2c0/298`, `0x14405c5e8/5c0`, `0x14405c768/740`, `0x144068c00/c28/c30` | nested-atexit/shutdown slots (**per-object, scattered** — Corrections 6) |
 | `0x143d01930`, `0x143d01a90`, `0x143d03780`, `0x143d04970`, `0x143d93520`, `0x143cfa130`, `0x1441e1bb0`, `0x143defd00`, `0x143f8e3d0`, `0x143ce2090`, `0x143f94670`, `0x143cfc6a0`, `0x143eb67e0`, `0x143e135e0`, `0x143e138a0`, `0x143fcaed0`, `0x143fca7f0`, `0x1440073e0`, `0x144005360`, `0x1440547f0`, `0x144058990`, `0x14405e0c0` | far class roots / atexit payloads (**0x143f94670 is the closed shared root of 73+62 wrappers**; 0x1441e22d0 reused ×25 in pass 19; pass 23 roots `0x143fca7f0` ×48, `0x143fcaed0` ×25, `&DAT_143d013b0` ×16, `&DAT_1441e1bb0` ×9) |
-| `0x143cf0000`–`0x143d05000` + far `0x143f8xxxx`–`0x143f94xxx`, `0x143eb6xxx`, `0x143ecee70`, `0x143ee0cd0` | class roots / vtable-type descriptors (static-root era over since pass 14) |
-| `0x14386a1e0`–`0x14386c788` (debt read) | 39 shared static-descriptor block pointers (`PTR_DAT_14386a…`, 3–307 users each) |
+| `0x143cf0000`–`0x143d05000` + far `0x143f8xxxx`–`0x143f94xxx`, `0x143eb6xxx`, `0x143ecee70`, `0x143ee0cd0` | class roots / vtable-type descriptors (roots alternate — Corrections 12) |
+| `0x14386a1e0`–`0x14386c788` (pass-1 tail) | 39 shared static-descriptor block pointers (`PTR_DAT_14386a…`, 3–307 users each) |
 
 **What it is for (reading conclusion).** Everything in `0x14003ffe0`–`0x140473f50` is startup-time
 type/object registration, not gameplay: encrypted names are registered with size/alignment/category/method
@@ -224,8 +224,8 @@ measured; "type registry / shutdown slot / lookup table" labels are shape-based 
 (cheapest now `0x143978f4c`, key `0x143978f40`; older `0x143970f0c` printable pre-XOR). (c) `0x142f0…`
 atexit labels not in the dump (highest `0x142f157c0`). (d) Twelve+ uninspected gaps (largest
 `0x1401a4e02`–`0x1401abad0` 27,854 B, `0x140229be7`–`0x14022dcc0` 16,601 B; pass 24: `0x14045ceb0`–
-`0x14045d4e0` 1,584 B); 0x100–0x220 B steps look like padding. (e) Pass-1 `0009`–`0013` read via debt
-record; (f) `0x39091531` registered (`FUN_14036bb60`, Corrections 11).
+`0x14045d4e0` 1,584 B); 0x100–0x220 B steps look like padding. (e) `0x39091531` registered
+(`FUN_14036bb60`, Corrections 11).
 
 ## Cross-cutting conventions (one line each; per-pass deltas in the records)
 
@@ -279,7 +279,7 @@ record; (f) `0x39091531` registered (`FUN_14036bb60`, Corrections 11).
    `0x14045ceb0`–`0x14045d4e0` (1,584 B); size/align outliers need the absent registrar body.
 
 CLOSED (machine): fd9670 recount; provenance complete; `0x1411b8070` unread corpus; **thread 43**
-(`0x3fd91271` = `FUN_140290c50`); **thread 5** debt; sorted/atexit counts see ledger; debt `--update` ledger 5; shutdown "move" ledger 6; third field = alias ledger 10; CompilerIDFilter payloads = regs; `0x39091531` ledger 11.
+(`0x3fd91271` = `FUN_140290c50`); sorted/atexit counts see ledger; `--update`/`--init` ledger 5; shutdown "move" ledger 6; third field = alias ledger 10; CompilerIDFilter payloads = regs; `0x39091531` ledger 11.
 
 ## Next pass
 
@@ -296,5 +296,5 @@ run `--update`, then refresh this file. Watch for:
 (e) `{id,hash}` rows: ids past `0x166`, aliases past `0x7236f6e3`, `0x58b3d0d0` still 17 ids;
 (f) the static root band `0x143d0…`/`0x143d9…` (incl. new `0x143d030a0`) and whether it holds a written object;
 (g) two-buffer builders beyond `0x140465a20`, rootless sorted-inserts, and any reader of the sorted tables.
-Do not re-run the debt `--update` (ledger 5); the ciphertext band has no script line (ledger 7);
+Do not re-run an already-counted range through `--update` (ledger 5); the ciphertext band has no script line (ledger 7);
 do not hand-edit the two stale `matched:false` flags (ledger 11).

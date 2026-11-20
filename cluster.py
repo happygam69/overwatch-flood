@@ -4,7 +4,7 @@ import sys
 import collections
 import hashlib
 
-HDR = re.compile(r'^// ([0-9a-f]{16})_FUN_([0-9a-f]+)\s+\((\d+) B\)')
+HDR = re.compile(r'^// ([0-9a-f]{16})_(\S+)\s+\((\d+) B\)')
 ADDR = re.compile(r'0x0001[0-9a-f]{9,}|00000001[0-9a-f]{10}|140[0-9a-f]{8,9}|143[0-9a-f]{8}')
 FUNN = re.compile(r'FUN_1[0-9a-f]{8}')
 
@@ -19,7 +19,7 @@ def main(start, end):
     fams = collections.defaultdict(list)  # hash -> [(addr, bytes, body)]
     for n in range(start, end + 1):
         text = open('chunks/chunk_%04d.txt' % n, encoding='utf-8', errors='replace').read()
-        parts = re.split(r'(?m)^(?=// [0-9a-f]{16}_FUN_)', text)
+        parts = re.split(r'(?m)^(?=// [0-9a-f]{16}_)', text)
         for p in parts:
             m = HDR.match(p)
             if not m:

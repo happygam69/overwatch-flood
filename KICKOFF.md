@@ -2,7 +2,7 @@
 
 Operator: paste everything under the line to the agent, as-is — nothing to edit.
 The agent derives the chunk range itself from the ledger. (To force a different
-range — e.g. the pass-1 debt chunks `0009`–`0013` — append one line naming it.)
+range — e.g. an 11-chunk pass — append one line naming it.)
 
 ---
 

@@ -4,9 +4,9 @@ import sys
 import json
 import collections
 
-HDR = re.compile(r'^// ([0-9a-f]{16})_FUN_([0-9a-f]+)\s+\(\d+ B\)')
+HDR = re.compile(r'^// ([0-9a-f]{16})_(\S+)\s+\(\d+ B\)')
 META = re.compile(
-    r'^// ([0-9a-f]{9}) FUN_\S+ size=(\d+) callers=(\d+) callees=(\d+) '
+    r'^// ([0-9a-f]+) \S+ size=(\d+) callers=(\d+) callees=(\d+) '
     r'section=(\S+) thunk=(true|false) sig=(.*)$')
 
 
