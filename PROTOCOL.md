@@ -5,24 +5,27 @@ leave one detailed record per pass. Nothing skipped, nothing sampled.
 
 ## Source
 
-`corpus/b5120..b5167` — 119,757 Ghidra `.c` files, one per function, named by entry
-address. `tools/flood_build.py` repacks them into `work/flood/chunks/chunk_NNNN.txt`:
+All paths below are relative to this repo root (the chunk corpus, `index.json`,
+`state.json`); the decompiler output and build tools sit two levels up.
+
+`../../corpus/b5120..b5167` — 119,757 Ghidra `.c` files, one per function, named by entry
+address. `../../tools/flood_build.py` repacks them into `chunks/chunk_NNNN.txt`:
 function-aligned, ~128 KiB raw each, ordered by entry address.
 **The byte-identical one-line `/* WARNING: Removing unreachable block … */` comments
-were stripped from the chunk bodies on 2026-11-21** (`tools/flood_strip.py`; 668,998
+were stripped from the chunk bodies on 2026-11-21** (`../../tools/flood_strip.py`; 668,998
 lines / 42.1 MB; per-chunk `raw_bytes`/`dropped_lines` in `index.json`; pre-strip index
 kept as `index.pre_strip.json`). Chunk names, boundaries and every code line are
 unchanged — no read-state was affected.
 
     files 119757  chunks 2228  raw bytes 325787798  post-strip bytes 283641800
 
-`work/flood/index.json` → per chunk: byte count, first/last `// <addr>_FUN_<addr>`.
+`index.json` → per chunk: byte count, first/last `// <addr>_FUN_<addr>`.
 That index is the source of truth for coverage; never count by eye.
-`work/flood/state.json` → machine ledger: `next_chunk`, per-pass entries, cumulative
+`state.json` → machine ledger: `next_chunk`, per-pass entries, cumulative
 totals, all registration hashes, all `{id,hash}` rows. Never hand-accumulate numbers.
 
-(Not to be confused with `work/flood.py` — the byte-budget corpus streamer with
-`flood_cursor.txt`, a separate mechanism.)
+(Not to be confused with `../flood.py` — the byte-budget corpus streamer with
+`../flood_cursor.txt`, a separate mechanism.)
 
 ## Pass
 
@@ -32,7 +35,7 @@ One pass = **8 chunks** (≈0.6–0.7 MB post-strip, ~160–180K tokens. 8 is de
 0. **Before the pass**, read `CODE_MAP.md` in full, plus the most recent record in
    `ranges/`. Update both after the pass.
 1. Read chunks `N` … `N+7` completely (or stop at a stated boundary and say so).
-2. Run `python scripts/pass_measure.py N N+7` from `work/flood/` and read its output
+2. Run `python scripts/pass_measure.py N N+7` from this repo root and read its output
    alongside the chunks — it is the index to what was read (headline numbers, class and
    zone skeleton, registration/decrypt censuses, record-hash matches), never a
    substitute for reading.
@@ -41,8 +44,9 @@ One pass = **8 chunks** (≈0.6–0.7 MB post-strip, ~160–180K tokens. 8 is de
    in the record's headline-numbers section; do not retype its numbers.
 4. Run `python scripts/pass_measure.py N N+7 --update` to merge the pass into
    `state.json`, then update `CODE_MAP.md`: coverage row, corrections/synthesis only if
-   something structural changed, open threads, "Next pass" section. Cumulative numbers in
-   `CODE_MAP.md` come from `state.json` totals — never hand-added.
+   something structural changed, open threads, "Next pass" section — in that section name
+   only the resume chunk; the length comes from the task message (default 8). Cumulative
+   numbers in `CODE_MAP.md` come from `state.json` totals — never hand-added.
 
 A pass may read ahead of the census (the script's classes are call-shape heuristics;
 novel constructs will land in `other`): anything the script cannot classify must be read
