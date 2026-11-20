@@ -1,0 +1,4358 @@
+// 00000001426e932c_FID_conflict__wtoi64  (606 B)
+// 1426e932c FID_conflict:_wtoi64 size=41 callers=1 callees=1 section=.text thunk=false sig=longlong FID_conflict:_wtoi64(wchar_t * _Str)
+
+/* Library Function - Multiple Matches With Different Base Names
+    _wtoi64
+    _wtoll
+   
+   Library: Visual Studio 2019 Release */
+
+longlong __cdecl FID_conflict__wtoi64(wchar_t *_Str)
+
+{
+  __uint64 _Var1;
+  wchar_t *local_18;
+  undefined8 local_10;
+  
+  local_10 = 0;
+  local_18 = _Str;
+  _Var1 = __crt_strtox::
+          parse_integer<unsigned___int64,__crt_strtox::c_string_character_source<wchar_t>_>
+                    (0,&local_18,10,1);
+  return _Var1;
+}
+
+
+// 00000001426e9358__wtol  (504 B)
+// 1426e9358 _wtol size=41 callers=2 callees=1 section=.text thunk=false sig=long _wtol(wchar_t * _Str)
+
+/* Library Function - Single Match
+    _wtol
+   
+   Library: Visual Studio 2019 Release */
+
+long __cdecl _wtol(wchar_t *_Str)
+
+{
+  ulong uVar1;
+  wchar_t *local_18;
+  undefined8 local_10;
+  
+  local_10 = 0;
+  local_18 = _Str;
+  uVar1 = __crt_strtox::
+          parse_integer<unsigned_long,__crt_strtox::c_string_character_source<wchar_t>_>
+                    (0,&local_18,10,1);
+  return uVar1;
+}
+
+
+// 00000001426e9384_atol  (477 B)
+// 1426e9384 atol size=41 callers=8 callees=1 section=.text thunk=false sig=long atol(char * _Str)
+
+/* Library Function - Single Match
+    atol
+   
+   Library: Visual Studio 2019 Release */
+
+long __cdecl atol(char *_Str)
+
+{
+  ulong uVar1;
+  char *local_18;
+  undefined8 local_10;
+  
+  local_10 = 0;
+  local_18 = _Str;
+  uVar1 = __crt_strtox::parse_integer<unsigned_long,__crt_strtox::c_string_character_source<char>_>
+                    (0,&local_18,10,1);
+  return uVar1;
+}
+
+
+// 00000001426e93b0_common_sopen_dispatch_char_  (1402 B)
+// 1426e93b0 common_sopen_dispatch<char> size=195 callers=1 callees=3 section=.text thunk=false sig=int common_sopen_dispatch<char>(char * param_1, int param_2, int param_3, int param_4, int * param_5, int param_6)
+
+/* Library Function - Single Match
+    int __cdecl common_sopen_dispatch<char>(char const * __ptr64 const,int,int,int,int * __ptr64
+   const,int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl
+common_sopen_dispatch<char>
+          (char *param_1,int param_2,int param_3,int param_4,int *param_5,int param_6)
+
+{
+  byte *pbVar1;
+  int iVar2;
+  ulong *puVar3;
+  int local_18;
+  errno_t local_14;
+  
+  if (((param_5 == (int *)0x0) || (*param_5 = -1, param_1 == (char *)0x0)) ||
+     ((param_6 != 0 && ((param_4 & 0xfffffe7fU) != 0)))) {
+    puVar3 = __doserrno();
+    iVar2 = 0x16;
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+  }
+  else {
+    local_18 = 0;
+    local_14 = 0;
+    iVar2 = _sopen_nolock(&local_18,param_5,param_1,param_2,param_3,param_4,param_6);
+    if (local_18 != 0) {
+      if (iVar2 != 0) {
+        pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)*param_5 >> 6) * 8) + 0x38 +
+                         (ulonglong)(*param_5 & 0x3f) * 0x48);
+        *pbVar1 = *pbVar1 & 0xfe;
+      }
+      local_14 = iVar2;
+      func_0x0001426fb1e4(*param_5);
+    }
+    if (iVar2 != 0) {
+      *param_5 = -1;
+    }
+  }
+  return iVar2;
+}
+
+
+// 00000001426e9474_common_sopen_dispatch__  (1497 B)
+// 1426e9474 common_sopen_dispatch<> size=195 callers=1 callees=3 section=.text thunk=false sig=undefined common_sopen_dispatch<>(void)
+
+/* Library Function - Multiple Matches With Same Base Name
+    int __cdecl common_sopen_dispatch<char>(char const * __ptr64 const,int,int,int,int * __ptr64
+   const,int)
+    int __cdecl common_sopen_dispatch<wchar_t>(wchar_t const * __ptr64 const,int,int,int,int *
+   __ptr64 const,int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int common_sopen_dispatch<>
+              (longlong param_1,undefined4 param_2,undefined4 param_3,uint param_4,uint *param_5,
+              int param_6)
+
+{
+  byte *pbVar1;
+  int iVar2;
+  ulong *puVar3;
+  int local_18;
+  int local_14;
+  
+  if (((param_5 == (uint *)0x0) || (*param_5 = 0xffffffff, param_1 == 0)) ||
+     ((param_6 != 0 && ((param_4 & 0xfffffe7f) != 0)))) {
+    puVar3 = __doserrno();
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+    iVar2 = 0x16;
+  }
+  else {
+    local_18 = 0;
+    local_14 = 0;
+    iVar2 = FUN_1426e9be8(&local_18,param_5,param_1,param_2,param_3,param_4,param_6);
+    if (local_18 != 0) {
+      if (iVar2 != 0) {
+        pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_5 >> 6) * 8) + 0x38
+                         + (ulonglong)(*param_5 & 0x3f) * 0x48);
+        *pbVar1 = *pbVar1 & 0xfe;
+      }
+      local_14 = iVar2;
+      func_0x0001426fb1e4(*param_5);
+    }
+    if (iVar2 != 0) {
+      *param_5 = 0xffffffff;
+    }
+  }
+  return iVar2;
+}
+
+
+// 00000001426e9538_configure_text_mode  (4000 B)
+// 1426e9538 configure_text_mode size=657 callers=1 callees=5 section=.text thunk=false sig=int configure_text_mode(int param_1, file_options param_2, int param_3, __crt_lowio_text_mode * param_4)
+
+/* Library Function - Single Match
+    int __cdecl configure_text_mode(int,struct `anonymous namespace'::file_options,int,enum
+   __crt_lowio_text_mode & __ptr64)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl configure_text_mode(uint param_1,byte *param_2,uint param_3,char *param_4)
+
+{
+  errno_t eVar1;
+  int iVar2;
+  ulong *puVar3;
+  longlong lVar4;
+  uint uVar5;
+  uint uVar6;
+  int iVar7;
+  int iVar8;
+  uint local_res8 [2];
+  
+  iVar7 = 0;
+  *param_4 = '\0';
+  if (-1 < *(char *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)param_1 >> 6) * 8) + 0x38 +
+                    (ulonglong)(param_1 & 0x3f) * 0x48)) {
+    return 0;
+  }
+  uVar6 = 0;
+  if ((param_3 & 0x74000) == 0) {
+    local_res8[0] = 0;
+    eVar1 = _get_fmode((int *)local_res8);
+    if (eVar1 != 0) {
+                    /* WARNING: Subroutine does not return */
+      _invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);
+    }
+    if ((local_res8[0] & 0x74000) == 0) {
+      param_3 = param_3 | 0x4000;
+    }
+    else {
+      param_3 = param_3 | local_res8[0] & 0x74000;
+    }
+  }
+  uVar5 = param_3 & 0x74000;
+  if (uVar5 == 0x4000) {
+    *param_4 = '\0';
+  }
+  else if ((uVar5 - 0x10000 & 0xffffbfff) == 0) {
+    if ((param_3 & 0x301) == 0x301) goto LAB_1426e9602;
+  }
+  else if ((uVar5 - 0x20000 & 0xffffbfff) == 0) {
+LAB_1426e9602:
+    *param_4 = '\x02';
+  }
+  else if ((uVar5 - 0x40000 & 0xffffbfff) == 0) {
+    *param_4 = '\x01';
+  }
+  if ((param_3 & 0x70000) == 0) {
+    return 0;
+  }
+  if ((*param_2 & 0x40) != 0) {
+    return 0;
+  }
+  uVar5 = *(uint *)(param_2 + 4) & 0xc0000000;
+  iVar8 = iVar7;
+  if (uVar5 == 0x40000000) {
+LAB_1426e9643:
+    uVar5 = *(uint *)(param_2 + 8);
+    if (uVar5 == 0) {
+      return 0;
+    }
+    if (uVar5 < 3) {
+LAB_1426e9661:
+      iVar8 = 1;
+LAB_1426e9666:
+      if (uVar6 != 0) goto LAB_1426e966e;
+      goto LAB_1426e973c;
+    }
+    if (4 < uVar5) {
+      if (uVar5 != 5) {
+        return 0;
+      }
+      goto LAB_1426e9661;
+    }
+    lVar4 = func_0x0001426f9ab8(param_1,0,2);
+    if (lVar4 != 0) {
+      lVar4 = func_0x0001426f9ab8(param_1,0,0);
+      if (lVar4 == -1) goto LAB_1426e96d9;
+      uVar6 = *(uint *)(param_2 + 4) >> 0x1f;
+      goto LAB_1426e9666;
+    }
+  }
+  else {
+    if (uVar5 != 0x80000000) {
+      if (uVar5 != 0xc0000000) {
+        return 0;
+      }
+      goto LAB_1426e9643;
+    }
+LAB_1426e966e:
+    local_res8[0] = 0;
+    iVar2 = _read_nolock(param_1,local_res8,3);
+    if ((0 < iVar2) && (iVar8 == 1)) {
+      iVar8 = 0;
+    }
+    if (iVar2 == -1) goto LAB_1426e96d9;
+    if (iVar2 == 2) {
+LAB_1426e96f0:
+      if ((local_res8[0] & 0xffff) == 0xfffe) {
+        puVar3 = __doserrno();
+        *puVar3 = 0x16;
+        goto LAB_1426e96d9;
+      }
+      if ((local_res8[0] & 0xffff) == 0xfeff) {
+        lVar4 = func_0x0001426f9ab8(param_1,2,0);
+        if (lVar4 == -1) goto LAB_1426e96d9;
+        *param_4 = '\x02';
+        goto LAB_1426e973c;
+      }
+    }
+    else if (iVar2 == 3) {
+      if (local_res8[0] == 0xbfbbef) {
+        *param_4 = '\x01';
+        goto LAB_1426e973c;
+      }
+      goto LAB_1426e96f0;
+    }
+    lVar4 = func_0x0001426f9ab8(param_1,0,0);
+    if (lVar4 == -1) goto LAB_1426e96d9;
+LAB_1426e973c:
+    if (iVar8 == 0) {
+      return 0;
+    }
+  }
+  local_res8[0] = 0;
+  if (*param_4 == '\x01') {
+    local_res8[0] = 0xbfbbef;
+    iVar8 = 3;
+LAB_1426e976d:
+    if (iVar8 == 0) {
+      return 0;
+    }
+  }
+  else {
+    iVar8 = iVar7;
+    if (*param_4 != '\x02') goto LAB_1426e976d;
+    local_res8[0] = 0xfeff;
+    iVar8 = 2;
+  }
+  while (iVar2 = _write(param_1,(void *)((longlong)local_res8 + (longlong)iVar7),iVar8 - iVar7),
+        iVar2 != -1) {
+    iVar7 = iVar7 + iVar2;
+    if (iVar8 <= iVar7) {
+      return 0;
+    }
+  }
+LAB_1426e96d9:
+  puVar3 = __doserrno();
+  return *puVar3;
+}
+
+
+// 00000001426e97cc_decode_options  (3699 B)
+// 1426e97cc decode_options size=522 callers=1 callees=4 section=.text thunk=false sig=file_options decode_options(int param_1, int param_2, int param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    struct `anonymous namespace'::file_options __cdecl decode_options(int,int,int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+byte * __cdecl decode_options(int param_1,int param_2,int param_3)
+
+{
+  undefined4 uVar1;
+  errno_t eVar2;
+  ulong *puVar3;
+  uint uVar4;
+  int iVar5;
+  undefined4 in_register_0000000c;
+  byte *pbVar6;
+  uint uVar7;
+  byte in_R9B;
+  int local_res10 [2];
+  
+  pbVar6 = (byte *)CONCAT44(in_register_0000000c,param_1);
+  *pbVar6 = 0;
+  uVar4 = param_2 & 3;
+  uVar7 = 0xffffffff;
+  if (uVar4 == 0) {
+    iVar5 = -0x80000000;
+  }
+  else if (uVar4 == 1) {
+    iVar5 = (-(uint)((param_2 & 0x70000U) != 0 && (param_2 & 8U) != 0) & 0x80000000) + 0x40000000;
+  }
+  else if (uVar4 == 2) {
+    iVar5 = -0x40000000;
+  }
+  else {
+    puVar3 = __doserrno();
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+    iVar5 = -1;
+  }
+  *(int *)(pbVar6 + 4) = iVar5;
+  uVar4 = param_2 & 0x700;
+  if (uVar4 == 0) {
+LAB_1426e98b5:
+    uVar1 = 3;
+  }
+  else if (uVar4 == 0x100) {
+    uVar1 = 4;
+  }
+  else if (uVar4 == 0x200) {
+LAB_1426e98a7:
+    uVar1 = 5;
+  }
+  else if (uVar4 == 0x300) {
+    uVar1 = 2;
+  }
+  else {
+    if (uVar4 == 0x400) goto LAB_1426e98b5;
+    if (uVar4 != 0x500) {
+      if (uVar4 == 0x600) goto LAB_1426e98a7;
+      if (uVar4 != 0x700) {
+        puVar3 = __doserrno();
+        *puVar3 = 0x16;
+        FUN_1426e2060();
+        iVar5 = *(int *)(pbVar6 + 4);
+        uVar1 = 0xffffffff;
+        goto LAB_1426e98ba;
+      }
+    }
+    uVar1 = 1;
+  }
+LAB_1426e98ba:
+  *(undefined4 *)(pbVar6 + 8) = uVar1;
+  if (param_3 == 0x10) {
+    uVar7 = 0;
+  }
+  else if (param_3 == 0x20) {
+    uVar7 = 1;
+  }
+  else if (param_3 == 0x30) {
+    uVar7 = 2;
+  }
+  else if (param_3 == 0x40) {
+    uVar7 = 3;
+  }
+  else if (param_3 == 0x80) {
+    uVar7 = (uint)(iVar5 == -0x80000000);
+  }
+  else {
+    puVar3 = __doserrno();
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+  }
+  pbVar6[0x14] = 0;
+  pbVar6[0x15] = 0;
+  pbVar6[0x16] = 0;
+  pbVar6[0x17] = 0;
+  *(uint *)(pbVar6 + 0xc) = uVar7;
+  pbVar6[0x10] = 0x80;
+  pbVar6[0x11] = 0;
+  pbVar6[0x12] = 0;
+  pbVar6[0x13] = 0;
+  if ((char)param_2 < '\0') {
+    *pbVar6 = *pbVar6 | 0x10;
+  }
+  if ((param_2 & 0x8000U) == 0) {
+    if ((param_2 & 0x74000U) == 0) {
+      eVar2 = _get_fmode(local_res10);
+      if (eVar2 != 0) {
+                    /* WARNING: Subroutine does not return */
+        _invoke_watson((wchar_t *)0x0,(wchar_t *)0x0,(wchar_t *)0x0,0,0);
+      }
+      if (local_res10[0] == 0x8000) goto LAB_1426e994b;
+    }
+    *pbVar6 = *pbVar6 | 0x80;
+  }
+LAB_1426e994b:
+  if (((param_2 & 0x100U) != 0) && (-1 < (char)(~(byte)_DAT_14422a860 & in_R9B))) {
+    pbVar6[0x10] = 1;
+    pbVar6[0x11] = 0;
+    pbVar6[0x12] = 0;
+    pbVar6[0x13] = 0;
+  }
+  if ((param_2 & 0x40U) != 0) {
+    *(uint *)(pbVar6 + 0x14) = *(uint *)(pbVar6 + 0x14) | 0x4000000;
+    *(uint *)(pbVar6 + 4) = *(uint *)(pbVar6 + 4) | 0x10000;
+    *(uint *)(pbVar6 + 0xc) = *(uint *)(pbVar6 + 0xc) | 4;
+  }
+  if (((uint)param_2 >> 0xc & 1) != 0) {
+    *(uint *)(pbVar6 + 0x10) = *(uint *)(pbVar6 + 0x10) | 0x100;
+  }
+  if (((uint)param_2 >> 0xd & 1) != 0) {
+    *(uint *)(pbVar6 + 0x14) = *(uint *)(pbVar6 + 0x14) | 0x2000000;
+  }
+  if ((param_2 & 0x20U) == 0) {
+    if ((param_2 & 0x10U) != 0) {
+      *(uint *)(pbVar6 + 0x14) = *(uint *)(pbVar6 + 0x14) | 0x10000000;
+    }
+  }
+  else {
+    *(uint *)(pbVar6 + 0x14) = *(uint *)(pbVar6 + 0x14) | 0x8000000;
+  }
+  return pbVar6;
+}
+
+
+// 00000001426e99d8_truncate_ctrl_z_if_present  (1297 B)
+// 1426e99d8 truncate_ctrl_z_if_present size=193 callers=1 callees=4 section=.text thunk=false sig=int truncate_ctrl_z_if_present(int param_1)
+
+/* Library Function - Single Match
+    int __cdecl truncate_ctrl_z_if_present(int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl truncate_ctrl_z_if_present(int param_1)
+
+{
+  byte bVar1;
+  int iVar2;
+  ulong uVar3;
+  longlong lVar4;
+  ulong *puVar5;
+  short local_res8 [4];
+  
+  bVar1 = *(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)param_1 >> 6) * 8) + 0x38 +
+                   (ulonglong)(param_1 & 0x3f) * 0x48);
+  if (((bVar1 & 0x48) == 0) && ((char)bVar1 < '\0')) {
+    lVar4 = func_0x0001426f9ab8(param_1,0xffffffffffffffff,2);
+    if (lVar4 == -1) {
+      puVar5 = __doserrno();
+      if (*puVar5 == 0x83) goto LAB_1426e9a87;
+    }
+    else {
+      local_res8[0] = 0;
+      iVar2 = _read_nolock(param_1,local_res8,1);
+      if ((iVar2 == 0) && (local_res8[0] == 0x1a)) {
+        iVar2 = _chsize_nolock(param_1,lVar4);
+        if (iVar2 == -1) goto LAB_1426e9a3a;
+      }
+      lVar4 = func_0x0001426f9ab8(param_1,0,0);
+      if (lVar4 != -1) goto LAB_1426e9a87;
+    }
+LAB_1426e9a3a:
+    puVar5 = __doserrno();
+    uVar3 = *puVar5;
+  }
+  else {
+LAB_1426e9a87:
+    uVar3 = 0;
+  }
+  return uVar3;
+}
+
+
+// 00000001426e9a9c__sopen_nolock  (2005 B)
+// 1426e9a9c _sopen_nolock size=279 callers=1 callees=5 section=.text thunk=false sig=errno_t _sopen_nolock(int * UnlockFlag, int * _FileHandle, char * _Filename, int _OpenFlag, int _ShareFlag, int _PermissionFlag, int _SecureFlag)
+
+/* Library Function - Single Match
+    _sopen_nolock
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+errno_t __cdecl
+_sopen_nolock(int *UnlockFlag,int *_FileHandle,char *_Filename,int _OpenFlag,int _ShareFlag,
+             int _PermissionFlag,int _SecureFlag)
+
+{
+  int iVar1;
+  errno_t eVar2;
+  uint uVar3;
+  longlong local_58;
+  longlong local_50;
+  char local_40;
+  undefined8 local_38;
+  undefined8 local_30;
+  undefined8 local_28;
+  undefined8 local_20;
+  undefined8 local_18;
+  char local_10;
+  
+  local_38 = 0;
+  local_30 = 0;
+  local_28 = 0;
+  local_20 = 0;
+  local_18 = 0;
+  local_10 = '\0';
+  _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_58,(__crt_locale_pointers *)0x0);
+  uVar3 = 0xfde9;
+  if (*(int *)(local_50 + 0xc) == 0xfde9) {
+    if (local_40 != '\0') {
+      *(uint *)(local_58 + 0x3a8) = *(uint *)(local_58 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  else {
+    iVar1 = __acrt_AreFileApisANSI();
+    if (iVar1 == 0) {
+      if (local_40 != '\0') {
+        *(uint *)(local_58 + 0x3a8) = *(uint *)(local_58 + 0x3a8) & 0xfffffffd;
+      }
+      uVar3 = 1;
+    }
+    else {
+      if (local_40 != '\0') {
+        *(uint *)(local_58 + 0x3a8) = *(uint *)(local_58 + 0x3a8) & 0xfffffffd;
+      }
+      uVar3 = 0;
+    }
+  }
+  iVar1 = __acrt_mbs_to_wcs_cp<__crt_win32_buffer_internal_dynamic_resizing>
+                    (_Filename,
+                     (__crt_win32_buffer<wchar_t,__crt_win32_buffer_internal_dynamic_resizing> *)
+                     &local_38,uVar3);
+  if (iVar1 == 0) {
+    eVar2 = FUN_1426e9be8(UnlockFlag,_FileHandle,local_28,_OpenFlag,_ShareFlag,_PermissionFlag,
+                          _SecureFlag);
+  }
+  else {
+    eVar2 = -1;
+  }
+  if (local_10 != '\0') {
+    _free_base(local_28);
+  }
+  return eVar2;
+}
+
+
+// 00000001426e9bb4_FID_conflict__sopen_s  (653 B)
+// 1426e9bb4 FID_conflict:_sopen_s size=50 callers=2 callees=1 section=.text thunk=false sig=errno_t FID_conflict:_sopen_s(int * _FileHandle, char * _Filename, int _OpenFlag, int _ShareFlag, int _PermissionMode)
+
+/* Library Function - Multiple Matches With Different Base Names
+    _sopen_s
+    _wsopen_s
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+errno_t __cdecl
+FID_conflict__sopen_s
+          (int *_FileHandle,char *_Filename,int _OpenFlag,int _ShareFlag,int _PermissionMode)
+
+{
+  int iVar1;
+  
+  iVar1 = common_sopen_dispatch<char>(_Filename,_OpenFlag,_ShareFlag,_PermissionMode,_FileHandle,1);
+  return iVar1;
+}
+
+
+// 00000001426e9be8_FUN_1426e9be8  (5869 B)
+// 1426e9be8 FUN_1426e9be8 size=999 callers=2 callees=10 section=.text thunk=false sig=undefined FUN_1426e9be8(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+ulong FUN_1426e9be8(undefined4 *param_1,uint *param_2,undefined8 param_3,uint param_4,int param_5)
+
+{
+  byte *pbVar1;
+  longlong lVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  int iVar5;
+  undefined1 (*pauVar6) [16];
+  ulong *puVar7;
+  longlong lVar8;
+  byte bVar9;
+  uint uVar10;
+  ulonglong uVar11;
+  undefined1 local_98 [4];
+  ulong local_94;
+  undefined1 local_90 [16];
+  undefined8 local_80;
+  undefined8 local_78;
+  ulonglong local_70;
+  ulonglong local_68;
+  undefined4 local_60 [2];
+  undefined8 local_58;
+  uint local_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  undefined8 local_38;
+  
+  pauVar6 = (undefined1 (*) [16])decode_options((int)&local_48,param_4,param_5);
+  local_90 = *pauVar6;
+  iVar5 = local_90._12_4_;
+  local_80 = *(undefined8 *)pauVar6[1];
+  uVar11 = local_90._8_8_ >> 0x20;
+  local_78 = local_80;
+  local_68 = uVar11;
+  if (iVar5 == -1) {
+    puVar7 = __doserrno();
+    *puVar7 = 0;
+    *param_2 = 0xffffffff;
+    goto LAB_1426e9c69;
+  }
+  uVar3 = _alloc_osfhnd();
+  *param_2 = uVar3;
+  if (uVar3 == 0xffffffff) {
+    puVar7 = __doserrno();
+    *puVar7 = 0;
+    *param_2 = 0xffffffff;
+    puVar7 = __doserrno();
+    *puVar7 = 0x18;
+    goto LAB_1426e9c69;
+  }
+  uVar10 = (uint)((ulonglong)local_80 >> 0x20) | (uint)local_80;
+  local_70 = (ulonglong)uVar10;
+  local_50 = ~(param_4 >> 7) & 1;
+  *param_1 = 1;
+  local_60[0] = 0x18;
+  local_58 = 0;
+  lVar8 = (*_DAT_142f2d930)(param_3,(ulonglong)local_90._0_8_ >> 0x20,iVar5,local_60,local_90._8_4_,
+                            uVar10,0);
+  uVar3 = local_90._4_4_;
+  if (lVar8 == -1) {
+    if (((local_90._4_4_ & 0xc0000000) == 0xc0000000) && ((param_4 & 1) != 0)) {
+      uVar4 = local_90._8_4_;
+      uVar3 = local_90._4_4_ & 0x7fffffff;
+      local_90._0_8_ = local_90._0_8_ & 0x7fffffffffffffff;
+      lVar8 = (*_DAT_142f2d930)(param_3,(ulonglong)local_90._0_8_ >> 0x20,uVar11,local_60,uVar4,
+                                uVar10,0);
+      if (lVar8 != -1) goto LAB_1426e9d80;
+    }
+    pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) + 0x38 +
+                     (ulonglong)(*param_2 & 0x3f) * 0x48);
+    *pbVar1 = *pbVar1 & 0xfe;
+    uVar4 = (*_DAT_142f2d640)();
+    __acrt_errno_map_os_error(uVar4);
+  }
+  else {
+LAB_1426e9d80:
+    iVar5 = (*_DAT_142f2d370)(lVar8);
+    if (iVar5 != 0) {
+      if (iVar5 == 2) {
+        bVar9 = local_90[0] | 0x40;
+      }
+      else {
+        bVar9 = local_90[0];
+        if (iVar5 == 3) {
+          bVar9 = local_90[0] | 8;
+        }
+      }
+      __acrt_lowio_set_os_handle(*param_2,lVar8);
+      local_90[0] = bVar9 | 1;
+      *(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) + 0x38 +
+               (ulonglong)(*param_2 & 0x3f) * 0x48) = bVar9 | 1;
+      *(undefined1 *)
+       (*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) + 0x39 +
+       (ulonglong)(*param_2 & 0x3f) * 0x48) = 0;
+      if (((param_4 & 2) == 0) || (local_94 = truncate_ctrl_z_if_present(*param_2), local_94 == 0))
+      {
+        local_48 = local_90._0_8_;
+        uStack_40 = local_90._8_8_;
+        local_98[0] = 0;
+        local_38 = local_78;
+        local_94 = configure_text_mode(*param_2,&local_48,param_4,local_98);
+        uVar10 = *param_2;
+        if (local_94 == 0) {
+          *(undefined1 *)
+           (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar10 >> 6) * 8) + 0x39 +
+           (ulonglong)(uVar10 & 0x3f) * 0x48) = local_98[0];
+          uVar11 = (ulonglong)(*param_2 & 0x3f);
+          lVar2 = *(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8);
+          pbVar1 = (byte *)(lVar2 + 0x3d + uVar11 * 0x48);
+          *pbVar1 = *pbVar1 & 0xfe;
+          pbVar1 = (byte *)(lVar2 + 0x3d + uVar11 * 0x48);
+          *pbVar1 = *pbVar1 | (byte)(param_4 >> 0x10) & 1;
+          if (((bVar9 & 0x48) == 0) && ((param_4 & 8) != 0)) {
+            pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) +
+                              0x38 + (ulonglong)(*param_2 & 0x3f) * 0x48);
+            *pbVar1 = *pbVar1 | 0x20;
+          }
+          if (((uVar3 & 0xc0000000) == 0xc0000000) && ((param_4 & 1) != 0)) {
+            (*_DAT_142f2d5f0)(lVar8);
+            uVar4 = local_90._8_4_;
+            local_90._0_8_ = CONCAT44(uVar3,local_90._0_4_) & 0x7fffffffffffffff;
+            lVar8 = (*_DAT_142f2d930)(param_3,(ulonglong)local_90._0_8_ >> 0x20,
+                                      local_68 & 0xffffffff,local_60,uVar4,(int)local_70,0);
+            if (lVar8 == -1) {
+              uVar4 = (*_DAT_142f2d640)();
+              __acrt_errno_map_os_error(uVar4);
+              pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) +
+                                0x38 + (ulonglong)(*param_2 & 0x3f) * 0x48);
+              *pbVar1 = *pbVar1 & 0xfe;
+              _free_osfhnd(*param_2);
+              goto LAB_1426e9c69;
+            }
+            *(longlong *)
+             (*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) + 0x28 +
+             (ulonglong)(*param_2 & 0x3f) * 0x48) = lVar8;
+          }
+          return 0;
+        }
+      }
+      else {
+        uVar10 = *param_2;
+      }
+      _close_nolock(uVar10);
+      return local_94;
+    }
+    iVar5 = (*_DAT_142f2d640)();
+    __acrt_errno_map_os_error(iVar5);
+    pbVar1 = (byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)*param_2 >> 6) * 8) + 0x38 +
+                     (ulonglong)(*param_2 & 0x3f) * 0x48);
+    *pbVar1 = *pbVar1 & 0xfe;
+    (*_DAT_142f2d5f0)(lVar8);
+    if (iVar5 == 0) {
+      puVar7 = __doserrno();
+      *puVar7 = 0xd;
+    }
+  }
+LAB_1426e9c69:
+  puVar7 = __doserrno();
+  return *puVar7;
+}
+
+
+// 00000001426e9fd0_FID_conflict__sopen_s  (653 B)
+// 1426e9fd0 FID_conflict:_sopen_s size=50 callers=2 callees=1 section=.text thunk=false sig=errno_t FID_conflict:_sopen_s(int * _FileHandle, char * _Filename, int _OpenFlag, int _ShareFlag, int _PermissionMode)
+
+/* Library Function - Multiple Matches With Different Base Names
+    _sopen_s
+    _wsopen_s
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+errno_t __cdecl
+FID_conflict__sopen_s
+          (int *_FileHandle,char *_Filename,int _OpenFlag,int _ShareFlag,int _PermissionMode)
+
+{
+  errno_t eVar1;
+  
+  eVar1 = common_sopen_dispatch<>(_Filename,_OpenFlag,_ShareFlag,_PermissionMode,_FileHandle,1);
+  return eVar1;
+}
+
+
+// 00000001426ea004_operator____lambda_751a882b2c74d4b022dec766aa51a29a___lambda_628dfdc04ba53c8bfc02c9951375f3f5_____ptr64__lambda_f6c7be5f7998530c34de2  (2001 B)
+// 1426ea004 operator()<<lambda_751a882b2c74d4b022dec766aa51a29a>,<lambda_628dfdc04ba53c8bfc02c9951375f3f5>&___ptr64,<lambda_f6c7be5f7998530c34de24c7437d6b54>_> size=113 callers=1 callees=2 section=.text thunk=false sig=int operator()<<lambda_751a882b2c74d4b022dec766aa51a29a>,<lambda_628dfdc04ba53c8bfc02c9951375f3f5>&___ptr64,<lambda_f6c7be5f7998530c34de24c7437d6b54>_>(__crt_seh_guarded_call<int> * this, <lambda_751a882b2c74d4b022dec766aa51a29a> * param_1, <lambda_628dfdc04ba53c8bfc02c9951375f3f5> * param_2, <lambda_f6c7be5f7998530c34de24c7437d6b54> * param_3)
+
+/* Library Function - Single Match
+    public: int __cdecl __crt_seh_guarded_call<int>::operator()<class
+   <lambda_751a882b2c74d4b022dec766aa51a29a>,class <lambda_628dfdc04ba53c8bfc02c9951375f3f5> &
+   __ptr64,class <lambda_f6c7be5f7998530c34de24c7437d6b54> >(class
+   <lambda_751a882b2c74d4b022dec766aa51a29a> && __ptr64,class
+   <lambda_628dfdc04ba53c8bfc02c9951375f3f5> & __ptr64,class
+   <lambda_f6c7be5f7998530c34de24c7437d6b54> && __ptr64) __ptr64
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __thiscall
+__crt_seh_guarded_call<int>::
+operator()<<lambda_751a882b2c74d4b022dec766aa51a29a>,<lambda_628dfdc04ba53c8bfc02c9951375f3f5>&___ptr64,<lambda_f6c7be5f7998530c34de24c7437d6b54>_>
+          (__crt_seh_guarded_call<int> *this,<lambda_751a882b2c74d4b022dec766aa51a29a> *param_1,
+          <lambda_628dfdc04ba53c8bfc02c9951375f3f5> *param_2,
+          <lambda_f6c7be5f7998530c34de24c7437d6b54> *param_3)
+
+{
+  uint _FileHandle;
+  int iVar1;
+  ulong *puVar2;
+  
+  func_0x0001426fb0fc(*(undefined4 *)param_1);
+  _FileHandle = **(uint **)param_2;
+  if ((*(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)(int)_FileHandle >> 6) * 8) + 0x38 +
+                (ulonglong)(_FileHandle & 0x3f) * 0x48) & 1) == 0) {
+    puVar2 = __doserrno();
+    *puVar2 = 9;
+    iVar1 = -1;
+  }
+  else {
+    iVar1 = _close_nolock(_FileHandle);
+  }
+  func_0x0001426fb1e4(*(undefined4 *)param_3);
+  return iVar1;
+}
+
+
+// 00000001426ea078__close  (1614 B)
+// 1426ea078 _close size=161 callers=2 callees=4 section=.text thunk=false sig=int _close(int _FileHandle)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _close
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl _close(int _FileHandle)
+
+{
+  int iVar1;
+  ulong *puVar2;
+  int local_res8 [2];
+  __crt_seh_guarded_call<int> local_res10 [8];
+  int local_res18 [2];
+  int local_res20 [2];
+  int *local_18 [3];
+  
+  local_res8[0] = _FileHandle;
+  if (_FileHandle == -2) {
+    puVar2 = __doserrno();
+    *puVar2 = 0;
+    puVar2 = __doserrno();
+    *puVar2 = 9;
+  }
+  else {
+    if (((-1 < _FileHandle) && ((uint)_FileHandle < _DAT_14422a360)) &&
+       ((*(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)_FileHandle >> 6) * 8) + 0x38 +
+                  (ulonglong)(_FileHandle & 0x3f) * 0x48) & 1) != 0)) {
+      local_18[0] = local_res8;
+      local_res18[0] = _FileHandle;
+      local_res20[0] = _FileHandle;
+      iVar1 = __crt_seh_guarded_call<int>::
+              operator()<<lambda_751a882b2c74d4b022dec766aa51a29a>,<lambda_628dfdc04ba53c8bfc02c9951375f3f5>&___ptr64,<lambda_f6c7be5f7998530c34de24c7437d6b54>_>
+                        (local_res10,(<lambda_751a882b2c74d4b022dec766aa51a29a> *)local_res20,
+                         (<lambda_628dfdc04ba53c8bfc02c9951375f3f5> *)local_18,
+                         (<lambda_f6c7be5f7998530c34de24c7437d6b54> *)local_res18);
+      return iVar1;
+    }
+    puVar2 = __doserrno();
+    *puVar2 = 0;
+    puVar2 = __doserrno();
+    *puVar2 = 9;
+    FUN_1426e2060();
+  }
+  return -1;
+}
+
+
+// 00000001426ea11c__close_nolock  (1286 B)
+// 1426ea11c _close_nolock size=189 callers=2 callees=3 section=.text thunk=false sig=int _close_nolock(int _FileHandle)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _close_nolock
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl _close_nolock(int _FileHandle)
+
+{
+  int iVar1;
+  intptr_t iVar2;
+  intptr_t iVar3;
+  
+  iVar2 = _get_osfhandle(_FileHandle);
+  if (iVar2 != -1) {
+    if (((_FileHandle == 1) && ((*(byte *)(_DAT_144229f60 + 200) & 1) != 0)) ||
+       ((_FileHandle == 2 && ((*(byte *)(_DAT_144229f60 + 0x80) & 1) != 0)))) {
+      iVar2 = _get_osfhandle(2);
+      iVar3 = _get_osfhandle(1);
+      if (iVar3 == iVar2) goto LAB_1426ea136;
+    }
+    iVar2 = _get_osfhandle(_FileHandle);
+    iVar1 = (*_DAT_142f2d5f0)(iVar2);
+    if (iVar1 == 0) {
+      iVar1 = (*_DAT_142f2d640)();
+      goto LAB_1426ea194;
+    }
+  }
+LAB_1426ea136:
+  iVar1 = 0;
+LAB_1426ea194:
+  _free_osfhnd(_FileHandle);
+  *(undefined1 *)
+   (*(longlong *)(&DAT_144229f60 + ((longlong)_FileHandle >> 6) * 8) + 0x38 +
+   (ulonglong)(_FileHandle & 0x3f) * 0x48) = 0;
+  if (iVar1 == 0) {
+    iVar1 = 0;
+  }
+  else {
+    __acrt_errno_map_os_error(iVar1);
+    iVar1 = -1;
+  }
+  return iVar1;
+}
+
+
+// 00000001426ea1dc_write_double_translated_ansi_nolock  (8989 B)
+// 1426ea1dc write_double_translated_ansi_nolock size=1232 callers=1 callees=6 section=.text thunk=false sig=write_result write_double_translated_ansi_nolock(int param_1, char * param_2, uint param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    struct `anonymous namespace'::write_result __cdecl write_double_translated_ansi_nolock(int,char
+   const * __ptr64 const,unsigned int)
+   
+   Library: Visual Studio 2019 Release */
+
+void __cdecl write_double_translated_ansi_nolock(int param_1,char *param_2,uint param_3)
+
+{
+  char cVar1;
+  byte bVar2;
+  int iVar3;
+  undefined4 uVar4;
+  ulonglong uVar5;
+  __uint64 _Var6;
+  ushort *puVar7;
+  undefined4 in_register_0000000c;
+  longlong lVar8;
+  uint uVar9;
+  ulonglong uVar10;
+  longlong lVar11;
+  byte *pbVar12;
+  ulonglong uVar13;
+  byte *pbVar14;
+  undefined4 in_register_00000084;
+  longlong lVar15;
+  undefined8 uVar16;
+  ulonglong uVar17;
+  ulonglong in_R9;
+  longlong lVar18;
+  int iVar19;
+  byte *pbVar20;
+  int iVar21;
+  bool bVar22;
+  undefined1 auStack_138 [32];
+  undefined1 *local_118;
+  undefined4 local_110;
+  undefined8 local_108;
+  undefined8 local_100;
+  undefined2 local_f8 [2];
+  wchar_t local_f4 [2];
+  uint local_f0 [2];
+  longlong local_e8;
+  longlong local_e0;
+  char local_d0;
+  undefined8 local_c8;
+  undefined4 local_b8;
+  int local_b4;
+  ulonglong local_b0;
+  byte *local_a8;
+  undefined8 local_a0;
+  undefined8 local_98;
+  char *local_90;
+  undefined8 local_88;
+  byte *local_80;
+  byte *local_78;
+  longlong local_70;
+  longlong local_68;
+  undefined8 *local_60;
+  char local_58 [8];
+  byte local_50;
+  byte local_4f;
+  undefined1 local_48 [8];
+  ulonglong local_40;
+  
+  pbVar14 = (byte *)CONCAT44(in_register_00000084,param_3);
+  local_60 = (undefined8 *)CONCAT44(in_register_0000000c,param_1);
+  local_40 = _DAT_143ac5f40 ^ (ulonglong)auStack_138;
+  local_68 = (longlong)(int)(uint)param_2;
+  uVar5 = (ulonglong)((uint)param_2 & 0x3f);
+  pbVar20 = pbVar14 + (in_R9 & 0xffffffff);
+  lVar18 = local_68 >> 6;
+  local_a0 = *(undefined8 *)(*(longlong *)(&DAT_144229f60 + lVar18 * 8) + 0x28 + uVar5 * 0x48);
+  local_a8 = pbVar20;
+  local_78 = pbVar14;
+  local_b8 = (*_DAT_142f2d360)();
+  _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_e8,(__crt_locale_pointers *)0x0);
+  local_b0 = 0;
+  local_c8 = 0;
+  local_b4 = *(int *)(local_e0 + 0xc);
+  if (pbVar14 < pbVar20) {
+    local_c8._4_4_ = 0;
+    iVar3 = local_c8._4_4_;
+    local_70 = lVar18;
+    do {
+      uVar17 = 0;
+      uVar9 = 1;
+      local_f8[0] = CONCAT11(local_f8[0]._1_1_,*pbVar14);
+      local_f4[0] = L'\0';
+      local_f4[1] = L'\0';
+      if (local_b4 == 0xfde9) {
+        lVar11 = *(longlong *)(&DAT_144229f60 + local_70 * 8);
+        uVar10 = uVar17;
+        uVar13 = uVar17;
+        do {
+          uVar9 = (uint)uVar10;
+          if (*(char *)(lVar11 + uVar5 * 0x48 + 0x3e + uVar13) == '\0') break;
+          uVar9 = uVar9 + 1;
+          uVar10 = (ulonglong)uVar9;
+          uVar13 = uVar13 + 1;
+        } while ((longlong)uVar13 < 5);
+        if ((longlong)uVar13 < 1) {
+          lVar11 = (longlong)pbVar20 - (longlong)pbVar14;
+          cVar1 = *(char *)((ulonglong)*pbVar14 + 0x143ac6100);
+          iVar19 = cVar1 + 1;
+          if (iVar19 <= lVar11) {
+            local_88 = 0;
+            uVar9 = (iVar19 == 4) + 1;
+            local_80 = pbVar14;
+            _Var6 = __crt_mbstring::__mbsrtowcs_utf8
+                              (local_f4,(char **)&local_80,(ulonglong)uVar9,(_Mbstatet *)&local_88);
+            if (_Var6 != 0xffffffffffffffff) {
+              pbVar14 = pbVar14 + cVar1;
+              goto LAB_1426ea4a3;
+            }
+            goto LAB_1426ea692;
+          }
+          if (0 < lVar11) {
+            uVar5 = uVar17;
+            do {
+              pbVar20 = pbVar14 + uVar17;
+              uVar9 = (int)uVar5 + 1;
+              uVar5 = (ulonglong)uVar9;
+              lVar18 = *(longlong *)(&DAT_144229f60 + (local_68 >> 6) * 8) + uVar17;
+              uVar17 = uVar17 + 1;
+              *(byte *)(lVar18 + 0x3e + (ulonglong)((uint)local_68 & 0x3f) * 0x48) = *pbVar20;
+            } while ((int)uVar9 < lVar11);
+          }
+          iVar3 = iVar3 + (int)lVar11;
+LAB_1426ea5b7:
+          local_c8 = CONCAT44(iVar3,(undefined4)local_c8);
+          break;
+        }
+        lVar15 = (longlong)local_a8 - (longlong)pbVar14;
+        iVar21 = *(char *)((ulonglong)
+                           *(byte *)(*(longlong *)(&DAT_144229f60 + lVar18 * 8) + 0x3e +
+                                    uVar5 * 0x48) + 0x143ac6100) + 1;
+        iVar19 = iVar21 - uVar9;
+        if (lVar15 < iVar19) {
+          if (0 < lVar15) {
+            uVar10 = uVar13;
+            do {
+              lVar11 = uVar10 - uVar13;
+              uVar9 = (int)uVar17 + 1;
+              uVar17 = (ulonglong)uVar9;
+              lVar8 = *(longlong *)(&DAT_144229f60 + lVar18 * 8) + uVar10;
+              uVar10 = uVar10 + 1;
+              *(byte *)(lVar8 + 0x3e + uVar5 * 0x48) = pbVar14[lVar11];
+            } while ((int)uVar9 < lVar15);
+            iVar3 = local_c8._4_4_;
+          }
+          iVar3 = iVar3 + (int)lVar15;
+          goto LAB_1426ea5b7;
+        }
+        if (0 < (longlong)uVar13) {
+          do {
+            uVar10 = uVar17 + 1;
+            local_58[uVar17] = *(char *)(uVar17 + lVar11 + 0x3e + uVar5 * 0x48);
+            uVar17 = uVar10;
+          } while ((longlong)uVar10 < (longlong)uVar13);
+        }
+        if (0 < iVar19) {
+          FUN_142efe2b0(local_58 + uVar13,pbVar14,(longlong)iVar19);
+        }
+        lVar11 = 0;
+        if (0 < (longlong)uVar13) {
+          do {
+            lVar15 = *(longlong *)(&DAT_144229f60 + lVar18 * 8) + lVar11;
+            lVar11 = lVar11 + 1;
+            *(undefined1 *)(lVar15 + 0x3e + uVar5 * 0x48) = 0;
+          } while (lVar11 < (longlong)uVar13);
+        }
+        local_90 = local_58;
+        local_98 = 0;
+        uVar9 = (iVar21 == 4) + 1;
+        _Var6 = __crt_mbstring::__mbsrtowcs_utf8
+                          (local_f4,&local_90,(ulonglong)uVar9,(_Mbstatet *)&local_98);
+        if (_Var6 != 0xffffffffffffffff) {
+          pbVar14 = pbVar14 + (iVar19 + -1);
+          pbVar20 = local_a8;
+          goto LAB_1426ea4a3;
+        }
+LAB_1426ea692:
+        bVar22 = local_d0 == '\0';
+        goto LAB_1426ea5be;
+      }
+      lVar11 = *(longlong *)(&DAT_144229f60 + lVar18 * 8);
+      bVar2 = *(byte *)(lVar11 + 0x3d + uVar5 * 0x48);
+      if ((bVar2 & 4) == 0) {
+        puVar7 = __pctype_func();
+        pbVar12 = pbVar14;
+        if ((short)puVar7[*pbVar14] < 0) {
+          if (pbVar20 <= pbVar14 + 1) {
+            local_c8 = CONCAT44(iVar3 + 1,(undefined4)local_c8);
+            *(byte *)(*(longlong *)(&DAT_144229f60 + lVar18 * 8) + 0x3e + uVar5 * 0x48) = *pbVar14;
+            pbVar14 = (byte *)(*(longlong *)(&DAT_144229f60 + lVar18 * 8) + 0x3d + uVar5 * 0x48);
+            *pbVar14 = *pbVar14 | 4;
+            bVar22 = local_d0 == '\0';
+            goto LAB_1426ea5be;
+          }
+          uVar16 = 2;
+          pbVar14 = pbVar14 + 1;
+        }
+        else {
+          uVar16 = 1;
+        }
+      }
+      else {
+        local_50 = *(byte *)(lVar11 + 0x3e + uVar5 * 0x48);
+        uVar16 = 2;
+        local_4f = *pbVar14;
+        *(byte *)(lVar11 + 0x3d + uVar5 * 0x48) = bVar2 & 0xfb;
+        pbVar12 = &local_50;
+      }
+      iVar3 = func_0x0001426f4690(local_f4,pbVar12,uVar16);
+      if (iVar3 == -1) goto LAB_1426ea692;
+LAB_1426ea4a3:
+      local_118 = local_48;
+      local_100 = 0;
+      pbVar14 = pbVar14 + 1;
+      local_108 = 0;
+      local_110 = 5;
+      uVar9 = __acrt_WideCharToMultiByte(local_b8,0,local_f4,uVar9);
+      if (uVar9 == 0) {
+LAB_1426ea6a4:
+        bVar22 = local_d0 == '\0';
+        goto LAB_1426ea5be;
+      }
+      local_118 = (undefined1 *)0x0;
+      iVar3 = (*_DAT_142f2d848)(local_a0,local_48,uVar9,local_f0);
+      if (iVar3 == 0) {
+        uVar4 = (*_DAT_142f2d640)();
+        local_c8 = CONCAT44(local_c8._4_4_,uVar4);
+        goto LAB_1426ea6a4;
+      }
+      iVar19 = (int)local_b0;
+      iVar3 = ((int)pbVar14 - (int)local_78) + iVar19;
+      local_c8 = CONCAT44(iVar3,(undefined4)local_c8);
+      if (local_f0[0] < uVar9) break;
+      if ((char)local_f8[0] != '\n') goto LAB_1426ea56b;
+      local_f8[0] = 0xd;
+      local_118 = (undefined1 *)0x0;
+      iVar21 = (*_DAT_142f2d848)(local_a0,local_f8,1,local_f0);
+      if (iVar21 == 0) {
+        uVar4 = (*_DAT_142f2d640)();
+        local_c8 = CONCAT44(local_c8._4_4_,uVar4);
+        goto LAB_1426ea692;
+      }
+      if (local_f0[0] == 0) break;
+      local_b0 = (ulonglong)(iVar19 + 1);
+      iVar3 = iVar3 + 1;
+      local_c8 = CONCAT44(iVar3,(undefined4)local_c8);
+LAB_1426ea56b:
+    } while (pbVar14 < pbVar20);
+  }
+  bVar22 = local_d0 == '\0';
+LAB_1426ea5be:
+  if (!bVar22) {
+    *(uint *)(local_e8 + 0x3a8) = *(uint *)(local_e8 + 0x3a8) & 0xfffffffd;
+  }
+  *local_60 = local_c8;
+  *(int *)(local_60 + 1) = (int)local_b0;
+  FUN_1426c3d40(local_40 ^ (ulonglong)auStack_138);
+  return;
+}
+
+
+// 00000001426ea6ac_write_text_ansi_nolock  (2693 B)
+// 1426ea6ac write_text_ansi_nolock size=258 callers=1 callees=2 section=.text thunk=false sig=write_result write_text_ansi_nolock(int param_1, char * param_2, uint param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    struct `anonymous namespace'::write_result __cdecl write_text_ansi_nolock(int,char const *
+   __ptr64 const,unsigned int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl write_text_ansi_nolock(int param_1,char *param_2,uint param_3)
+
+{
+  char cVar1;
+  uint uVar2;
+  undefined8 uVar3;
+  int iVar4;
+  undefined4 uVar5;
+  longlong lVar6;
+  undefined4 in_register_0000000c;
+  undefined8 *puVar7;
+  uint uVar8;
+  char *pcVar9;
+  char *pcVar10;
+  char *pcVar11;
+  undefined4 in_register_00000084;
+  ulonglong in_R9;
+  undefined8 uStack_20;
+  
+  uVar8 = (uint)param_2;
+  pcVar11 = (char *)CONCAT44(in_register_00000084,param_3);
+  puVar7 = (undefined8 *)CONCAT44(in_register_0000000c,param_1);
+  uStack_20 = 0x1426ea6c4;
+  lVar6 = __chkstk();
+  lVar6 = -lVar6;
+  *(ulonglong *)(&stack0x00001428 + lVar6) =
+       _DAT_143ac5f40 ^ (ulonglong)(&stack0xffffffffffffffe8 + lVar6);
+  pcVar10 = pcVar11 + (in_R9 & 0xffffffff);
+  uVar3 = *(undefined8 *)
+           (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar8 >> 6) * 8) + 0x28 +
+           (ulonglong)(uVar8 & 0x3f) * 0x48);
+  *puVar7 = 0;
+  *(undefined4 *)(puVar7 + 1) = 0;
+  do {
+    if (pcVar10 <= pcVar11) break;
+    pcVar9 = &stack0x00000028 + lVar6;
+    do {
+      if (pcVar10 <= pcVar11) break;
+      cVar1 = *pcVar11;
+      pcVar11 = pcVar11 + 1;
+      if (cVar1 == '\n') {
+        *(int *)(puVar7 + 1) = *(int *)(puVar7 + 1) + 1;
+        *pcVar9 = '\r';
+        pcVar9 = pcVar9 + 1;
+      }
+      *pcVar9 = cVar1;
+      pcVar9 = pcVar9 + 1;
+    } while (pcVar9 < &stack0x00001427 + lVar6);
+    *(undefined8 *)(&stack0x00000008 + lVar6) = 0;
+    uVar8 = (int)pcVar9 - ((int)&stack0x00000028 + (int)lVar6);
+    *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea765;
+    iVar4 = (*_DAT_142f2d848)(uVar3,&stack0x00000028 + lVar6,uVar8,&stack0x00000018 + lVar6);
+    if (iVar4 == 0) {
+      *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea781;
+      uVar5 = (*_DAT_142f2d640)();
+      *(undefined4 *)puVar7 = uVar5;
+      break;
+    }
+    uVar2 = *(uint *)(&stack0x00000018 + lVar6);
+    *(int *)((longlong)puVar7 + 4) = *(int *)((longlong)puVar7 + 4) + uVar2;
+  } while (uVar8 <= uVar2);
+  *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea796;
+  FUN_1426c3d40(*(ulonglong *)(&stack0x00001428 + lVar6) ^
+                (ulonglong)(&stack0xffffffffffffffe8 + lVar6));
+  return;
+}
+
+
+// 00000001426ea7b0_write_text_utf16le_nolock  (2760 B)
+// 1426ea7b0 write_text_utf16le_nolock size=281 callers=1 callees=2 section=.text thunk=false sig=write_result write_text_utf16le_nolock(int param_1, char * param_2, uint param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    struct `anonymous namespace'::write_result __cdecl write_text_utf16le_nolock(int,char const *
+   __ptr64 const,unsigned int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl write_text_utf16le_nolock(int param_1,char *param_2,uint param_3)
+
+{
+  short sVar1;
+  uint uVar2;
+  undefined8 uVar3;
+  int iVar4;
+  undefined4 uVar5;
+  longlong lVar6;
+  undefined4 in_register_0000000c;
+  undefined8 *puVar7;
+  uint uVar8;
+  short *psVar9;
+  short *psVar10;
+  short *psVar11;
+  undefined4 in_register_00000084;
+  ulonglong in_R9;
+  undefined8 uStack_20;
+  
+  uVar8 = (uint)param_2;
+  psVar11 = (short *)CONCAT44(in_register_00000084,param_3);
+  puVar7 = (undefined8 *)CONCAT44(in_register_0000000c,param_1);
+  uStack_20 = 0x1426ea7c8;
+  lVar6 = __chkstk();
+  lVar6 = -lVar6;
+  *(ulonglong *)(&stack0x00001428 + lVar6) =
+       _DAT_143ac5f40 ^ (ulonglong)(&stack0xffffffffffffffe8 + lVar6);
+  psVar10 = (short *)((in_R9 & 0xffffffff) + (longlong)psVar11);
+  uVar3 = *(undefined8 *)
+           (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar8 >> 6) * 8) + 0x28 +
+           (ulonglong)(uVar8 & 0x3f) * 0x48);
+  *puVar7 = 0;
+  *(undefined4 *)(puVar7 + 1) = 0;
+  do {
+    if (psVar10 <= psVar11) break;
+    psVar9 = (short *)(&stack0x00000028 + lVar6);
+    do {
+      if (psVar10 <= psVar11) break;
+      sVar1 = *psVar11;
+      psVar11 = psVar11 + 1;
+      if (sVar1 == 10) {
+        *(int *)(puVar7 + 1) = *(int *)(puVar7 + 1) + 2;
+        *psVar9 = 0xd;
+        psVar9 = psVar9 + 1;
+      }
+      *psVar9 = sVar1;
+      psVar9 = psVar9 + 1;
+    } while (psVar9 < &stack0x00001426 + lVar6);
+    *(undefined8 *)(&stack0x00000008 + lVar6) = 0;
+    uVar8 = (int)((longlong)psVar9 - (longlong)(&stack0x00000028 + lVar6) >> 1) * 2;
+    *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea880;
+    iVar4 = (*_DAT_142f2d848)(uVar3,&stack0x00000028 + lVar6,uVar8,&stack0x00000018 + lVar6);
+    if (iVar4 == 0) {
+      *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea89c;
+      uVar5 = (*_DAT_142f2d640)();
+      *(undefined4 *)puVar7 = uVar5;
+      break;
+    }
+    uVar2 = *(uint *)(&stack0x00000018 + lVar6);
+    *(int *)((longlong)puVar7 + 4) = *(int *)((longlong)puVar7 + 4) + uVar2;
+  } while (uVar8 <= uVar2);
+  *(undefined8 *)((longlong)&uStack_20 + lVar6) = 0x1426ea8b1;
+  FUN_1426c3d40(*(ulonglong *)(&stack0x00001428 + lVar6) ^
+                (ulonglong)(&stack0xffffffffffffffe8 + lVar6));
+  return;
+}
+
+
+// 00000001426ea8cc_write_text_utf8_nolock  (3496 B)
+// 1426ea8cc write_text_utf8_nolock size=368 callers=1 callees=3 section=.text thunk=false sig=write_result write_text_utf8_nolock(int param_1, char * param_2, uint param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    struct `anonymous namespace'::write_result __cdecl write_text_utf8_nolock(int,char const *
+   __ptr64 const,unsigned int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl write_text_utf8_nolock(int param_1,char *param_2,uint param_3)
+
+{
+  short sVar1;
+  undefined8 uVar2;
+  uint uVar3;
+  int iVar4;
+  undefined4 uVar5;
+  longlong lVar6;
+  short *psVar7;
+  undefined4 in_register_0000000c;
+  undefined8 *puVar8;
+  uint uVar9;
+  ulonglong uVar10;
+  short *psVar11;
+  undefined4 in_register_00000084;
+  short *psVar12;
+  ulonglong in_R9;
+  short *psVar13;
+  undefined8 uStackX_10;
+  undefined8 uStack_30;
+  
+  uVar3 = (uint)param_2;
+  psVar12 = (short *)CONCAT44(in_register_00000084,param_3);
+  puVar8 = (undefined8 *)CONCAT44(in_register_0000000c,param_1);
+  uStack_30 = 0x1426ea8e8;
+  lVar6 = __chkstk();
+  lVar6 = -lVar6;
+  *(ulonglong *)(&stack0x00001438 + lVar6) =
+       _DAT_143ac5f40 ^ (ulonglong)(&stack0xffffffffffffffd8 + lVar6);
+  psVar13 = (short *)((in_R9 & 0xffffffff) + (longlong)psVar12);
+  uVar2 = *(undefined8 *)
+           (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar3 >> 6) * 8) + 0x28 +
+           (ulonglong)(uVar3 & 0x3f) * 0x48);
+  *puVar8 = 0;
+  *(undefined4 *)(puVar8 + 1) = 0;
+  psVar11 = psVar12;
+  do {
+    if (psVar13 <= psVar11) {
+LAB_1426eaa0d:
+      *(undefined8 *)((longlong)&uStack_30 + lVar6) = 0x1426eaa20;
+      FUN_1426c3d40(*(ulonglong *)(&stack0x00001438 + lVar6) ^
+                    (ulonglong)(&stack0xffffffffffffffd8 + lVar6));
+      return;
+    }
+    psVar7 = (short *)(&stack0x00000028 + lVar6);
+    do {
+      if (psVar13 <= psVar11) break;
+      sVar1 = *psVar11;
+      psVar11 = psVar11 + 1;
+      if (sVar1 == 10) {
+        *psVar7 = 0xd;
+        psVar7 = psVar7 + 1;
+      }
+      *psVar7 = sVar1;
+      psVar7 = psVar7 + 1;
+    } while (psVar7 < &stack0x000006d0 + lVar6);
+    *(undefined8 *)((longlong)&uStackX_10 + lVar6) = 0;
+    *(undefined8 *)(&stack0x00000008 + lVar6) = 0;
+    *(undefined4 *)(&stack0x00000000 + lVar6) = 0xd55;
+    *(undefined1 **)(&stack0xfffffffffffffff8 + lVar6) = &stack0x000006d8 + lVar6;
+    *(undefined8 *)((longlong)&uStack_30 + lVar6) = 0x1426ea9b6;
+    uVar3 = __acrt_WideCharToMultiByte
+                      (0xfde9,0,&stack0x00000028 + lVar6,
+                       (longlong)psVar7 - (longlong)(&stack0x00000028 + lVar6) >> 1 & 0xffffffff);
+    if (uVar3 == 0) {
+LAB_1426eaa05:
+      *(undefined8 *)((longlong)&uStack_30 + lVar6) = 0x1426eaa0b;
+      uVar5 = (*_DAT_142f2d640)();
+      *(undefined4 *)puVar8 = uVar5;
+      goto LAB_1426eaa0d;
+    }
+    uVar10 = 0;
+    if (uVar3 != 0) {
+      do {
+        *(undefined8 *)(&stack0xfffffffffffffff8 + lVar6) = 0;
+        *(undefined8 *)((longlong)&uStack_30 + lVar6) = 0x1426ea9e9;
+        iVar4 = (*_DAT_142f2d848)(uVar2,&stack0x000006d8 + uVar10 + lVar6,uVar3 - (int)uVar10,
+                                  &stack0x00000018 + lVar6);
+        if (iVar4 == 0) goto LAB_1426eaa05;
+        uVar9 = (int)uVar10 + *(int *)(&stack0x00000018 + lVar6);
+        uVar10 = (ulonglong)uVar9;
+      } while (uVar9 < uVar3);
+    }
+    *(int *)((longlong)puVar8 + 4) = (int)psVar11 - (int)psVar12;
+  } while( true );
+}
+
+
+// 00000001426eaa3c__write  (1440 B)
+// 1426eaa3c _write size=235 callers=6 callees=4 section=.text thunk=false sig=int _write(int _FileHandle, void * _Buf, uint _MaxCharCount)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _write
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl _write(int _FileHandle,void *_Buf,uint _MaxCharCount)
+
+{
+  int iVar1;
+  ulong *puVar2;
+  
+  if (_FileHandle == -2) {
+    puVar2 = __doserrno();
+    *puVar2 = 0;
+    puVar2 = __doserrno();
+    *puVar2 = 9;
+  }
+  else {
+    if ((-1 < _FileHandle) && ((uint)_FileHandle < _DAT_14422a360)) {
+      if ((*(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)_FileHandle >> 6) * 8) + 0x38 +
+                    (ulonglong)(_FileHandle & 0x3f) * 0x48) & 1) != 0) {
+        func_0x0001426fb0fc(_FileHandle);
+        iVar1 = -1;
+        if ((*(byte *)(*(longlong *)(&DAT_144229f60 + ((longlong)_FileHandle >> 6) * 8) + 0x38 +
+                      (ulonglong)(_FileHandle & 0x3f) * 0x48) & 1) == 0) {
+          puVar2 = __doserrno();
+          *puVar2 = 9;
+          puVar2 = __doserrno();
+          *puVar2 = 0;
+        }
+        else {
+          iVar1 = _write_nolock(_FileHandle,_Buf,_MaxCharCount);
+        }
+        func_0x0001426fb1e4(_FileHandle);
+        return iVar1;
+      }
+    }
+    puVar2 = __doserrno();
+    *puVar2 = 0;
+    puVar2 = __doserrno();
+    *puVar2 = 9;
+    FUN_1426e2060();
+  }
+  return -1;
+}
+
+
+// 00000001426eab28__write_nolock  (5298 B)
+// 1426eab28 _write_nolock size=730 callers=2 callees=11 section=.text thunk=false sig=int _write_nolock(int _FileHandle, void * _Buf, uint _MaxCharCount)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _write_nolock
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl _write_nolock(int _FileHandle,void *_Buf,uint _MaxCharCount)
+
+{
+  wchar_t *pwVar1;
+  char cVar2;
+  int iVar3;
+  undefined8 uVar4;
+  wchar_t wVar5;
+  wint_t wVar6;
+  int iVar7;
+  undefined4 uVar8;
+  ulong *puVar9;
+  ulonglong uVar10;
+  longlong lVar11;
+  undefined8 *puVar12;
+  int iVar13;
+  uint uVar14;
+  longlong lVar15;
+  wchar_t *pwVar16;
+  undefined8 local_68;
+  int local_60;
+  undefined8 local_58;
+  wchar_t local_48 [8];
+  
+  if (_MaxCharCount == 0) {
+    return 0;
+  }
+  if (_Buf == (void *)0x0) {
+LAB_1426eab56:
+    puVar9 = __doserrno();
+    *puVar9 = 0;
+    puVar9 = __doserrno();
+    *puVar9 = 0x16;
+    FUN_1426e2060();
+    return -1;
+  }
+  uVar10 = (ulonglong)(_FileHandle & 0x3f);
+  lVar15 = (longlong)_FileHandle >> 6;
+  cVar2 = *(char *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x39 + uVar10 * 0x48);
+  if (((byte)(cVar2 - 1U) < 2) && ((~_MaxCharCount & 1) == 0)) goto LAB_1426eab56;
+  if ((*(byte *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x38 + uVar10 * 0x48) & 0x20) != 0) {
+    func_0x0001426f9ab8(_FileHandle,0,2);
+  }
+  local_58 = 0;
+  iVar7 = _isatty(_FileHandle);
+  uVar14 = (uint)_Buf;
+  iVar13 = 0;
+  if ((((iVar7 == 0) ||
+       (-1 < *(char *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x38 + uVar10 * 0x48))) ||
+      ((lVar11 = __acrt_getptd(), *(longlong *)(*(longlong *)(lVar11 + 0x90) + 0x138) == 0 &&
+       (*(char *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x39 + uVar10 * 0x48) == '\0')))) ||
+     (iVar7 = (*_DAT_142f2d6e0)(*(undefined8 *)
+                                 (*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x28 + uVar10 * 0x48)
+                                ,local_48), iVar7 == 0)) {
+    if (-1 < *(char *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x38 + uVar10 * 0x48)) {
+      local_68 = 0;
+      local_60 = 0;
+      iVar7 = (*_DAT_142f2d848)(*(undefined8 *)
+                                 (*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x28 + uVar10 * 0x48)
+                                ,_Buf,(ulonglong)_MaxCharCount,(longlong)&local_68 + 4,0);
+      iVar13 = local_60;
+      uVar4 = local_68;
+      if (iVar7 == 0) {
+        uVar8 = (*_DAT_142f2d640)();
+        local_68 = CONCAT44(local_68._4_4_,uVar8);
+        iVar13 = local_60;
+        uVar4 = local_68;
+      }
+      goto LAB_1426ead74;
+    }
+    if (cVar2 == '\0') {
+      puVar12 = (undefined8 *)
+                write_text_ansi_nolock((int)&local_68,(char *)(ulonglong)(uint)_FileHandle,uVar14);
+    }
+    else if (cVar2 == '\x01') {
+      puVar12 = (undefined8 *)
+                write_text_utf8_nolock((int)&local_68,(char *)(ulonglong)(uint)_FileHandle,uVar14);
+    }
+    else {
+      uVar4 = local_58;
+      if (cVar2 != '\x02') goto LAB_1426ead74;
+      puVar12 = (undefined8 *)
+                write_text_utf16le_nolock
+                          ((int)&local_68,(char *)(ulonglong)(uint)_FileHandle,uVar14);
+    }
+  }
+  else {
+    if (cVar2 != '\0') {
+      uVar4 = local_58;
+      if ((byte)(cVar2 - 1U) < 2) {
+        iVar13 = 0;
+        pwVar1 = (wchar_t *)((longlong)_Buf + (ulonglong)_MaxCharCount);
+        local_68 = 0;
+        uVar4 = local_68;
+        if (_Buf < pwVar1) {
+          local_68._4_4_ = 0;
+          pwVar16 = _Buf;
+          iVar7 = local_68._4_4_;
+          do {
+            local_48[0] = *pwVar16;
+            wVar5 = _putwch_nolock(local_48[0]);
+            if (wVar5 != local_48[0]) {
+LAB_1426eaca8:
+              uVar8 = (*_DAT_142f2d640)();
+              local_68 = CONCAT44(local_68._4_4_,uVar8);
+              uVar4 = local_68;
+              break;
+            }
+            local_68 = CONCAT44(iVar7 + 2,(undefined4)local_68);
+            iVar3 = iVar7 + 2;
+            if (local_48[0] == L'\n') {
+              wVar6 = _putwch_nolock(L'\r');
+              if (wVar6 != 0xd) goto LAB_1426eaca8;
+              local_68 = CONCAT44(iVar7 + 3,(undefined4)local_68);
+              iVar13 = iVar13 + 1;
+              iVar3 = iVar7 + 3;
+            }
+            iVar7 = iVar3;
+            pwVar16 = pwVar16 + 1;
+            uVar4 = local_68;
+          } while (pwVar16 < pwVar1);
+        }
+      }
+      goto LAB_1426ead74;
+    }
+    puVar12 = (undefined8 *)
+              write_double_translated_ansi_nolock
+                        ((int)&local_68,(char *)(ulonglong)(uint)_FileHandle,uVar14);
+  }
+  iVar13 = *(int *)(puVar12 + 1);
+  uVar4 = *puVar12;
+LAB_1426ead74:
+  local_58 = uVar4;
+  iVar7 = (int)((ulonglong)local_58 >> 0x20);
+  if (iVar7 != 0) {
+    return iVar7 - iVar13;
+  }
+  if ((int)local_58 != 0) {
+    if ((int)local_58 == 5) {
+      puVar9 = __doserrno();
+      *puVar9 = 9;
+      puVar9 = __doserrno();
+      *puVar9 = 5;
+      return -1;
+    }
+    __acrt_errno_map_os_error();
+    return -1;
+  }
+  if (((*(byte *)(*(longlong *)(&DAT_144229f60 + lVar15 * 8) + 0x38 + uVar10 * 0x48) & 0x40) != 0)
+     && (*(char *)_Buf == '\x1a')) {
+    return 0;
+  }
+  puVar9 = __doserrno();
+  *puVar9 = 0x1c;
+  puVar9 = __doserrno();
+  *puVar9 = 0;
+  return -1;
+}
+
+
+// 00000001426eae04__difftime64  (577 B)
+// 1426eae04 _difftime64 size=46 callers=1 callees=1 section=.text thunk=false sig=double _difftime64(__time64_t _Time1, __time64_t _Time2)
+
+/* Library Function - Single Match
+    _difftime64
+   
+   Libraries: Visual Studio 2015 Release, Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+double __cdecl _difftime64(__time64_t _Time1,__time64_t _Time2)
+
+{
+  ulong *puVar1;
+  double dVar2;
+  
+  if ((_Time2 < 0) || (_Time1 < 0)) {
+    puVar1 = __doserrno();
+    dVar2 = 0.0;
+    *puVar1 = 0x16;
+  }
+  else {
+    dVar2 = (double)(_Time1 - _Time2);
+  }
+  return dVar2;
+}
+
+
+// 00000001426eae34_FID_conflict_round  (879 B)
+// 1426eae34 FID_conflict:round size=101 callers=1 callees=0 section=.text thunk=false sig=undefined FID_conflict:round(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Multiple Matches With Different Base Names
+    round
+    roundl
+   
+   Libraries: Visual Studio 2015 Release, Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+double FID_conflict_round(double param_1)
+
+{
+  short sVar1;
+  double local_res8 [4];
+  
+  local_res8[0] = param_1;
+  sVar1 = func_0x0001426f7700(local_res8,1);
+  if ((1 < (int)sVar1 - 1U) && (sVar1 = func_0x0001426f7700(local_res8,0), sVar1 != 0)) {
+    if (((ulonglong)local_res8[0] & 0x8000000000000000) == 0) {
+      local_res8[0] = local_res8[0] + _DAT_142f89428;
+    }
+    else {
+      local_res8[0] = local_res8[0] + _DAT_142f87b98;
+    }
+  }
+  return local_res8[0];
+}
+
+
+// 00000001426eae9c_FUN_1426eae9c  (2864 B)
+// 1426eae9c FUN_1426eae9c size=807 callers=3 callees=1 section=.text thunk=false sig=undefined FUN_1426eae9c(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+double FUN_1426eae9c(double param_1)
+
+{
+  uint uVar1;
+  uint uVar2;
+  int iVar3;
+  undefined8 uVar4;
+  undefined8 uVar5;
+  double dVar6;
+  double dVar7;
+  double dVar8;
+  double dVar9;
+  double dVar10;
+  undefined4 uVar11;
+  undefined4 uVar12;
+  
+  if (((ulonglong)param_1 & 0x7ff0000000000000) == 0x7ff0000000000000) {
+    if (((ulonglong)param_1 & 0xfffffffffffff) != 0) {
+      return (double)((ulonglong)param_1 | 0x8000000000000);
+    }
+    if (-1 < (longlong)param_1) {
+      return param_1;
+    }
+  }
+  else {
+    if (ABS(param_1) == 0.0) {
+      uVar5 = 2;
+      uVar4 = 0xfff0000000000000;
+      uVar12 = 0x22;
+      uVar11 = 4;
+      goto LAB_1426eaf28;
+    }
+    iVar3 = 0;
+    if (-1 < (longlong)param_1) {
+      if ((longlong)param_1 + 0xc011f05600000000U < 0x2f88200000001) {
+        param_1 = param_1 - _DAT_142f89428;
+        dVar6 = (double)((ulonglong)param_1 & 0xffffffff00000000);
+        dVar8 = param_1 / (param_1 + _DAT_14306bea8);
+        dVar9 = dVar8 + dVar8;
+        dVar7 = dVar9 * dVar9;
+        dVar10 = dVar6 * _DAT_1434a88e0;
+        dVar7 = ((((dVar7 * _DAT_1434a88a8 + _DAT_1434a88b0) * dVar7 + _DAT_1434a88c8) * dVar7 +
+                 _DAT_1434a88d0) * dVar7 * dVar9 - dVar8 * param_1) + (param_1 - dVar6);
+        dVar6 = dVar7 * _DAT_1434a88a0 + dVar6 * _DAT_1434a88a0 + dVar7 * _DAT_1434a88e0;
+      }
+      else {
+        if ((ulonglong)param_1 < 0x10000000000000) {
+          iVar3 = 0x3c;
+          param_1 = (double)((ulonglong)param_1 | 0x3d0000000000000) - _DAT_1434a8898;
+        }
+        uVar1 = (uint)((ulonglong)param_1 >> 0x20);
+        uVar2 = (uVar1 >> 0xe & 0x3f | 0x40) + (uVar1 >> 0xd & 1);
+        dVar7 = (double)((ulonglong)param_1 & 0xfffffffffffff | 0x3fe0000000000000) -
+                (double)uVar2 * _DAT_1430d1be8;
+        dVar7 = dVar7 / (dVar7 * _DAT_142fa4248 + (double)uVar2 * _DAT_1430d1be8);
+        dVar10 = dVar7 * dVar7;
+        dVar6 = (double)(int)(((uVar1 >> 0x14 & 0x7ff) - iVar3) + -0x3ff) +
+                *(double *)(&UNK_1434a8280 + (ulonglong)uVar2 * 8) * _DAT_1434a88e0;
+        dVar10 = ((dVar10 * _DAT_1434a88b8 + _DAT_1434a88c0) * dVar10 + _DAT_1434a88d8) * dVar10 *
+                 dVar7 + dVar7 + *(double *)(&UNK_1434a8490 + (ulonglong)uVar2 * 8);
+        dVar10 = dVar10 * _DAT_1434a88a0 +
+                 *(double *)(&UNK_1434a8280 + (ulonglong)uVar2 * 8) * _DAT_1434a88a0 +
+                 dVar10 * _DAT_1434a88e0;
+      }
+      return dVar6 + dVar10;
+    }
+  }
+  uVar5 = 1;
+  uVar4 = 0xfff8000000000000;
+  uVar12 = 0x21;
+  uVar11 = 8;
+LAB_1426eaf28:
+  dVar6 = (double)FUN_1426f3e10(&DAT_14347c738,0x1a,uVar4,uVar5,uVar11,uVar12,param_1,0,1);
+  return dVar6;
+}
+
+
+// 00000001426eb204_FUN_1426eb204  (2709 B)
+// 1426eb204 FUN_1426eb204 size=132 callers=18 callees=2 section=.text thunk=false sig=undefined FUN_1426eb204(void)
+
+/* WARNING: Possible PIC construction at 0x0001426eb2b0: Changing call to branch */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+int FUN_1426eb204(ushort *param_1,ushort *param_2)
+
+{
+  uint uVar1;
+  ushort uVar2;
+  ushort uVar3;
+  ulong *puVar4;
+  uint uVar5;
+  ulonglong uVar6;
+  pthreadlocinfo ptVar7;
+  int iVar8;
+  longlong lStack_38;
+  localeinfo_struct lStack_30;
+  char cStack_20;
+  
+  if (_DAT_144229f24 != 0) {
+    if ((param_1 == (ushort *)0x0) || (param_2 == (ushort *)0x0)) {
+      puVar4 = __doserrno();
+      *puVar4 = 0x16;
+      FUN_1426e2060();
+      iVar8 = 0x7fffffff;
+    }
+    else {
+      _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&lStack_38,(__crt_locale_pointers *)0x0);
+      ptVar7 = lStack_30.locinfo;
+      if ((lStack_30.locinfo)->locale_name[2] == (wchar_t *)0x0) goto LAB_1426eb1ca;
+      do {
+        if (*param_1 < 0x100) {
+          uVar6 = (ulonglong)(byte)*param_1;
+          if (((&DAT_1434ad722)[uVar6 * 2] & 1) != 0) {
+            uVar6 = (ulonglong)ptVar7->pclmap[uVar6];
+          }
+          uVar2 = (ushort)uVar6;
+        }
+        else {
+          uVar2 = _towlower_l(*param_1,&lStack_30);
+          ptVar7 = lStack_30.locinfo;
+        }
+        param_1 = param_1 + 1;
+        if (*param_2 < 0x100) {
+          uVar6 = (ulonglong)(byte)*param_2;
+          if (((&DAT_1434ad722)[uVar6 * 2] & 1) != 0) {
+            uVar6 = (ulonglong)ptVar7->pclmap[uVar6];
+          }
+          uVar3 = (ushort)uVar6;
+        }
+        else {
+          uVar3 = _towlower_l(*param_2,&lStack_30);
+          ptVar7 = lStack_30.locinfo;
+        }
+        param_2 = param_2 + 1;
+        iVar8 = (uint)uVar2 - (uint)uVar3;
+      } while ((iVar8 == 0) && (uVar2 != 0));
+      if (cStack_20 != '\0') {
+        *(uint *)(lStack_38 + 0x3a8) = *(uint *)(lStack_38 + 0x3a8) & 0xfffffffd;
+      }
+    }
+    return iVar8;
+  }
+  if ((param_1 == (ushort *)0x0) || (param_2 == (ushort *)0x0)) {
+    lStack_30.locinfo = (pthreadlocinfo)0x1426eb21b;
+    puVar4 = __doserrno();
+    *puVar4 = 0x16;
+    lStack_30.locinfo = (pthreadlocinfo)0x1426eb226;
+    FUN_1426e2060();
+    return 0x7fffffff;
+  }
+LAB_1426eb1ca:
+  do {
+    uVar2 = *param_1;
+    param_1 = param_1 + 1;
+    uVar3 = *param_2;
+    param_2 = param_2 + 1;
+    uVar1 = uVar2 + 0x20;
+    if (0x19 < uVar2 - 0x41) {
+      uVar1 = (uint)uVar2;
+    }
+    uVar5 = uVar3 + 0x20;
+    if (0x19 < uVar3 - 0x41) {
+      uVar5 = (uint)uVar3;
+    }
+  } while ((uVar1 - uVar5 == 0) && (uVar1 != 0));
+  return uVar1 - uVar5;
+}
+
+
+// 00000001426eb24c__wcsicmp_l  (1934 B)
+// 1426eb24c _wcsicmp_l size=295 callers=0 callees=4 section=.text thunk=false sig=int _wcsicmp_l(wchar_t * _Str1, wchar_t * _Str2, _locale_t _Locale)
+
+/* Library Function - Single Match
+    _wcsicmp_l
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl _wcsicmp_l(wchar_t *_Str1,wchar_t *_Str2,_locale_t _Locale)
+
+{
+  ushort uVar1;
+  ushort uVar2;
+  int iVar3;
+  ulong *puVar4;
+  ulonglong uVar5;
+  pthreadlocinfo ptVar6;
+  longlong local_38;
+  localeinfo_struct local_30;
+  char local_20;
+  
+  if ((_Str1 == (wchar_t *)0x0) || (_Str2 == (wchar_t *)0x0)) {
+    puVar4 = __doserrno();
+    *puVar4 = 0x16;
+    FUN_1426e2060();
+    iVar3 = 0x7fffffff;
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_38,(__crt_locale_pointers *)_Locale);
+    ptVar6 = local_30.locinfo;
+    if ((local_30.locinfo)->locale_name[2] == (wchar_t *)0x0) {
+      iVar3 = func_0x0001426eb1c4(_Str1,_Str2);
+    }
+    else {
+      do {
+        if ((ushort)*_Str1 < 0x100) {
+          uVar5 = (ulonglong)(byte)*_Str1;
+          if (((&DAT_1434ad722)[uVar5 * 2] & 1) != 0) {
+            uVar5 = (ulonglong)ptVar6->pclmap[uVar5];
+          }
+          uVar1 = (ushort)uVar5;
+        }
+        else {
+          uVar1 = _towlower_l(*_Str1,&local_30);
+          ptVar6 = local_30.locinfo;
+        }
+        _Str1 = _Str1 + 1;
+        if ((ushort)*_Str2 < 0x100) {
+          uVar5 = (ulonglong)(byte)*_Str2;
+          if (((&DAT_1434ad722)[uVar5 * 2] & 1) != 0) {
+            uVar5 = (ulonglong)ptVar6->pclmap[uVar5];
+          }
+          uVar2 = (ushort)uVar5;
+        }
+        else {
+          uVar2 = _towlower_l(*_Str2,&local_30);
+          ptVar6 = local_30.locinfo;
+        }
+        _Str2 = _Str2 + 1;
+        iVar3 = (uint)uVar1 - (uint)uVar2;
+      } while ((iVar3 == 0) && (uVar1 != 0));
+    }
+    if (local_20 != '\0') {
+      *(uint *)(local_38 + 0x3a8) = *(uint *)(local_38 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return iVar3;
+}
+
+
+// 00000001426eb374_isalnum  (827 B)
+// 1426eb374 isalnum size=112 callers=4 callees=2 section=.text thunk=false sig=int isalnum(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isalnum
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isalnum(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 0x107;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,0x107,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb3e4_isalpha  (827 B)
+// 1426eb3e4 isalpha size=112 callers=8 callees=2 section=.text thunk=false sig=int isalpha(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isalpha
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isalpha(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 0x103;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,0x103,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb454_isdigit  (819 B)
+// 1426eb454 isdigit size=107 callers=7 callees=2 section=.text thunk=false sig=int isdigit(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isdigit
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isdigit(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 4;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,4,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb4c0_isspace  (820 B)
+// 1426eb4c0 isspace size=107 callers=10 callees=2 section=.text thunk=false sig=int isspace(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isspace
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isspace(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 8;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,8,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb52c_isupper  (819 B)
+// 1426eb52c isupper size=107 callers=1 callees=2 section=.text thunk=false sig=int isupper(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isupper
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isupper(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 1;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,1,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb598_isxdigit  (829 B)
+// 1426eb598 isxdigit size=112 callers=3 callees=2 section=.text thunk=false sig=int isxdigit(int _C)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    isxdigit
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl isxdigit(int _C)
+
+{
+  uint uVar1;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  uVar1 = 0;
+  if (_DAT_144229f24 == 0) {
+    if (_C + 1U < 0x101) {
+      uVar1 = *(ushort *)(PTR_DAT_143ac6220 + (longlong)_C * 2) & 0x80;
+    }
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)0x0);
+    uVar1 = _ischartype_l(_C,0x80,local_20);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return uVar1;
+}
+
+
+// 00000001426eb608_FUN_1426eb608  (2610 B)
+// 1426eb608 FUN_1426eb608 size=606 callers=1 callees=2 section=.text thunk=false sig=undefined FUN_1426eb608(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+short FUN_1426eb608(float *param_1,float param_2,int param_3)
+
+{
+  short sVar1;
+  short sVar2;
+  short sVar3;
+  int iVar4;
+  undefined4 uVar5;
+  float fVar6;
+  float fVar7;
+  float local_res10 [2];
+  
+  local_res10[0] = param_2;
+  sVar1 = func_0x0001426f7954();
+  sVar2 = func_0x0001426f7954(local_res10);
+  if ((sVar1 < 0) && (sVar2 < 0)) {
+    fVar7 = *param_1;
+    if (_DAT_1434a8904 <= fVar7) {
+      if (_DAT_1434a88fc < fVar7) {
+        *param_1 = _DAT_1434b0850 * local_res10[0];
+        _fperrraise(8);
+        return 1;
+      }
+      fVar6 = _DAT_142f80ff8;
+      if (fVar7 * _DAT_14331bf60 < 0.0) {
+        fVar6 = _DAT_142f8a570;
+      }
+      iVar4 = (int)(fVar6 + fVar7 * _DAT_14331bf60);
+      fVar6 = (float)iVar4;
+      fVar7 = (fVar7 - fVar6 * _DAT_1434a88f4) - fVar6 * _DAT_1434a88e8;
+      if ((fVar7 <= (float)((uint)_DAT_1434b0868 ^ _DAT_142f817a0)) || (_DAT_1434b0868 <= fVar7)) {
+        fVar6 = fVar7 * fVar7 * _DAT_1434a88f0;
+        fVar7 = (fVar7 * fVar7 * _DAT_1434a88ec + _DAT_142f80ff8) * fVar7;
+        *param_1 = ((fVar7 + fVar6 + _DAT_142f7aae4) / ((fVar6 - fVar7) + _DAT_142f7aae4)) *
+                   local_res10[0];
+      }
+      else {
+        *param_1 = local_res10[0];
+      }
+      param_3 = iVar4 + param_3;
+LAB_1426eb7f8:
+      sVar1 = FID_conflict__FDscale(param_1,param_3);
+      if (sVar1 == 0) {
+        uVar5 = 0x10;
+      }
+      else {
+        if (sVar1 != 1) {
+          return sVar1;
+        }
+        uVar5 = 8;
+      }
+      _fperrraise(uVar5,(int)sVar1);
+      return sVar1;
+    }
+LAB_1426eb838:
+    local_res10[0] = local_res10[0] * _DAT_1430a2418;
+LAB_1426eb845:
+    sVar3 = 0;
+  }
+  else {
+    if (sVar1 == 2) {
+      return 2;
+    }
+    if (sVar2 != 2) {
+      sVar3 = 1;
+      if (sVar2 == 0) {
+        if (*param_1 != _DAT_1434b0850) goto LAB_1426eb845;
+      }
+      else {
+        if (sVar2 != 1) {
+          if (sVar1 == 0) {
+            *param_1 = local_res10[0];
+            goto LAB_1426eb7f8;
+          }
+          if (*param_1 == _DAT_1434b0850) {
+            local_res10[0] = *param_1 * local_res10[0];
+            goto LAB_1426eb849;
+          }
+          goto LAB_1426eb838;
+        }
+        if (*param_1 != (float)((uint)_DAT_1434b0850 ^ _DAT_142f817a0)) goto LAB_1426eb849;
+      }
+      _fperrraise(1);
+      local_res10[0] = _DAT_1434b0858;
+    }
+    sVar3 = 2;
+  }
+LAB_1426eb849:
+  *param_1 = local_res10[0];
+  return sVar3;
+}
+
+
+// 00000001426eb868_FUN_1426eb868  (1385 B)
+// 1426eb868 FUN_1426eb868 size=227 callers=1 callees=1 section=.text thunk=false sig=undefined FUN_1426eb868(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+float FUN_1426eb868(float param_1)
+
+{
+  short sVar1;
+  int iVar2;
+  float fVar3;
+  float local_res8 [2];
+  float local_res10 [6];
+  
+  local_res8[0] = param_1;
+  sVar1 = func_0x0001426f7954(local_res8);
+  iVar2 = 0;
+  fVar3 = _DAT_142f7aae4;
+  if (sVar1 != 0) {
+    fVar3 = local_res8[0];
+    if (sVar1 == 1) {
+      if (((uint)local_res8[0] & 0x80000000) != 0) {
+        fVar3 = 0.0;
+      }
+    }
+    else if (sVar1 != 2) {
+      if ((_DAT_1434a8908 < local_res8[0]) && (local_res8[0] < _DAT_1434a8900)) {
+        local_res10[0] = local_res8[0];
+        func_0x0001426f787c(local_res10,0,0);
+        local_res8[0] = local_res8[0] - local_res10[0];
+        iVar2 = (int)local_res10[0];
+        if (local_res8[0] <= _DAT_142f80ff8) {
+          if (local_res8[0] < _DAT_142f8a570) {
+            local_res8[0] = local_res8[0] + _DAT_142f7aae4;
+            iVar2 = iVar2 + -1;
+          }
+        }
+        else {
+          local_res8[0] = local_res8[0] - _DAT_142f7aae4;
+          iVar2 = iVar2 + 1;
+        }
+      }
+      local_res8[0] = local_res8[0] * _DAT_1434a88f8;
+      FUN_1426eb608(local_res8,_DAT_142f7aae4,iVar2);
+      fVar3 = local_res8[0];
+    }
+  }
+  return fVar3;
+}
+
+
+// 00000001426eb94c__resetstkoflw  (1544 B)
+// 1426eb94c _resetstkoflw size=300 callers=0 callees=2 section=.text thunk=false sig=int _resetstkoflw(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _resetstkoflw
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl _resetstkoflw(void)
+
+{
+  int iVar1;
+  int iVar2;
+  longlong lVar3;
+  uint uVar4;
+  uint uVar5;
+  ulonglong uVar6;
+  undefined1 local_98 [16];
+  int local_88;
+  undefined1 local_84 [4];
+  undefined1 local_80 [8];
+  longlong local_78;
+  undefined1 local_50 [4];
+  uint local_4c;
+  ulonglong local_20;
+  
+  local_20 = _DAT_143ac5f40 ^ (ulonglong)&local_88;
+  lVar3 = (*_DAT_142f2d598)(local_98,local_80,0x30);
+  if (lVar3 != 0) {
+    (*_DAT_142f2d7e0)(local_50);
+    local_88 = 0;
+    iVar1 = __acrt_SetThreadStackGuarantee(&local_88);
+    iVar2 = 0;
+    if ((iVar1 != 0) && (iVar2 = 0, local_88 != 0)) {
+      iVar2 = local_88;
+    }
+    uVar4 = (local_4c - 1) + iVar2 & ~(local_4c - 1);
+    uVar5 = uVar4 + local_4c;
+    if (uVar4 == 0) {
+      uVar5 = 0;
+    }
+    uVar4 = local_4c * 2;
+    if (local_4c * 2 <= uVar5) {
+      uVar4 = uVar5;
+    }
+    uVar6 = (~(ulonglong)(local_4c - 1) & (ulonglong)local_98) - (ulonglong)uVar4;
+    if ((local_78 + (ulonglong)local_4c <= uVar6) &&
+       (lVar3 = (*_DAT_142f2da30)(uVar6,(ulonglong)uVar4,0x1000,4), lVar3 != 0)) {
+      (*_DAT_142f2d5a0)(uVar6,uVar4,0x104,local_84);
+    }
+  }
+  iVar2 = FUN_1426c3d40(local_20 ^ (ulonglong)&local_88);
+  return iVar2;
+}
+
+
+// 00000001426eba78_wcsncpy  (906 B)
+// 1426eba78 wcsncpy size=72 callers=3 callees=0 section=.text thunk=false sig=wchar_t * wcsncpy(wchar_t * _Dest, wchar_t * _Source, size_t _Count)
+
+/* Library Function - Single Match
+    wcsncpy
+   
+   Libraries: Visual Studio 2015 Release, Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+wchar_t * __cdecl wcsncpy(wchar_t *_Dest,wchar_t *_Source,size_t _Count)
+
+{
+  wchar_t wVar1;
+  wchar_t *pwVar2;
+  longlong lVar3;
+  
+  if (_Count != 0) {
+    pwVar2 = _Dest;
+    do {
+      wVar1 = *(wchar_t *)(((longlong)_Source - (longlong)_Dest) + (longlong)pwVar2);
+      *pwVar2 = wVar1;
+      pwVar2 = pwVar2 + 1;
+      if (wVar1 == L'\0') break;
+      _Count = _Count - 1;
+    } while (_Count != 0);
+    if ((_Count != 0) && (lVar3 = _Count - 1, lVar3 != 0)) {
+      for (; lVar3 != 0; lVar3 = lVar3 + -1) {
+        *pwVar2 = L'\0';
+        pwVar2 = pwVar2 + 1;
+      }
+    }
+  }
+  return _Dest;
+}
+
+
+// 00000001426ebac0_FUN_1426ebac0  (265 B)
+// 1426ebac0 FUN_1426ebac0 size=25 callers=2 callees=0 section=.text thunk=false sig=undefined FUN_1426ebac0(void)
+
+void FUN_1426ebac0(undefined4 param_1)
+
+{
+  undefined4 local_res8 [8];
+  
+  local_res8[0] = param_1;
+  func_0x0001426f7954(local_res8);
+  return;
+}
+
+
+// 00000001426ebaf0_rewind  (1464 B)
+// 1426ebaf0 rewind size=194 callers=1 callees=4 section=.text thunk=false sig=void rewind(FILE * _File)
+
+/* Library Function - Single Match
+    rewind
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl rewind(FILE *_File)
+
+{
+  uint *puVar1;
+  uint uVar2;
+  int iVar3;
+  ulong *puVar4;
+  undefined *puVar5;
+  
+  if (_File == (FILE *)0x0) {
+    puVar4 = __doserrno();
+    *puVar4 = 0x16;
+    FUN_1426e2060();
+  }
+  else {
+    uVar2 = _fileno(_File);
+    func_0x0001426e0ac4(_File);
+    __acrt_stdio_flush_nolock(_File);
+    _File->_ptr = *(char **)&_File->_cnt;
+    *(undefined4 *)&_File->_base = 0;
+    LOCK();
+    puVar1 = (uint *)((longlong)&_File->_base + 4);
+    *puVar1 = *puVar1 & 0xffffffe7;
+    UNLOCK();
+    if (uVar2 + 2 < 2) {
+      puVar5 = &DAT_143ac6390;
+    }
+    else {
+      puVar5 = (undefined *)
+               (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar2 >> 6) * 8) +
+               (ulonglong)(uVar2 & 0x3f) * 0x48);
+    }
+    puVar5[0x38] = puVar5[0x38] & 0xfd;
+    if ((*(uint *)((longlong)&_File->_base + 4) >> 2 & 1) != 0) {
+      LOCK();
+      puVar1 = (uint *)((longlong)&_File->_base + 4);
+      *puVar1 = *puVar1 & 0xfffffffc;
+      UNLOCK();
+    }
+    iVar3 = func_0x0001426f9aa8(uVar2,0,0);
+    if (iVar3 == -1) {
+      LOCK();
+      puVar1 = (uint *)((longlong)&_File->_base + 4);
+      *puVar1 = *puVar1 | 0x10;
+      UNLOCK();
+    }
+    func_0x0001426e0ad0(_File);
+  }
+  return;
+}
+
+
+// 00000001426ebbc4_FUN_1426ebbc4  (2670 B)
+// 1426ebbc4 FUN_1426ebbc4 size=532 callers=2 callees=1 section=.text thunk=false sig=undefined FUN_1426ebbc4(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+double FUN_1426ebbc4(double param_1)
+
+{
+  double dVar1;
+  bool bVar2;
+  double dVar3;
+  undefined4 uVar4;
+  undefined4 uVar5;
+  
+  dVar1 = ABS(param_1);
+  bVar2 = param_1 != dVar1;
+  if (bVar2) {
+    param_1 = (double)CONCAT44((uint)((ulonglong)param_1 >> 0x20) ^ _UNK_142f860e4,
+                               SUB84(param_1,0) ^ _DAT_142f860e0);
+  }
+  if ((ulonglong)dVar1 < 0x4003800000000001) {
+    if ((ulonglong)dVar1 < 0x3ff3000000000001) {
+      if ((ulonglong)dVar1 < 0x3fe6000000000001) {
+        if ((ulonglong)dVar1 < 0x3fdc000000000001) {
+          dVar1 = 0.0;
+          uVar4 = 0;
+          uVar5 = 0;
+        }
+        else {
+          uVar4 = (undefined4)_DAT_1434a8918;
+          uVar5 = (undefined4)((ulonglong)_DAT_1434a8918 >> 0x20);
+          param_1 = ((param_1 + param_1) - _DAT_142f89428) / (param_1 + _DAT_14306bea8);
+          dVar1 = _DAT_1434a6860;
+        }
+      }
+      else {
+        uVar4 = (undefined4)_DAT_1434a8920;
+        uVar5 = (undefined4)((ulonglong)_DAT_1434a8920 >> 0x20);
+        param_1 = (param_1 - _DAT_142f89428) / (param_1 + _DAT_142f89428);
+        dVar1 = _DAT_1434a6868;
+      }
+    }
+    else {
+      uVar4 = (undefined4)_DAT_1434a8910;
+      uVar5 = (undefined4)((ulonglong)_DAT_1434a8910 >> 0x20);
+      param_1 = (param_1 - _DAT_143294c20) / (param_1 * _DAT_143294c20 + _DAT_142f89428);
+      dVar1 = _DAT_1434a6878;
+    }
+  }
+  else {
+    if (0x7ff0000000000000 < (ulonglong)dVar1) {
+      dVar1 = (double)func_0x0001426f406c();
+      return dVar1;
+    }
+    if (_DAT_1434a8980 < param_1) {
+      FUN_1426f3b2c(0x20);
+      if (!bVar2) {
+        return _DAT_143480c40;
+      }
+      return _DAT_1434a8988;
+    }
+    uVar4 = (undefined4)_DAT_1434a8928;
+    uVar5 = (undefined4)((ulonglong)_DAT_1434a8928 >> 0x20);
+    param_1 = _DAT_142f87b98 / param_1;
+    dVar1 = _DAT_143480c40;
+  }
+  dVar3 = param_1 * param_1;
+  dVar1 = dVar1 - (((((((dVar3 * _DAT_1434a8930 + _DAT_1434a8938) * dVar3 + _DAT_1434a8948) * dVar3
+                      + _DAT_1434a8960) * dVar3 + _DAT_1434a8950) * dVar3 * param_1) /
+                    ((((dVar3 * _DAT_1434a8940 + _DAT_1434a8958) * dVar3 + _DAT_1434a8970) * dVar3 +
+                     _DAT_1434a8978) * dVar3 + _DAT_1434a8968) - (double)CONCAT44(uVar5,uVar4)) -
+                  param_1);
+  if (bVar2) {
+    dVar1 = (double)CONCAT44((uint)((ulonglong)dVar1 >> 0x20) ^ _UNK_142f860e4,
+                             SUB84(dVar1,0) ^ _DAT_142f860e0);
+  }
+  return dVar1;
+}
+
+
+// 00000001426ebde0_FUN_1426ebde0  (3994 B)
+// 1426ebde0 FUN_1426ebde0 size=880 callers=7 callees=1 section=.text thunk=false sig=undefined FUN_1426ebde0(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+double FUN_1426ebde0(double param_1)
+
+{
+  undefined1 auVar1 [16];
+  undefined1 auVar2 [16];
+  bool bVar3;
+  ulonglong uVar4;
+  uint uVar5;
+  undefined8 in_RCX;
+  double dVar6;
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  uint uVar10;
+  double dVar11;
+  undefined1 auVar12 [16];
+  
+  auVar7._8_8_ = 0;
+  auVar7._0_8_ = param_1;
+  dVar6 = ABS(param_1);
+  if ((longlong)dVar6 < (longlong)_DAT_1434a8a30) {
+    if (_DAT_144229c34 != 0) {
+      auVar1._8_8_ = 0;
+      auVar1._0_8_ = _DAT_1434a8a10;
+      auVar1 = vcmpsd_avx(auVar7,auVar1,2);
+      auVar2._8_8_ = 0;
+      auVar2._0_8_ = _DAT_1434a8a18;
+      auVar7 = vcmpsd_avx(auVar7,auVar2,5);
+      if (NAN((double)CONCAT44(auVar7._4_4_ & auVar1._4_4_,auVar7._0_4_ & auVar1._0_4_))) {
+        if ((ulonglong)ABS(param_1) <= (ulonglong)_DAT_1434a8a70) {
+          return param_1 + _DAT_1434a8a68;
+        }
+        auVar9._8_8_ = 0;
+        auVar9._0_8_ = param_1 * _DAT_1434a8a28;
+        auVar7 = vroundsd_avx(auVar9,auVar9,3);
+        uVar5 = (uint)(param_1 * _DAT_1434a8a28);
+        dVar6 = auVar7._0_8_ * _DAT_1434a8a58 + auVar7._0_8_ * _DAT_1434a8a50 + param_1;
+        uVar4 = (ulonglong)(uVar5 & 0x3f);
+        uVar5 = (int)uVar5 >> 6;
+        dVar6 = ((dVar6 * (dVar6 * (dVar6 * (dVar6 * _DAT_1434a89a0 + _DAT_1434a89b0) +
+                                   _DAT_1434a89e0) + _DAT_1434a89c0) + _DAT_1434a89d0) *
+                 dVar6 * dVar6 + dVar6) * *(double *)(&DAT_1434ab920 + uVar4 * 8) +
+                *(double *)(&DAT_1434aee40 + uVar4 * 8) + *(double *)(&DAT_1434aec40 + uVar4 * 8);
+        if ((-0x3fe < (int)uVar5) || ((-0x3ff < (int)uVar5 && (_DAT_1434a8a68 <= dVar6)))) {
+          auVar8._8_8_ = 0;
+          auVar8._0_8_ = dVar6;
+          auVar12._8_8_ = 0;
+          auVar12._0_8_ = (ulonglong)uVar5 << 0x34;
+          auVar7 = vpaddq_avx(auVar8,auVar12);
+          return auVar7._0_8_;
+        }
+        dVar6 = dVar6 * (double)(1L << ((char)uVar5 + 0x32U & 0x3f));
+      }
+      else if (_DAT_1434a8a10 < param_1) {
+        dVar6 = (double)FUN_1426f7268(in_RCX,0x7ff0000000000000,_DAT_1434a8998);
+      }
+      else {
+        dVar6 = (double)FUN_1426f7268(in_RCX,0,_DAT_1434a8994);
+      }
+      return dVar6;
+    }
+    if (NAN((double)-(ulonglong)(param_1 <= _DAT_1434a8a10 && _DAT_1434a8a18 <= param_1))) {
+      if ((ulonglong)ABS(param_1) <= (ulonglong)_DAT_1434a8a70) {
+        return param_1 + _DAT_1434a8a68;
+      }
+      uVar10 = (uint)(param_1 * _DAT_1434a8a28);
+      uVar4 = (ulonglong)(uVar10 & 0x3f);
+      uVar5 = (int)uVar10 >> 6;
+      dVar11 = (double)(int)uVar10 * _DAT_1434a8a58 + param_1 + (double)(int)uVar10 * _DAT_1434a8a50
+      ;
+      dVar6 = dVar11 * dVar11;
+      param_1 = ((_DAT_1434a89c0 * dVar11 + _DAT_1434a89d0) * dVar6 + dVar11 +
+                ((_DAT_1434a89a0 * dVar11 + _DAT_1434a89b0) * dVar11 + _DAT_1434a89e0) *
+                dVar6 * dVar6) * *(double *)(&DAT_1434ab920 + uVar4 * 8) +
+                *(double *)(&DAT_1434aee40 + uVar4 * 8) + *(double *)(&DAT_1434aec40 + uVar4 * 8);
+      if ((-0x3fe < (int)uVar5) || ((-0x3ff < (int)uVar5 && (_DAT_1434a8a68 <= param_1)))) {
+        return (double)((longlong)param_1 + ((ulonglong)uVar5 << 0x34));
+      }
+      param_1 = param_1 * (double)(1L << ((char)uVar5 + 0x32U & 0x3f));
+    }
+    else if (_DAT_1434a8a10 < param_1) {
+      param_1 = (double)FUN_1426f7268(in_RCX,dVar6,_DAT_1434a8998);
+    }
+    else {
+      bVar3 = param_1 <= _DAT_1434a8a20;
+      param_1 = _DAT_1434a8a60;
+      if (bVar3) {
+        param_1 = (double)FUN_1426f7268(in_RCX,dVar6,_DAT_1434a8994);
+      }
+    }
+  }
+  else if (param_1 != _DAT_1434a8a30) {
+    if (param_1 == _DAT_1434a8a38) {
+      return 0.0;
+    }
+    param_1 = (double)((ulonglong)param_1 | _DAT_1434a8a40);
+  }
+  return param_1;
+}
+
+
+// 00000001426ec1d8_operator____lambda_d80eeec6fff315bfe5c115232f3240e3___lambda_6e4b09c48022b2350581041d5f6b0c4c_____ptr64__lambda_2358e3775559c9db80273  (1696 B)
+// 1426ec1d8 operator()<<lambda_d80eeec6fff315bfe5c115232f3240e3>,<lambda_6e4b09c48022b2350581041d5f6b0c4c>&___ptr64,<lambda_2358e3775559c9db80273638284d5e45>_> size=56 callers=1 callees=1 section=.text thunk=false sig=void operator()<<lambda_d80eeec6fff315bfe5c115232f3240e3>,<lambda_6e4b09c48022b2350581041d5f6b0c4c>&___ptr64,<lambda_2358e3775559c9db80273638284d5e45>_>(__crt_seh_guarded_call<void> * this, <lambda_d80eeec6fff315bfe5c115232f3240e3> * param_1, <lambda_6e4b09c48022b2350581041d5f6b0c4c> * param_2, <lambda_2358e3775559c9db80273638284d5e45> * param_3)
+
+/* Library Function - Single Match
+    public: void __cdecl __crt_seh_guarded_call<void>::operator()<class
+   <lambda_d80eeec6fff315bfe5c115232f3240e3>,class <lambda_6e4b09c48022b2350581041d5f6b0c4c> &
+   __ptr64,class <lambda_2358e3775559c9db80273638284d5e45> >(class
+   <lambda_d80eeec6fff315bfe5c115232f3240e3> && __ptr64,class
+   <lambda_6e4b09c48022b2350581041d5f6b0c4c> & __ptr64,class
+   <lambda_2358e3775559c9db80273638284d5e45> && __ptr64) __ptr64
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __thiscall
+__crt_seh_guarded_call<void>::
+operator()<<lambda_d80eeec6fff315bfe5c115232f3240e3>,<lambda_6e4b09c48022b2350581041d5f6b0c4c>&___ptr64,<lambda_2358e3775559c9db80273638284d5e45>_>
+          (__crt_seh_guarded_call<void> *this,<lambda_d80eeec6fff315bfe5c115232f3240e3> *param_1,
+          <lambda_6e4b09c48022b2350581041d5f6b0c4c> *param_2,
+          <lambda_2358e3775559c9db80273638284d5e45> *param_3)
+
+{
+  func_0x0001426f9560(*(undefined4 *)param_1);
+  <lambda_6e4b09c48022b2350581041d5f6b0c4c>::operator()(param_2);
+  func_0x0001426f95b4(*(undefined4 *)param_3);
+  return;
+}
+
+
+// 00000001426ec210_operator__  (1248 B)
+// 1426ec210 operator() size=187 callers=1 callees=2 section=.text thunk=false sig=undefined operator()(<lambda_6e4b09c48022b2350581041d5f6b0c4c> * this)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    public: __cdecl <lambda_6e4b09c48022b2350581041d5f6b0c4c>::operator()(void)const __ptr64
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __thiscall
+<lambda_6e4b09c48022b2350581041d5f6b0c4c>::operator()
+          (<lambda_6e4b09c48022b2350581041d5f6b0c4c> *this)
+
+{
+  undefined *puVar1;
+  
+  if (DAT_144229c68 != '\0') {
+    return;
+  }
+  LOCK();
+  _DAT_144229c58 = 1;
+  UNLOCK();
+  if (**(int **)this == 0) {
+    if (_DAT_144229c60 != _DAT_143ac5f40) {
+      (*(code *)PTR__guard_dispatch_icall_142f2e558)(0,0,0);
+    }
+    puVar1 = &DAT_144229ee0;
+  }
+  else {
+    if (**(int **)this != 1) goto LAB_1426ec280;
+    puVar1 = &DAT_144229ef8;
+  }
+  _execute_onexit_table(puVar1);
+LAB_1426ec280:
+  if (**(int **)this == 0) {
+    _initterm(&DAT_142f7a968,&DAT_142f7a988);
+  }
+  _initterm(&DAT_142f7a990,&DAT_142f7a998);
+  if (**(int **)(this + 8) == 0) {
+    DAT_144229c68 = '\x01';
+    **(undefined1 **)(this + 0x10) = 1;
+  }
+  return;
+}
+
+
+// 00000001426ec2e0_common_exit  (2022 B)
+// 1426ec2e0 common_exit size=188 callers=0 callees=3 section=.text thunk=false sig=void common_exit(int param_1, _crt_exit_cleanup_mode param_2, _crt_exit_return_mode param_3)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    void __cdecl common_exit(int,enum _crt_exit_cleanup_mode,enum _crt_exit_return_mode)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl common_exit(int param_1,_crt_exit_cleanup_mode param_2,_crt_exit_return_mode param_3)
+
+{
+  code *pcVar1;
+  short *psVar2;
+  int *piVar3;
+  _crt_exit_cleanup_mode local_res10 [2];
+  _crt_exit_return_mode local_res18 [2];
+  undefined1 local_res20 [8];
+  __crt_seh_guarded_call<void> local_38 [4];
+  undefined4 local_34;
+  undefined4 local_30 [2];
+  _crt_exit_cleanup_mode *local_28;
+  _crt_exit_return_mode *local_20;
+  undefined1 *local_18;
+  
+  local_res10[0] = param_2;
+  local_res18[0] = param_3;
+  if (param_3 == 0) {
+    psVar2 = (short *)(*_DAT_142f2d6a0)(0);
+    if ((((psVar2 != (short *)0x0) && (*psVar2 == 0x5a4d)) &&
+        (piVar3 = (int *)((longlong)*(int *)(psVar2 + 0x1e) + (longlong)psVar2), *piVar3 == 0x4550))
+       && ((((short)piVar3[6] == 0x20b && (0xe < (uint)piVar3[0x21])) && (piVar3[0x3e] != 0)))) {
+      try_cor_exit_process(param_1);
+    }
+  }
+  local_28 = local_res10;
+  local_res20[0] = 0;
+  local_20 = local_res18;
+  local_18 = local_res20;
+  local_34 = 2;
+  local_30[0] = 2;
+  __crt_seh_guarded_call<void>::
+  operator()<<lambda_d80eeec6fff315bfe5c115232f3240e3>,<lambda_6e4b09c48022b2350581041d5f6b0c4c>&___ptr64,<lambda_2358e3775559c9db80273638284d5e45>_>
+            (local_38,(<lambda_d80eeec6fff315bfe5c115232f3240e3> *)local_30,
+             (<lambda_6e4b09c48022b2350581041d5f6b0c4c> *)&local_28,
+             (<lambda_2358e3775559c9db80273638284d5e45> *)&local_34);
+  if (local_res18[0] != 0) {
+    return;
+  }
+  exit_or_terminate_process(param_1);
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
+  return;
+}
+
+
+// 00000001426ec39c_exit_or_terminate_process  (836 B)
+// 1426ec39c exit_or_terminate_process size=74 callers=1 callees=2 section=.text thunk=false sig=void exit_or_terminate_process(uint param_1)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    void __cdecl exit_or_terminate_process(unsigned int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl exit_or_terminate_process(uint param_1)
+
+{
+  code *pcVar1;
+  int iVar2;
+  undefined8 uVar3;
+  
+  iVar2 = __acrt_get_process_end_policy();
+  if ((iVar2 != 1) && ((*(uint *)((longlong)ProcessEnvironmentBlock + 0xbc) >> 8 & 1) == 0)) {
+    uVar3 = (*_DAT_142f2d568)();
+    (*_DAT_142f2d610)(uVar3,param_1);
+  }
+  try_cor_exit_process(param_1);
+  (*_DAT_142f2d358)(param_1);
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
+  return;
+}
+
+
+// 00000001426ec3e8_try_cor_exit_process  (826 B)
+// 1426ec3e8 try_cor_exit_process size=91 callers=2 callees=0 section=.text thunk=false sig=void try_cor_exit_process(uint param_1)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    void __cdecl try_cor_exit_process(unsigned int)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void __cdecl try_cor_exit_process(uint param_1)
+
+{
+  longlong lVar1;
+  int iVar2;
+  longlong local_res10 [3];
+  
+  local_res10[0] = 0;
+  iVar2 = (*_DAT_142f2daa8)(0,L"mscoree.dll",local_res10);
+  if (iVar2 != 0) {
+    lVar1 = (*_DAT_142f2d580)(local_res10[0],"CorExitProcess");
+    if (lVar1 != 0) {
+      (*(code *)PTR__guard_dispatch_icall_142f2e558)(param_1);
+    }
+  }
+  if (local_res10[0] != 0) {
+    (*_DAT_142f2d590)();
+  }
+  return;
+}
+
+
+// 00000001426ec478__register_thread_local_exe_atexit_callback  (790 B)
+// 1426ec478 _register_thread_local_exe_atexit_callback size=60 callers=1 callees=1 section=.text thunk=false sig=undefined _register_thread_local_exe_atexit_callback(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    _register_thread_local_exe_atexit_callback
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+void _register_thread_local_exe_atexit_callback(ulonglong param_1)
+
+{
+  code *pcVar1;
+  byte bVar2;
+  
+  if (_DAT_144229c60 == _DAT_143ac5f40) {
+    bVar2 = 0x40 - ((byte)_DAT_143ac5f40 & 0x3f) & 0x3f;
+    _DAT_144229c60 = (param_1 >> bVar2 | param_1 << 0x40 - bVar2) ^ _DAT_143ac5f40;
+    return;
+  }
+  terminate();
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
+  return;
+}
+
+
+// 00000001426ec4f4_FID_conflict__strtoi64  (749 B)
+// 1426ec4f4 FID_conflict:_strtoi64 size=42 callers=5 callees=1 section=.text thunk=false sig=longlong FID_conflict:_strtoi64(char * _String, char * * _EndPtr, int _Radix)
+
+/* Library Function - Multiple Matches With Different Base Names
+    _strtoi64
+    strtoimax
+    strtoll
+   
+   Library: Visual Studio 2019 Release */
+
+longlong __cdecl FID_conflict__strtoi64(char *_String,char **_EndPtr,int _Radix)
+
+{
+  __uint64 _Var1;
+  char *local_18;
+  char **local_10;
+  
+  if (_EndPtr != (char **)0x0) {
+    *_EndPtr = _String;
+  }
+  local_18 = _String;
+  local_10 = _EndPtr;
+  _Var1 = __crt_strtox::
+          parse_integer<unsigned___int64,__crt_strtox::c_string_character_source<char>_>
+                    (0,&local_18,_Radix,1);
+  return _Var1;
+}
+
+
+// 00000001426ec520_strtoull  (582 B)
+// 1426ec520 strtoull size=42 callers=2 callees=1 section=.text thunk=false sig=undefined strtoull(void)
+
+/* Library Function - Single Match
+    strtoull
+   
+   Library: Visual Studio 2019 Release */
+
+void strtoull(undefined8 param_1,undefined8 *param_2,undefined8 param_3)
+
+{
+  undefined8 local_18;
+  undefined8 *local_10;
+  
+  if (param_2 != (undefined8 *)0x0) {
+    *param_2 = param_1;
+  }
+  local_18 = param_1;
+  local_10 = param_2;
+  __crt_strtox::parse_integer<unsigned___int64,__crt_strtox::c_string_character_source<char>_>
+            (0,&local_18,param_3,0);
+  return;
+}
+
+
+// 00000001426ec54c_strtol  (606 B)
+// 1426ec54c strtol size=42 callers=12 callees=1 section=.text thunk=false sig=long strtol(char * _Str, char * * _EndPtr, int _Radix)
+
+/* Library Function - Single Match
+    strtol
+   
+   Library: Visual Studio 2019 Release */
+
+long __cdecl strtol(char *_Str,char **_EndPtr,int _Radix)
+
+{
+  ulong uVar1;
+  char *local_18;
+  char **local_10;
+  
+  if (_EndPtr != (char **)0x0) {
+    *_EndPtr = _Str;
+  }
+  local_18 = _Str;
+  local_10 = _EndPtr;
+  uVar1 = __crt_strtox::parse_integer<unsigned_long,__crt_strtox::c_string_character_source<char>_>
+                    (0,&local_18,_Radix,1);
+  return uVar1;
+}
+
+
+// 00000001426ec578_strtoul  (611 B)
+// 1426ec578 strtoul size=42 callers=4 callees=1 section=.text thunk=false sig=ulong strtoul(char * _Str, char * * _EndPtr, int _Radix)
+
+/* Library Function - Single Match
+    strtoul
+   
+   Library: Visual Studio 2019 Release */
+
+ulong __cdecl strtoul(char *_Str,char **_EndPtr,int _Radix)
+
+{
+  ulong uVar1;
+  char *local_18;
+  char **local_10;
+  
+  if (_EndPtr != (char **)0x0) {
+    *_EndPtr = _Str;
+  }
+  local_18 = _Str;
+  local_10 = _EndPtr;
+  uVar1 = __crt_strtox::parse_integer<unsigned_long,__crt_strtox::c_string_character_source<char>_>
+                    (0,&local_18,_Radix,0);
+  return uVar1;
+}
+
+
+// 00000001426ec5a4_wcstol  (640 B)
+// 1426ec5a4 wcstol size=42 callers=3 callees=1 section=.text thunk=false sig=long wcstol(wchar_t * _Str, wchar_t * * _EndPtr, int _Radix)
+
+/* Library Function - Single Match
+    wcstol
+   
+   Library: Visual Studio 2019 Release */
+
+long __cdecl wcstol(wchar_t *_Str,wchar_t **_EndPtr,int _Radix)
+
+{
+  ulong uVar1;
+  wchar_t *local_18;
+  wchar_t **local_10;
+  
+  if (_EndPtr != (wchar_t **)0x0) {
+    *_EndPtr = _Str;
+  }
+  local_18 = _Str;
+  local_10 = _EndPtr;
+  uVar1 = __crt_strtox::
+          parse_integer<unsigned_long,__crt_strtox::c_string_character_source<wchar_t>_>
+                    (0,&local_18,_Radix,1);
+  return uVar1;
+}
+
+
+// 00000001426ec5d0_wcstoull  (585 B)
+// 1426ec5d0 wcstoull size=42 callers=1 callees=1 section=.text thunk=false sig=undefined wcstoull(void)
+
+/* Library Function - Single Match
+    wcstoull
+   
+   Library: Visual Studio 2019 Release */
+
+void wcstoull(undefined8 param_1,undefined8 *param_2,undefined8 param_3)
+
+{
+  undefined8 local_18;
+  undefined8 *local_10;
+  
+  if (param_2 != (undefined8 *)0x0) {
+    *param_2 = param_1;
+  }
+  local_18 = param_1;
+  local_10 = param_2;
+  __crt_strtox::parse_integer<unsigned___int64,__crt_strtox::c_string_character_source<wchar_t>_>
+            (0,&local_18,param_3,0);
+  return;
+}
+
+
+// 00000001426ec5fc_abort  (963 B)
+// 1426ec5fc abort size=86 callers=77 callees=3 section=.text thunk=false sig=void abort(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    abort
+   
+   Library: Visual Studio 2019 Release */
+
+void __cdecl abort(void)
+
+{
+  code *pcVar1;
+  longlong lVar2;
+  int iVar3;
+  undefined1 *puVar4;
+  undefined1 auStack_28 [8];
+  undefined1 auStack_20 [32];
+  
+  puVar4 = auStack_28;
+  lVar2 = __acrt_get_sigabrt_handler();
+  if (lVar2 != 0) {
+    raise(0x16);
+  }
+  if ((DAT_143ac60f0 & 2) != 0) {
+    iVar3 = (*_DAT_142f2d3e0)(0x17);
+    puVar4 = auStack_28;
+    if (iVar3 != 0) {
+      pcVar1 = (code *)swi(0x29);
+      (*pcVar1)(7);
+      puVar4 = auStack_20;
+    }
+    *(undefined8 *)(puVar4 + -8) = 0x1426ec647;
+    __acrt_call_reportfault(3,0x40000015);
+  }
+  *(undefined8 *)(puVar4 + -8) = 0x1426ec651;
+  func_0x0001426ec46c(3);
+  pcVar1 = (code *)swi(3);
+  (*pcVar1)();
+  return;
+}
+
+
+// 00000001426ec690_FUN_1426ec690  (1760 B)
+// 1426ec690 FUN_1426ec690 size=130 callers=1 callees=2 section=.text thunk=false sig=undefined FUN_1426ec690(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+int FUN_1426ec690(byte *param_1,byte *param_2)
+
+{
+  byte bVar1;
+  byte bVar2;
+  uint uVar3;
+  int iVar4;
+  ulong *puVar5;
+  uint uVar6;
+  longlong lStack_28;
+  longlong lStack_20;
+  char cStack_10;
+  
+  if (_DAT_144229f24 == 0) {
+    if ((param_1 != (byte *)0x0) && (param_2 != (byte *)0x0)) {
+      do {
+        bVar1 = *param_1;
+        bVar2 = *param_2;
+        uVar3 = bVar1 + 0x20;
+        if (0x19 < bVar1 - 0x41) {
+          uVar3 = (uint)bVar1;
+        }
+        uVar6 = bVar2 + 0x20;
+        param_1 = param_1 + 1;
+        param_2 = param_2 + 1;
+        if (0x19 < bVar2 - 0x41) {
+          uVar6 = (uint)bVar2;
+        }
+      } while ((uVar3 - uVar6 == 0) && (uVar3 != 0));
+      return uVar3 - uVar6;
+    }
+    puVar5 = __doserrno();
+    *puVar5 = 0x16;
+    FUN_1426e2060();
+    return 0x7fffffff;
+  }
+  if ((param_1 == (byte *)0x0) || (param_2 == (byte *)0x0)) {
+    puVar5 = __doserrno();
+    *puVar5 = 0x16;
+    FUN_1426e2060();
+    iVar4 = 0x7fffffff;
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&lStack_28,(__crt_locale_pointers *)0x0);
+    do {
+      bVar1 = *param_1;
+      param_1 = param_1 + 1;
+      bVar1 = *(byte *)((ulonglong)bVar1 + *(longlong *)(lStack_20 + 0x110));
+      bVar2 = *param_2;
+      param_2 = param_2 + 1;
+      iVar4 = (uint)bVar1 - (uint)*(byte *)((ulonglong)bVar2 + *(longlong *)(lStack_20 + 0x110));
+      if (iVar4 != 0) break;
+    } while (bVar1 != 0);
+    if (cStack_10 != '\0') {
+      *(uint *)(lStack_28 + 0x3a8) = *(uint *)(lStack_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return iVar4;
+}
+
+
+// 00000001426ec6d8__stricmp_l  (1157 B)
+// 1426ec6d8 _stricmp_l size=136 callers=0 callees=3 section=.text thunk=false sig=int _stricmp_l(char * _Str1, char * _Str2, _locale_t _Locale)
+
+/* Library Function - Single Match
+    _stricmp_l
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl _stricmp_l(char *_Str1,char *_Str2,_locale_t _Locale)
+
+{
+  byte bVar1;
+  byte bVar2;
+  int iVar3;
+  ulong *puVar4;
+  longlong local_28;
+  longlong local_20;
+  char local_10;
+  
+  if ((_Str1 == (char *)0x0) || (_Str2 == (char *)0x0)) {
+    puVar4 = __doserrno();
+    *puVar4 = 0x16;
+    FUN_1426e2060();
+    iVar3 = 0x7fffffff;
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,(__crt_locale_pointers *)_Locale);
+    do {
+      bVar1 = *_Str1;
+      _Str1 = _Str1 + 1;
+      bVar1 = *(byte *)((ulonglong)bVar1 + *(longlong *)(local_20 + 0x110));
+      bVar2 = *_Str2;
+      _Str2 = _Str2 + 1;
+      iVar3 = (uint)bVar1 - (uint)*(byte *)((ulonglong)bVar2 + *(longlong *)(local_20 + 0x110));
+      if (iVar3 != 0) break;
+    } while (bVar1 != 0);
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return iVar3;
+}
+
+
+// 00000001426ec778_fputc  (1788 B)
+// 1426ec778 fputc size=292 callers=0 callees=5 section=.text thunk=false sig=int fputc(int _Ch, FILE * _File)
+
+/* Library Function - Single Match
+    fputc
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl fputc(int _Ch,FILE *_File)
+
+{
+  char **ppcVar1;
+  uint uVar2;
+  ulong *puVar3;
+  undefined *puVar4;
+  undefined *puVar5;
+  undefined1 auStack_38 [32];
+  undefined1 *local_18;
+  
+  local_18 = auStack_38;
+  if (_File == (FILE *)0x0) {
+    local_18 = auStack_38;
+    puVar3 = __doserrno();
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+    return -1;
+  }
+  func_0x0001426e0ac4(_File);
+  if ((*(uint *)((longlong)&_File->_base + 4) >> 0xc & 1) == 0) {
+    uVar2 = _fileno(_File);
+    if (uVar2 + 2 < 2) {
+      puVar5 = &DAT_143ac6390;
+    }
+    else {
+      puVar5 = (undefined *)
+               (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar2 >> 6) * 8) +
+               (ulonglong)(uVar2 & 0x3f) * 0x48);
+    }
+    puVar4 = &DAT_143ac6390;
+    if (puVar5[0x39] == '\0') {
+      if (1 < uVar2 + 2) {
+        puVar4 = (undefined *)
+                 (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar2 >> 6) * 8) +
+                 (ulonglong)(uVar2 & 0x3f) * 0x48);
+      }
+      if ((puVar4[0x3d] & 1) == 0) goto LAB_1426ec86c;
+    }
+    puVar3 = __doserrno();
+    *puVar3 = 0x16;
+    FUN_1426e2060();
+    _local_unwind(local_18,0x1426ec864);
+    uVar2 = 0xffffffff;
+  }
+  else {
+LAB_1426ec86c:
+    ppcVar1 = &_File->_base;
+    *(int *)ppcVar1 = *(int *)ppcVar1 + -1;
+    if (*(int *)ppcVar1 < 0) {
+      uVar2 = __acrt_stdio_flush_and_write_narrow_nolock(_Ch,_File);
+    }
+    else {
+      *_File->_ptr = (char)_Ch;
+      _File->_ptr = _File->_ptr + 1;
+      uVar2 = _Ch & 0xff;
+    }
+    func_0x0001426e0ad0(_File);
+  }
+  return uVar2;
+}
+
+
+// 00000001426ec89c___mbrtowc_utf8  (833 B)
+// 1426ec89c __mbrtowc_utf8 size=57 callers=1 callees=1 section=.text thunk=false sig=__uint64 __mbrtowc_utf8(wchar_t * param_1, char * param_2, __uint64 param_3, _Mbstatet * param_4)
+
+/* Library Function - Single Match
+    unsigned __int64 __cdecl __crt_mbstring::__mbrtowc_utf8(wchar_t * __ptr64,char const *
+   __ptr64,unsigned __int64,struct _Mbstatet * __ptr64)
+   
+   Library: Visual Studio 2019 Release */
+
+__uint64 __cdecl
+__crt_mbstring::__mbrtowc_utf8(wchar_t *param_1,char *param_2,__uint64 param_3,_Mbstatet *param_4)
+
+{
+  __uint64 _Var1;
+  wchar32 local_18 [4];
+  
+  _Var1 = __mbrtoc32_utf8(local_18,param_2,param_3,param_4);
+  if (_Var1 < 5) {
+    if (0xffff < (uint)local_18[0]) {
+      local_18[0] = L'�';
+    }
+    if (param_1 != (wchar_t *)0x0) {
+      *param_1 = (wchar_t)local_18[0];
+    }
+  }
+  return _Var1;
+}
+
+
+// 00000001426ec8d8___mbsrtowcs_utf8  (2464 B)
+// 1426ec8d8 __mbsrtowcs_utf8 size=374 callers=2 callees=2 section=.text thunk=false sig=__uint64 __mbsrtowcs_utf8(wchar_t * param_1, char * * param_2, __uint64 param_3, _Mbstatet * param_4)
+
+/* Library Function - Single Match
+    unsigned __int64 __cdecl __crt_mbstring::__mbsrtowcs_utf8(wchar_t * __ptr64,char const * __ptr64
+   * __ptr64,unsigned __int64,struct _Mbstatet * __ptr64)
+   
+   Library: Visual Studio 2019 Release */
+
+__uint64 __cdecl
+__crt_mbstring::__mbsrtowcs_utf8
+          (wchar_t *param_1,char **param_2,__uint64 param_3,_Mbstatet *param_4)
+
+{
+  ulong *puVar1;
+  wchar32 wVar2;
+  wchar_t *pwVar3;
+  char *pcVar4;
+  char *pcVar5;
+  __uint64 _Var6;
+  wchar32 local_res8 [2];
+  
+  pcVar5 = *param_2;
+  pcVar4 = (char *)0x0;
+  pwVar3 = param_1;
+  if (param_1 == (wchar_t *)0x0) {
+    while( true ) {
+      if (*pcVar5 == '\0') {
+        _Var6 = 1;
+      }
+      else if (pcVar5[1] == '\0') {
+        _Var6 = 2;
+      }
+      else {
+        _Var6 = (ulonglong)(pcVar5[2] != '\0') + 3;
+      }
+      _Var6 = __mbrtoc32_utf8((wchar32 *)0x0,pcVar5,_Var6,param_4);
+      if (_Var6 == 0xffffffffffffffff) goto LAB_1426ec9d1;
+      if (_Var6 == 0) break;
+      if (_Var6 == 4) {
+        pcVar4 = pcVar4 + 1;
+      }
+      pcVar5 = pcVar5 + _Var6;
+      pcVar4 = pcVar4 + 1;
+    }
+  }
+  else {
+    for (; param_3 != 0; param_3 = param_3 - 1) {
+      if (*pcVar5 == '\0') {
+        _Var6 = 1;
+      }
+      else if (pcVar5[1] == '\0') {
+        _Var6 = 2;
+      }
+      else {
+        _Var6 = (ulonglong)(pcVar5[2] != '\0') + 3;
+      }
+      _Var6 = __mbrtoc32_utf8(local_res8,pcVar5,_Var6,param_4);
+      if (_Var6 == 0xffffffffffffffff) {
+        *param_2 = pcVar5;
+LAB_1426ec9d1:
+        puVar1 = __doserrno();
+        *puVar1 = 0x2a;
+        return 0xffffffffffffffff;
+      }
+      if (_Var6 == 0) {
+        *pwVar3 = L'\0';
+        pcVar5 = pcVar4;
+        break;
+      }
+      wVar2 = local_res8[0];
+      if (0xffff < (uint)local_res8[0]) {
+        if (param_3 < 2) break;
+        local_res8[0] = local_res8[0] + L'\xffff0000';
+        param_3 = param_3 - 1;
+        *pwVar3 = (ushort)((uint)local_res8[0] >> 10) | 0xd800;
+        pwVar3 = pwVar3 + 1;
+        wVar2 = (wchar32)((ushort)local_res8[0] & 0x3ff | 0xdc00);
+      }
+      *pwVar3 = (wchar_t)wVar2;
+      pcVar5 = pcVar5 + _Var6;
+      pwVar3 = pwVar3 + 1;
+    }
+    *param_2 = pcVar5;
+    pcVar4 = (char *)((longlong)pwVar3 - (longlong)param_1 >> 1);
+  }
+  return (__uint64)pcVar4;
+}
+
+
+// 00000001426eca50___wcsrtombs_utf8  (1970 B)
+// 1426eca50 __wcsrtombs_utf8 size=283 callers=1 callees=3 section=.text thunk=false sig=__uint64 __wcsrtombs_utf8(char * param_1, wchar_t * * param_2, __uint64 param_3, _Mbstatet * param_4)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    unsigned __int64 __cdecl __crt_mbstring::__wcsrtombs_utf8(char * __ptr64,wchar_t const * __ptr64
+   * __ptr64,unsigned __int64,struct _Mbstatet * __ptr64)
+   
+   Library: Visual Studio 2019 Release */
+
+__uint64 __cdecl
+__crt_mbstring::__wcsrtombs_utf8
+          (char *param_1,wchar_t **param_2,__uint64 param_3,_Mbstatet *param_4)
+
+{
+  ulonglong uVar1;
+  longlong lVar2;
+  __uint64 _Var3;
+  wchar_t *pwVar4;
+  wchar_t *pwVar5;
+  char *pcVar6;
+  undefined1 auStack_78 [32];
+  undefined8 local_58;
+  char local_50 [8];
+  ulonglong local_48;
+  
+  local_48 = _DAT_143ac5f40 ^ (ulonglong)auStack_78;
+  pwVar4 = *param_2;
+  pwVar5 = pwVar4;
+  local_58 = param_4;
+  if (param_1 == (char *)0x0) {
+    while ((lVar2 = FUN_1426fc66c(local_50,*pwVar4,param_4), lVar2 != -1 &&
+           ((lVar2 == 0 || (local_50[lVar2 + -1] != '\0'))))) {
+      pwVar4 = pwVar4 + 1;
+    }
+  }
+  else {
+    while( true ) {
+      pcVar6 = local_50;
+      if (3 < param_3) {
+        pcVar6 = param_1;
+      }
+      uVar1 = FUN_1426fc66c(pcVar6,*pwVar4,local_58);
+      if (uVar1 == 0xffffffffffffffff) {
+        *param_2 = pwVar5;
+        goto LAB_1426ecb46;
+      }
+      if (pcVar6 != param_1) {
+        if (param_3 < uVar1) goto LAB_1426ecaff;
+        FUN_142efe2b0(param_1,pcVar6,uVar1);
+      }
+      if ((uVar1 != 0) && (param_1[uVar1 - 1] == '\0')) break;
+      pwVar4 = pwVar4 + 1;
+      if (uVar1 != 0) {
+        pwVar5 = pwVar4;
+      }
+      param_3 = param_3 - uVar1;
+      param_1 = param_1 + uVar1;
+    }
+    pwVar5 = (wchar_t *)0x0;
+LAB_1426ecaff:
+    *param_2 = pwVar5;
+  }
+LAB_1426ecb46:
+  _Var3 = FUN_1426c3d40(local_48 ^ (ulonglong)auStack_78);
+  return _Var3;
+}
+
+
+// 00000001426ecb6c__wcrtomb_s_l  (2337 B)
+// 1426ecb6c _wcrtomb_s_l size=318 callers=1 callees=4 section=.text thunk=false sig=int _wcrtomb_s_l(int * param_1, char * param_2, __uint64 param_3, wchar_t param_4, _Mbstatet * param_5, __crt_locale_pointers * param_6)
+
+/* Library Function - Single Match
+    int __cdecl _wcrtomb_s_l(int * __ptr64 const,char * __ptr64 const,unsigned
+   __int64,wchar_t,struct _Mbstatet * __ptr64 const,struct __crt_locale_pointers * __ptr64 const)
+   
+   Library: Visual Studio 2019 Release */
+
+int __cdecl
+_wcrtomb_s_l(int *param_1,char *param_2,__uint64 param_3,wchar_t param_4,_Mbstatet *param_5,
+            __crt_locale_pointers *param_6)
+
+{
+  int iVar1;
+  __uint64 _Var2;
+  ulong *puVar3;
+  ulong uVar4;
+  _Mbstatet *p_Var5;
+  wchar_t local_res20 [4];
+  int local_38 [2];
+  undefined8 local_30;
+  longlong local_28;
+  longlong local_20;
+  char local_10;
+  
+  local_30 = 0xfffffffffffffffe;
+  local_res20[0] = param_4;
+  _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,param_6);
+  if (param_5 != (_Mbstatet *)0x0) {
+    *(undefined4 *)param_5 = 0;
+  }
+  if (*(int *)(local_20 + 0xc) == 0xfde9) {
+    p_Var5 = (_Mbstatet *)&DAT_144229c70;
+    if (param_5 != (_Mbstatet *)0x0) {
+      p_Var5 = param_5;
+    }
+    _Var2 = __crt_mbstring::__c32rtomb_utf8(param_2,(uint)(ushort)local_res20[0],p_Var5);
+    if (param_1 != (int *)0x0) {
+      *param_1 = (int)_Var2;
+    }
+    if (4 < (int)_Var2) {
+      puVar3 = __doserrno();
+      uVar4 = *puVar3;
+      goto LAB_1426ecc83;
+    }
+  }
+  else if (*(longlong *)(local_20 + 0x138) == 0) {
+    if (0xff < (ushort)local_res20[0]) {
+LAB_1426ecc6f:
+      if (param_1 != (int *)0x0) {
+        *param_1 = -1;
+      }
+      puVar3 = __doserrno();
+      uVar4 = 0x2a;
+      *puVar3 = 0x2a;
+      goto LAB_1426ecc83;
+    }
+    *param_2 = (char)local_res20[0];
+    if (param_1 != (int *)0x0) {
+      *param_1 = 1;
+    }
+  }
+  else {
+    local_38[0] = 0;
+    iVar1 = __acrt_WideCharToMultiByte
+                      (*(undefined4 *)(local_20 + 0xc),0,local_res20,1,param_2,(int)param_3,0,
+                       local_38);
+    if ((iVar1 == 0) || (local_38[0] != 0)) goto LAB_1426ecc6f;
+    if (param_1 != (int *)0x0) {
+      *param_1 = iVar1;
+    }
+  }
+  uVar4 = 0;
+LAB_1426ecc83:
+  if (local_10 != '\0') {
+    *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+  }
+  return uVar4;
+}
+
+
+// 00000001426eccac_wcrtomb_s  (1186 B)
+// 1426eccac wcrtomb_s size=139 callers=1 callees=4 section=.text thunk=false sig=errno_t wcrtomb_s(size_t * _Retval, char * _Dst, size_t _SizeInBytes, wchar_t _Ch, mbstate_t * _State)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Single Match
+    wcrtomb_s
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+errno_t __cdecl
+wcrtomb_s(size_t *_Retval,char *_Dst,size_t _SizeInBytes,wchar_t _Ch,mbstate_t *_State)
+
+{
+  errno_t eVar1;
+  ulong *puVar2;
+  undefined1 auStackY_58 [32];
+  int local_28;
+  char local_24 [12];
+  ulonglong local_18;
+  
+  local_18 = _DAT_143ac5f40 ^ (ulonglong)auStackY_58;
+  if ((_Dst == (char *)0x0) && (_SizeInBytes != 0)) {
+    puVar2 = __doserrno();
+    *puVar2 = 0x16;
+    FUN_1426e2060();
+  }
+  else {
+    local_28 = -1;
+    if (_Dst == (char *)0x0) {
+      _SizeInBytes = 5;
+      _Dst = local_24;
+    }
+    _wcrtomb_s_l(&local_28,_Dst,_SizeInBytes,_Ch,(_Mbstatet *)_State,(__crt_locale_pointers *)0x0);
+    if (_Retval != (size_t *)0x0) {
+      *_Retval = (longlong)local_28;
+    }
+  }
+  eVar1 = FUN_1426c3d40(local_18 ^ (ulonglong)auStackY_58);
+  return eVar1;
+}
+
+
+// 00000001426ecd38_common_strtod_l__  (1634 B)
+// 1426ecd38 common_strtod_l<> size=165 callers=0 callees=4 section=.text thunk=false sig=undefined common_strtod_l<>(void)
+
+/* Library Function - Multiple Matches With Same Base Name
+    float __cdecl common_strtod_l<float,char>(char const * __ptr64 const,char * __ptr64 * __ptr64
+   const,struct __crt_locale_pointers * __ptr64 const)
+    float __cdecl common_strtod_l<float,wchar_t>(wchar_t const * __ptr64 const,wchar_t * __ptr64 *
+   __ptr64 const,struct __crt_locale_pointers * __ptr64 const)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+undefined4 common_strtod_l<>(longlong param_1,longlong *param_2,__crt_locale_pointers *param_3)
+
+{
+  SLD_STATUS SVar1;
+  ulong *puVar2;
+  undefined4 local_res8 [2];
+  longlong local_38;
+  longlong *local_30;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  if (param_2 != (longlong *)0x0) {
+    *param_2 = param_1;
+  }
+  if (param_1 == 0) {
+    puVar2 = __doserrno();
+    *puVar2 = 0x16;
+    FUN_1426e2060();
+    local_res8[0] = 0;
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,param_3);
+    local_res8[0] = 0;
+    if (param_2 != (longlong *)0x0) {
+      *param_2 = param_1;
+    }
+    local_38 = param_1;
+    local_30 = param_2;
+    SVar1 = __crt_strtox::parse_floating_point<__crt_strtox::c_string_character_source<char>,float>
+                      (local_20,&local_38,local_res8);
+    if (SVar1 - 2 < 2) {
+      puVar2 = __doserrno();
+      *puVar2 = 0x22;
+    }
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return local_res8[0];
+}
+
+
+// 00000001426ecde0_common_strtod_l__  (1627 B)
+// 1426ecde0 common_strtod_l<> size=165 callers=0 callees=4 section=.text thunk=false sig=undefined common_strtod_l<>(void)
+
+/* Library Function - Multiple Matches With Same Base Name
+    double __cdecl common_strtod_l<double,char>(char const * __ptr64 const,char * __ptr64 * __ptr64
+   const,struct __crt_locale_pointers * __ptr64 const)
+    double __cdecl common_strtod_l<double,wchar_t>(wchar_t const * __ptr64 const,wchar_t * __ptr64 *
+   __ptr64 const,struct __crt_locale_pointers * __ptr64 const)
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+undefined8 common_strtod_l<>(longlong param_1,longlong *param_2,__crt_locale_pointers *param_3)
+
+{
+  SLD_STATUS SVar1;
+  ulong *puVar2;
+  undefined8 local_res8;
+  longlong local_38;
+  longlong *local_30;
+  longlong local_28;
+  undefined1 local_20 [16];
+  char local_10;
+  
+  if (param_2 != (longlong *)0x0) {
+    *param_2 = param_1;
+  }
+  if (param_1 == 0) {
+    puVar2 = __doserrno();
+    *puVar2 = 0x16;
+    FUN_1426e2060();
+    local_res8 = 0;
+  }
+  else {
+    _LocaleUpdate::_LocaleUpdate((_LocaleUpdate *)&local_28,param_3);
+    local_res8 = 0;
+    if (param_2 != (longlong *)0x0) {
+      *param_2 = param_1;
+    }
+    local_38 = param_1;
+    local_30 = param_2;
+    SVar1 = __crt_strtox::parse_floating_point<__crt_strtox::c_string_character_source<char>,double>
+                      (local_20,&local_38,&local_res8);
+    if (SVar1 - 2 < 2) {
+      puVar2 = __doserrno();
+      *puVar2 = 0x22;
+    }
+    if (local_10 != '\0') {
+      *(uint *)(local_28 + 0x3a8) = *(uint *)(local_28 + 0x3a8) & 0xfffffffd;
+    }
+  }
+  return local_res8;
+}
+
+
+// 00000001426ece98_FID_conflict_fallbackMethod  (1409 B)
+// 1426ece98 FID_conflict:fallbackMethod size=158 callers=0 callees=2 section=.text thunk=false sig=char * FID_conflict:fallbackMethod(char * _Str, char * _Control)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Multiple Matches With Different Base Names
+    fallbackMethod
+    strpbrk
+   
+   Libraries: Visual Studio 2015 Release, Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+char * __cdecl FID_conflict_fallbackMethod(char *_Str,char *_Control)
+
+{
+  code *pcVar1;
+  byte bVar2;
+  ulonglong uVar3;
+  char *pcVar4;
+  undefined1 auStack_58 [32];
+  byte abStack_38 [32];
+  ulonglong local_18;
+  
+  local_18 = _DAT_143ac5f40 ^ (ulonglong)auStack_58;
+  uVar3 = 0;
+  do {
+    if (0x1f < uVar3) {
+      __report_rangecheckfailure();
+      pcVar1 = (code *)swi(3);
+      pcVar4 = (char *)(*pcVar1)();
+      return pcVar4;
+    }
+    abStack_38[uVar3] = 0;
+    uVar3 = uVar3 + 1;
+  } while ((longlong)uVar3 < 0x20);
+  bVar2 = *_Control;
+  while (bVar2 != 0) {
+    _Control = _Control + 1;
+    abStack_38[bVar2 >> 3] = abStack_38[bVar2 >> 3] | (byte)(1 << (bVar2 & 7));
+    bVar2 = *_Control;
+  }
+  while ((bVar2 = *_Str, bVar2 != 0 && ((abStack_38[bVar2 >> 3] & (byte)(1 << (bVar2 & 7))) == 0)))
+  {
+    _Str = _Str + 1;
+  }
+  pcVar4 = (char *)FUN_1426c3d40(_DAT_143ac5f40 ^ (ulonglong)auStack_58 ^ (ulonglong)auStack_58);
+  return pcVar4;
+}
+
+
+// 00000001426ecf40_FUN_1426ecf40  (14806 B)
+// 1426ecf40 FUN_1426ecf40 size=801 callers=2 callees=0 section=.text thunk=false sig=undefined FUN_1426ecf40(void)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+byte * FUN_1426ecf40(byte *param_1,byte *param_2)
+
+{
+  code *pcVar1;
+  ushort uVar2;
+  undefined1 auVar3 [16];
+  undefined1 auVar4 [16];
+  undefined1 auVar5 [16];
+  undefined1 auVar6 [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  undefined1 auVar11 [16];
+  undefined1 auVar12 [16];
+  undefined1 auVar13 [16];
+  undefined1 auVar14 [16];
+  undefined1 auVar15 [16];
+  undefined1 auVar16 [16];
+  undefined1 auVar17 [16];
+  byte bVar18;
+  ulonglong uVar19;
+  byte *pbVar20;
+  undefined1 (*pauVar21) [16];
+  uint uVar22;
+  undefined1 auVar23 [16];
+  undefined1 auVar24 [16];
+  undefined1 auVar25 [16];
+  undefined1 auVar27 [16];
+  undefined1 auVar28 [16];
+  undefined1 auVar29 [16];
+  undefined1 auVar30 [16];
+  undefined1 auVar31 [16];
+  undefined1 auVar32 [16];
+  undefined1 auVar33 [16];
+  undefined1 auVar34 [16];
+  undefined1 auVar35 [16];
+  undefined1 auStack_58 [32];
+  byte abStack_38 [32];
+  ulonglong uStack_18;
+  longlong lVar26;
+  
+  uVar22 = (uint)param_2 & 0xf;
+  uVar19 = (ulonglong)uVar22;
+  pauVar21 = (undefined1 (*) [16])(param_2 + -uVar19);
+  auVar35 = *pauVar21;
+  switch(uVar19) {
+  case 1:
+    auVar35 = auVar35 >> 8;
+    break;
+  case 2:
+    auVar35 = auVar35 >> 0x10;
+    break;
+  case 3:
+    auVar35 = auVar35 >> 0x18;
+    break;
+  case 4:
+    auVar35 = auVar35 >> 0x20;
+    break;
+  case 5:
+    auVar35 = auVar35 >> 0x28;
+    break;
+  case 6:
+    auVar35 = auVar35 >> 0x30;
+    break;
+  case 7:
+    auVar35 = auVar35 >> 0x38;
+    break;
+  case 8:
+    auVar35 = auVar35 >> 0x40;
+    break;
+  case 9:
+    auVar35 = auVar35 >> 0x48;
+    break;
+  case 10:
+    auVar35 = auVar35 >> 0x50;
+    break;
+  case 0xb:
+    auVar35 = auVar35 >> 0x58;
+    break;
+  case 0xc:
+    auVar35 = auVar35 >> 0x60;
+    break;
+  case 0xd:
+    auVar35 = auVar35 >> 0x68;
+    break;
+  case 0xe:
+    auVar35 = auVar35 >> 0x70;
+    break;
+  case 0xf:
+    auVar35 = auVar35 >> 0x78;
+  }
+  auVar23[0] = -(auVar35[0] == '\0');
+  auVar23[1] = -(auVar35[1] == '\0');
+  auVar23[2] = -(auVar35[2] == '\0');
+  auVar23[3] = -(auVar35[3] == '\0');
+  auVar23[4] = -(auVar35[4] == '\0');
+  auVar23[5] = -(auVar35[5] == '\0');
+  auVar23[6] = -(auVar35[6] == '\0');
+  auVar23[7] = -(auVar35[7] == '\0');
+  auVar23[8] = -(auVar35[8] == '\0');
+  auVar23[9] = -(auVar35[9] == '\0');
+  auVar23[10] = -(auVar35[10] == '\0');
+  auVar23[0xb] = -(auVar35[0xb] == '\0');
+  auVar23[0xc] = -(auVar35[0xc] == '\0');
+  auVar23[0xd] = -(auVar35[0xd] == '\0');
+  auVar23[0xe] = -(auVar35[0xe] == '\0');
+  auVar23[0xf] = -(auVar35[0xf] == '\0');
+  uVar2 = (ushort)(SUB161(auVar23 >> 7,0) & 1) | (ushort)(SUB161(auVar23 >> 0xf,0) & 1) << 1 |
+          (ushort)(SUB161(auVar23 >> 0x17,0) & 1) << 2 |
+          (ushort)(SUB161(auVar23 >> 0x1f,0) & 1) << 3 |
+          (ushort)(SUB161(auVar23 >> 0x27,0) & 1) << 4 |
+          (ushort)(SUB161(auVar23 >> 0x2f,0) & 1) << 5 |
+          (ushort)(SUB161(auVar23 >> 0x37,0) & 1) << 6 |
+          (ushort)(SUB161(auVar23 >> 0x3f,0) & 1) << 7 |
+          (ushort)(SUB161(auVar23 >> 0x47,0) & 1) << 8 |
+          (ushort)(SUB161(auVar23 >> 0x4f,0) & 1) << 9 |
+          (ushort)(SUB161(auVar23 >> 0x57,0) & 1) << 10 |
+          (ushort)(SUB161(auVar23 >> 0x5f,0) & 1) << 0xb |
+          (ushort)(SUB161(auVar23 >> 0x67,0) & 1) << 0xc |
+          (ushort)(SUB161(auVar23 >> 0x6f,0) & 1) << 0xd |
+          (ushort)(SUB161(auVar23 >> 0x77,0) & 1) << 0xe | (ushort)(auVar23[0xf] >> 7) << 0xf;
+  if (uVar2 == 0) {
+    if (uVar19 == 0) {
+      if ((*pauVar21)[1] == (char)uVar22) goto LAB_1426ed1fe;
+      goto FID_conflict_fallbackMethod;
+    }
+  }
+  else {
+    uVar22 = 0;
+    if (uVar2 != 0) {
+      for (; (uVar2 >> uVar22 & 1) == 0; uVar22 = uVar22 + 1) {
+      }
+    }
+    lVar26 = auVar35._8_8_;
+    switch(-uVar22) {
+    case 0:
+      auVar35 = ZEXT816(0);
+      break;
+    case 0xfffffff1:
+      auVar27._0_8_ = auVar35._0_8_ << 8;
+      auVar27._8_8_ = lVar26 << 8 | auVar35._0_8_ >> 0x38;
+      auVar35 = auVar27 >> 8;
+      break;
+    case 0xfffffff2:
+      auVar28._0_8_ = auVar35._0_8_ << 0x10;
+      auVar28._8_8_ = lVar26 << 0x10 | auVar35._0_8_ >> 0x30;
+      auVar35 = auVar28 >> 0x10;
+      break;
+    case 0xfffffff3:
+      auVar29._0_8_ = auVar35._0_8_ << 0x18;
+      auVar29._8_8_ = lVar26 << 0x18 | auVar35._0_8_ >> 0x28;
+      auVar35 = auVar29 >> 0x18;
+      break;
+    case 0xfffffff4:
+      auVar30._0_8_ = auVar35._0_8_ << 0x20;
+      auVar30._8_8_ = lVar26 << 0x20 | auVar35._0_8_ >> 0x20;
+      auVar35 = auVar30 >> 0x20;
+      break;
+    case 0xfffffff5:
+      auVar31._0_8_ = auVar35._0_8_ << 0x28;
+      auVar31._8_8_ = lVar26 << 0x28 | auVar35._0_8_ >> 0x18;
+      auVar35 = auVar31 >> 0x28;
+      break;
+    case 0xfffffff6:
+      auVar32._0_8_ = auVar35._0_8_ << 0x30;
+      auVar32._8_8_ = lVar26 << 0x30 | auVar35._0_8_ >> 0x10;
+      auVar35 = auVar32 >> 0x30;
+      break;
+    case 0xfffffff7:
+      auVar33._0_8_ = auVar35._0_8_ << 0x38;
+      auVar33._8_8_ = lVar26 << 0x38 | auVar35._0_8_ >> 8;
+      auVar35 = auVar33 >> 0x38;
+      break;
+    case 0xfffffff8:
+      auVar35._8_8_ = 0;
+      break;
+    case 0xfffffff9:
+      auVar3._8_8_ = 0;
+      auVar3._0_8_ = auVar35._0_8_ << 8;
+      auVar35 = (auVar3 << 0x40) >> 0x48;
+      break;
+    case 0xfffffffa:
+      auVar4._8_8_ = 0;
+      auVar4._0_8_ = auVar35._0_8_ << 0x10;
+      auVar35 = (auVar4 << 0x40) >> 0x50;
+      break;
+    case 0xfffffffb:
+      auVar5._8_8_ = 0;
+      auVar5._0_8_ = auVar35._0_8_ << 0x18;
+      auVar35 = (auVar5 << 0x40) >> 0x58;
+      break;
+    case 0xfffffffc:
+      auVar6._8_8_ = 0;
+      auVar6._0_8_ = auVar35._0_8_ << 0x20;
+      auVar35 = (auVar6 << 0x40) >> 0x60;
+      break;
+    case 0xfffffffd:
+      auVar7._8_8_ = 0;
+      auVar7._0_8_ = auVar35._0_8_ << 0x28;
+      auVar35 = (auVar7 << 0x40) >> 0x68;
+      break;
+    case 0xfffffffe:
+      auVar8._8_8_ = 0;
+      auVar8._0_8_ = auVar35._0_8_ << 0x30;
+      auVar35 = (auVar8 << 0x40) >> 0x70;
+      break;
+    case 0xffffffff:
+      auVar9._8_8_ = 0;
+      auVar9._0_8_ = auVar35._0_8_ << 0x38;
+      auVar35 = (auVar9 << 0x40) >> 0x78;
+    }
+    if (uVar19 == 0 || (ulonglong)uVar22 < 0x10 - uVar19) goto LAB_1426ed1fe;
+  }
+  auVar34 = pauVar21[1];
+  auVar24[0] = -(auVar34[0] == '\0');
+  auVar24[1] = -(auVar34[1] == '\0');
+  auVar24[2] = -(auVar34[2] == '\0');
+  auVar24[3] = -(auVar34[3] == '\0');
+  auVar24[4] = -(auVar34[4] == '\0');
+  auVar24[5] = -(auVar34[5] == '\0');
+  auVar24[6] = -(auVar34[6] == '\0');
+  lVar26 = auVar34._8_8_;
+  auVar24[7] = -(auVar34[7] == '\0');
+  auVar24[8] = -(auVar34[8] == '\0');
+  auVar24[9] = -(auVar34[9] == '\0');
+  auVar24[10] = -(auVar34[10] == '\0');
+  auVar24[0xb] = -(auVar34[0xb] == '\0');
+  auVar24[0xc] = -(auVar34[0xc] == '\0');
+  auVar24[0xd] = -(auVar34[0xd] == '\0');
+  auVar24[0xe] = -(auVar34[0xe] == '\0');
+  auVar24[0xf] = -(auVar34[0xf] == '\0');
+  uVar2 = (ushort)(SUB161(auVar24 >> 7,0) & 1) | (ushort)(SUB161(auVar24 >> 0xf,0) & 1) << 1 |
+          (ushort)(SUB161(auVar24 >> 0x17,0) & 1) << 2 |
+          (ushort)(SUB161(auVar24 >> 0x1f,0) & 1) << 3 |
+          (ushort)(SUB161(auVar24 >> 0x27,0) & 1) << 4 |
+          (ushort)(SUB161(auVar24 >> 0x2f,0) & 1) << 5 |
+          (ushort)(SUB161(auVar24 >> 0x37,0) & 1) << 6 |
+          (ushort)(SUB161(auVar24 >> 0x3f,0) & 1) << 7 |
+          (ushort)(SUB161(auVar24 >> 0x47,0) & 1) << 8 |
+          (ushort)(SUB161(auVar24 >> 0x4f,0) & 1) << 9 |
+          (ushort)(SUB161(auVar24 >> 0x57,0) & 1) << 10 |
+          (ushort)(SUB161(auVar24 >> 0x5f,0) & 1) << 0xb |
+          (ushort)(SUB161(auVar24 >> 0x67,0) & 1) << 0xc |
+          (ushort)(SUB161(auVar24 >> 0x6f,0) & 1) << 0xd |
+          (ushort)(SUB161(auVar24 >> 0x77,0) & 1) << 0xe | (ushort)(auVar24[0xf] >> 7) << 0xf;
+  if (uVar2 != 0) {
+    uVar22 = 0;
+    if (uVar2 != 0) {
+      for (; (uVar2 >> uVar22 & 1) == 0; uVar22 = uVar22 + 1) {
+      }
+    }
+    if ((uVar22 - uVar19) + 0x10 < 0x11) {
+      uVar19 = auVar34._0_8_;
+      switch(-uVar22) {
+      case 0:
+        auVar34 = ZEXT816(0);
+        break;
+      case 0xfffffff1:
+        auVar34._0_8_ = uVar19 << 8;
+        auVar34._8_8_ = lVar26 << 8 | uVar19 >> 0x38;
+        break;
+      case 0xfffffff2:
+        auVar34._0_8_ = uVar19 << 0x10;
+        auVar34._8_8_ = lVar26 << 0x10 | uVar19 >> 0x30;
+        break;
+      case 0xfffffff3:
+        auVar34._0_8_ = uVar19 << 0x18;
+        auVar34._8_8_ = lVar26 << 0x18 | uVar19 >> 0x28;
+        break;
+      case 0xfffffff4:
+        auVar34._0_8_ = uVar19 << 0x20;
+        auVar34._8_8_ = lVar26 << 0x20 | uVar19 >> 0x20;
+        break;
+      case 0xfffffff5:
+        auVar34._0_8_ = uVar19 << 0x28;
+        auVar34._8_8_ = lVar26 << 0x28 | uVar19 >> 0x18;
+        break;
+      case 0xfffffff6:
+        auVar34._0_8_ = uVar19 << 0x30;
+        auVar34._8_8_ = lVar26 << 0x30 | uVar19 >> 0x10;
+        break;
+      case 0xfffffff7:
+        auVar34._0_8_ = uVar19 << 0x38;
+        auVar34._8_8_ = lVar26 << 0x38 | uVar19 >> 8;
+        break;
+      case 0xfffffff8:
+        auVar17._8_8_ = 0;
+        auVar17._0_8_ = uVar19;
+        auVar34 = auVar17 << 0x40;
+        break;
+      case 0xfffffff9:
+        auVar10._8_8_ = 0;
+        auVar10._0_8_ = uVar19 << 8;
+        auVar34 = auVar10 << 0x40;
+        break;
+      case 0xfffffffa:
+        auVar11._8_8_ = 0;
+        auVar11._0_8_ = uVar19 << 0x10;
+        auVar34 = auVar11 << 0x40;
+        break;
+      case 0xfffffffb:
+        auVar12._8_8_ = 0;
+        auVar12._0_8_ = uVar19 << 0x18;
+        auVar34 = auVar12 << 0x40;
+        break;
+      case 0xfffffffc:
+        auVar13._8_8_ = 0;
+        auVar13._0_8_ = uVar19 << 0x20;
+        auVar34 = auVar13 << 0x40;
+        break;
+      case 0xfffffffd:
+        auVar14._8_8_ = 0;
+        auVar14._0_8_ = uVar19 << 0x28;
+        auVar34 = auVar14 << 0x40;
+        break;
+      case 0xfffffffe:
+        auVar15._8_8_ = 0;
+        auVar15._0_8_ = uVar19 << 0x30;
+        auVar34 = auVar15 << 0x40;
+        break;
+      case 0xffffffff:
+        auVar16._8_8_ = 0;
+        auVar16._0_8_ = uVar19 << 0x38;
+        auVar34 = auVar16 << 0x40;
+      }
+      auVar35 = auVar34 | auVar35;
+LAB_1426ed1fe:
+      bVar18 = *param_1;
+      while( true ) {
+        if (bVar18 == 0) {
+          return (byte *)0x0;
+        }
+        auVar25[0] = -(bVar18 == auVar35[0]);
+        auVar25[1] = -(bVar18 == auVar35[1]);
+        auVar25[2] = -(bVar18 == auVar35[2]);
+        auVar25[3] = -(bVar18 == auVar35[3]);
+        auVar25[4] = -(bVar18 == auVar35[4]);
+        auVar25[5] = -(bVar18 == auVar35[5]);
+        auVar25[6] = -(bVar18 == auVar35[6]);
+        auVar25[7] = -(bVar18 == auVar35[7]);
+        auVar25[8] = -(bVar18 == auVar35[8]);
+        auVar25[9] = -(bVar18 == auVar35[9]);
+        auVar25[10] = -(bVar18 == auVar35[10]);
+        auVar25[0xb] = -(bVar18 == auVar35[0xb]);
+        auVar25[0xc] = -(bVar18 == auVar35[0xc]);
+        auVar25[0xd] = -(bVar18 == auVar35[0xd]);
+        auVar25[0xe] = -(bVar18 == auVar35[0xe]);
+        auVar25[0xf] = -(bVar18 == auVar35[0xf]);
+        if ((((((((((((((((SUB161(auVar25 >> 7,0) & 1) != 0 || (SUB161(auVar25 >> 0xf,0) & 1) != 0)
+                        || (SUB161(auVar25 >> 0x17,0) & 1) != 0) ||
+                       (SUB161(auVar25 >> 0x1f,0) & 1) != 0) || (SUB161(auVar25 >> 0x27,0) & 1) != 0
+                      ) || (SUB161(auVar25 >> 0x2f,0) & 1) != 0) ||
+                    (SUB161(auVar25 >> 0x37,0) & 1) != 0) || (SUB161(auVar25 >> 0x3f,0) & 1) != 0)
+                  || (SUB161(auVar25 >> 0x47,0) & 1) != 0) || (SUB161(auVar25 >> 0x4f,0) & 1) != 0)
+                || (SUB161(auVar25 >> 0x57,0) & 1) != 0) || (SUB161(auVar25 >> 0x5f,0) & 1) != 0) ||
+              (SUB161(auVar25 >> 0x67,0) & 1) != 0) || (SUB161(auVar25 >> 0x6f,0) & 1) != 0) ||
+            (SUB161(auVar25 >> 0x77,0) & 1) != 0) || auVar25[0xf] < '\0') break;
+        bVar18 = param_1[1];
+        param_1 = param_1 + 1;
+      }
+      return param_1;
+    }
+  }
+FID_conflict_fallbackMethod:
+  uStack_18 = _DAT_143ac5f40 ^ (ulonglong)auStack_58;
+  uVar19 = 0;
+  do {
+    if (0x1f < uVar19) {
+      __report_rangecheckfailure();
+      pcVar1 = (code *)swi(3);
+      pbVar20 = (byte *)(*pcVar1)();
+      return pbVar20;
+    }
+    abStack_38[uVar19] = 0;
+    uVar19 = uVar19 + 1;
+  } while ((longlong)uVar19 < 0x20);
+  bVar18 = *param_2;
+  while (bVar18 != 0) {
+    param_2 = param_2 + 1;
+    abStack_38[bVar18 >> 3] = abStack_38[bVar18 >> 3] | (byte)(1 << (bVar18 & 7));
+    bVar18 = *param_2;
+  }
+  while ((bVar18 = *param_1, bVar18 != 0 &&
+         ((abStack_38[bVar18 >> 3] & (byte)(1 << (bVar18 & 7))) == 0))) {
+    param_1 = param_1 + 1;
+  }
+  pbVar20 = (byte *)FUN_1426c3d40(_DAT_143ac5f40 ^ (ulonglong)auStack_58 ^ (ulonglong)auStack_58);
+  return pbVar20;
+}
+
+
+// 00000001426ed320_operator____  (1413 B)
+// 1426ed320 operator()<> size=61 callers=1 callees=1 section=.text thunk=false sig=undefined operator()<>(void)
+
+/* Library Function - Multiple Matches With Same Base Name
+    public: int __cdecl __crt_seh_guarded_call<int>::operator()<class
+   <lambda_450d90ce9489cb83d667727298b1f467>,class <lambda_0bd0bd1e46f8138169959d81163ebf0c> &
+   __ptr64,class <lambda_e9ecde663af5bbd3dec5792d9ab5b194> >(class
+   <lambda_450d90ce9489cb83d667727298b1f467> && __ptr64,class
+   <lambda_0bd0bd1e46f8138169959d81163ebf0c> & __ptr64,class
+   <lambda_e9ecde663af5bbd3dec5792d9ab5b194> && __ptr64) __ptr64
+    public: int __cdecl __crt_seh_guarded_call<int>::operator()<class
+   <lambda_638071c8ff4a7adc38ebf97819af8252>,class <lambda_c24b6d9e7c4576f9a5efdbd124f9441f> &
+   __ptr64,class <lambda_b22ff52eb36be97581a67924712ed724> >(class
+   <lambda_638071c8ff4a7adc38ebf97819af8252> && __ptr64,class
+   <lambda_c24b6d9e7c4576f9a5efdbd124f9441f> & __ptr64,class
+   <lambda_b22ff52eb36be97581a67924712ed724> && __ptr64) __ptr64
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int operator()<>(undefined8 param_1,undefined8 *param_2,
+                <lambda_0bd0bd1e46f8138169959d81163ebf0c> *param_3,undefined8 *param_4)
+
+{
+  int iVar1;
+  
+  func_0x0001426e0ac4(*param_2);
+  iVar1 = <lambda_0bd0bd1e46f8138169959d81163ebf0c>::operator()(param_3);
+  func_0x0001426e0ad0(*param_4);
+  return iVar1;
+}
+
+
+// 00000001426ed360_operator__  (988 B)
+// 1426ed360 operator() size=106 callers=1 callees=3 section=.text thunk=false sig=int operator()(<lambda_0bd0bd1e46f8138169959d81163ebf0c> * this)
+
+/* Library Function - Single Match
+    public: int __cdecl <lambda_0bd0bd1e46f8138169959d81163ebf0c>::operator()(void)const __ptr64
+   
+   Library: Visual Studio 2019 Release */
+
+int __thiscall
+<lambda_0bd0bd1e46f8138169959d81163ebf0c>::operator()
+          (<lambda_0bd0bd1e46f8138169959d81163ebf0c> *this)
+
+{
+  undefined8 uVar1;
+  size_t sVar2;
+  undefined1 uVar3;
+  size_t sVar4;
+  
+  uVar1 = **(undefined8 **)this;
+  uVar3 = __acrt_stdio_begin_temporary_buffering_nolock(uVar1);
+  sVar4 = _fwrite_nolock((void *)**(undefined8 **)(this + 8),1,**(size_t **)(this + 0x10),
+                         (FILE *)**(undefined8 **)this);
+  sVar2 = **(size_t **)(this + 0x10);
+  __acrt_stdio_end_temporary_buffering_nolock
+            (CONCAT71((int7)((ulonglong)*(size_t **)(this + 0x10) >> 8),uVar3),uVar1);
+  return -(uint)(sVar4 != sVar2);
+}
+
+
+// 00000001426ed3cc_fputs  (1793 B)
+// 1426ed3cc fputs size=263 callers=4 callees=4 section=.text thunk=false sig=int fputs(char * _Str, FILE * _File)
+
+/* Library Function - Single Match
+    fputs
+   
+   Libraries: Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+int __cdecl fputs(char *_Str,FILE *_File)
+
+{
+  uint uVar1;
+  int iVar2;
+  ulong *puVar3;
+  undefined *puVar4;
+  undefined *puVar5;
+  char *local_res8;
+  FILE *local_res10;
+  undefined1 local_res18 [8];
+  longlong local_res20;
+  FILE *local_38;
+  FILE *local_30;
+  FILE **local_28;
+  char **local_20;
+  longlong *local_18;
+  
+  local_res8 = _Str;
+  local_res10 = _File;
+  if ((_Str != (char *)0x0) && (_File != (FILE *)0x0)) {
+    if ((*(uint *)((longlong)&_File->_base + 4) >> 0xc & 1) != 0) {
+LAB_1426ed47f:
+      local_res20 = -1;
+      do {
+        local_res20 = local_res20 + 1;
+      } while (local_res8[local_res20] != '\0');
+      local_28 = &local_res10;
+      local_20 = &local_res8;
+      local_18 = &local_res20;
+      local_38 = local_res10;
+      local_30 = local_res10;
+      iVar2 = operator()<>(local_res18,&local_30,&local_28,&local_38);
+      return iVar2;
+    }
+    uVar1 = _fileno(_File);
+    puVar4 = &DAT_143ac6390;
+    if (uVar1 + 2 < 2) {
+      puVar5 = &DAT_143ac6390;
+    }
+    else {
+      puVar5 = (undefined *)
+               (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar1 >> 6) * 8) +
+               (ulonglong)(uVar1 & 0x3f) * 0x48);
+    }
+    if (puVar5[0x39] == '\0') {
+      if (1 < uVar1 + 2) {
+        puVar4 = (undefined *)
+                 (*(longlong *)(&DAT_144229f60 + ((longlong)(int)uVar1 >> 6) * 8) +
+                 (ulonglong)(uVar1 & 0x3f) * 0x48);
+      }
+      if ((puVar4[0x3d] & 1) == 0) goto LAB_1426ed47f;
+    }
+  }
+  puVar3 = __doserrno();
+  *puVar3 = 0x16;
+  FUN_1426e2060();
+  return -1;
+}
+
+
+// 00000001426ed4d4_FID_conflict_fallbackMethod  (1801 B)
+// 1426ed4d4 FID_conflict:fallbackMethod size=192 callers=1 callees=2 section=.text thunk=false sig=size_t FID_conflict:fallbackMethod(char * _Str, char * _Control)
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* Library Function - Multiple Matches With Different Base Names
+    fallbackMethod
+    strspn
+   
+   Libraries: Visual Studio 2015 Release, Visual Studio 2017 Release, Visual Studio 2019 Release */
+
+size_t __cdecl FID_conflict_fallbackMethod(char *_Str,char *_Control)
+
+{
+  code *pcVar1;
+  byte bVar2;
+  ulonglong uVar3;
+  size_t sVar4;
+  uint uVar5;
+  byte *pbVar6;
+  ulonglong uVar7;
+  undefined1 auStack_58 [32];
+  byte abStack_38 [32];
+  ulonglong local_18;
+  
+  local_18 = _DAT_143ac5f40 ^ (ulonglong)auStack_58;
+  uVar7 = 0;
+  uVar3 = uVar7;
+  do {
+    if (0x1f < uVar3) {
+      __report_rangecheckfailure();
+      pcVar1 = (code *)swi(3);
+      sVar4 = (*pcVar1)();
+      return sVar4;
+    }
+    abStack_38[uVar3] = 0;
+    uVar3 = uVar3 + 1;
+  } while ((longlong)uVar3 < 0x20);
+  bVar2 = *_Control;
+  pbVar6 = (byte *)_Control;
+  while (bVar2 != 0) {
+    _Control = (char *)(ulonglong)(bVar2 >> 3);
+    pbVar6 = pbVar6 + 1;
+    abStack_38[(longlong)_Control] = abStack_38[(longlong)_Control] | (byte)(1 << (bVar2 & 7));
+    bVar2 = *pbVar6;
+  }
+  if (*_Str != '\0') {
+    uVar5 = 1 << (*_Str & 7U);
+    bVar2 = abStack_38[(byte)*_Str >> 3] & (byte)uVar5;
+    while (bVar2 != 0) {
+      _Str = _Str + 1;
+      uVar7 = (ulonglong)((int)uVar7 + 1);
+      pbVar6 = (byte *)(ulonglong)((byte)*_Str >> 3);
+      uVar5 = 1 << (*_Str & 7U);
+      bVar2 = abStack_38[(longlong)pbVar6] & (byte)uVar5;
+    }
+    _Control = (char *)(ulonglong)uVar5;
+  }
+  sVar4 = FUN_1426c3d40(local_18 ^ (ulonglong)auStack_58,_Control,pbVar6,uVar7);
+  return sVar4;
+}
+
+
