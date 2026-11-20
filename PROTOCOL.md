@@ -23,29 +23,34 @@ unchanged — no read-state was affected.
 That index is the source of truth for coverage; never count by eye.
 `state.json` → machine ledger: `next_chunk`, per-pass entries, cumulative
 totals, all registration hashes, all `{id,hash}` rows. Never hand-accumulate numbers.
+`scripts/pass_next.py` → range picker: start chunk (or `state.json.next_chunk`) + `--max` KiB
+cap (default 1200) → printed chunk range, `.text` range, `pass_measure.py` command, record
+path. Read-only.
 
 (Not to be confused with `../flood.py` — the byte-budget corpus streamer with
 `../flood_cursor.txt`, a separate mechanism.)
 
 ## Pass
 
-One pass = **8 chunks** (≈0.6–0.7 MB post-strip, ~160–180K tokens. 8 is default and user may override). You have a
+One pass = the chunk range printed by `python scripts/pass_next.py` (fills chunks up to a
+`--max` KiB cap, default 1200; post-strip chunks run 9–580 KB, so the count varies). Trust
+the script, not a remembered chunk count. You have a
 1 million-token context in total for the whole session.
 
 0. **Before the pass**, read `CODE_MAP.md` in full, plus the most recent record in
    `ranges/`. Update both after the pass.
-1. Read chunks `N` … `N+7` completely (or stop at a stated boundary and say so).
-2. Run `python scripts/pass_measure.py N N+7` from this repo root and read its output
+1. Read every chunk in the printed range completely (or stop at a stated boundary and say so).
+2. Run `python scripts/pass_measure.py <first> <last>` from this repo root and read its output
    alongside the chunks — it is the index to what was read (headline numbers, class and
    zone skeleton, registration/decrypt censuses, record-hash matches), never a
    substitute for reading.
 3. Write one record: `ranges/<first>-<last>.md`, named by the `.text` addresses covered
    (from the script's `range:` line or `index.json`). **Quote the script output verbatim**
    in the record's headline-numbers section; do not retype its numbers.
-4. Run `python scripts/pass_measure.py N N+7 --update` to merge the pass into
+4. Run `python scripts/pass_measure.py <first> <last> --update` to merge the pass into
    `state.json`, then update `CODE_MAP.md`: coverage row, corrections/synthesis only if
    something structural changed, open threads, "Next pass" section — in that section name
-   only the resume chunk; the length comes from the task message (default 8). Cumulative
+   only the resume chunk; the length comes from `pass_next.py`. Cumulative
    numbers in `CODE_MAP.md` come from `state.json` totals — never hand-added.
 
 A pass may read ahead of the census (the script's classes are call-shape heuristics;
@@ -77,7 +82,7 @@ is reported externally (harness usage counter); ask for it or be told. Planning 
 a guessed figure is how a pass gets cut in half.
 
 Fixed overhead per pass: `CODE_MAP.md` (≤300 lines, ~6K tokens) + one record (~5K) +
-8 post-strip chunks (~160–180K) + room to write the new record. When the ceiling is
+the pass's chunks (the printed range, up to the `--max` cap) + room to write the new record. When the ceiling is
 reached mid-pass: stop at a chunk boundary, write the read-state table (which chunks
 read, which pending), and stop. Never burn the remaining budget on a partial chunk that
 leaves no room to write the record.

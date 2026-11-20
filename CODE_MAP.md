@@ -250,7 +250,7 @@ consumption (partial, pass 26)**.
 
 ## Next pass
 
-Resume at **`chunk_0230.txt`** (pass 26 ends mid-family at `FUN_1404bfd20`, a 209-B settings `_onexit` stub — the `other x91` zone is OPEN and continues). `state.json.next_chunk = 230` and this resume point agree. The pass **length comes from the task message** (protocol default 8): this file names only the resume chunk, never an end chunk or a guessed length. Run `python scripts/pass_measure.py <start> <end>`, quote stdout verbatim in `ranges/<first>-<last>.md`, run `--update`, then refresh this file. Watch for:
+Resume at **`chunk_0230.txt`** (pass 26 ends mid-family at `FUN_1404bfd20`, a 209-B settings `_onexit` stub — the `other x91` zone is OPEN and continues). `state.json.next_chunk = 230` and this resume point agree. The pass **length comes from `python scripts/pass_next.py`** (fills chunks up to `--max` KiB, default 1200): this file names only the resume chunk, never an end chunk or a guessed length. Run `python scripts/pass_measure.py <start> <end>`, quote stdout verbatim in `ranges/<first>-<last>.md`, run `--update`, then refresh this file. Watch for:
 (a) the settings/variable family continuing: how many more int functions, the label run past `0x142f172b0`, new initializers past `&PTR_FUN_143280868`, and any reader of the descriptors `0x144130570`–`0x14413b7a0` (thread 4);
 (b) where the family ends and what follows — first registry/settings consumer, or another reg block;
 (c) `{id,hash}` rows past id `0x18b` and new alias third fields;
