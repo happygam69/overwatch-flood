@@ -8,7 +8,7 @@ narrative lives ONLY in `ranges/<first>-<last>.md`; cumulative numbers come from
 
 | file | role |
 |---|---|
-| `chunks/chunk_NNNN.txt` | corpus, address order; the one-line `Removing unreachable block` warnings were stripped in place 2026-11-21 (668,998 lines / 42,145,998 B; per-chunk counts in `index.json`, pre-strip `index.pre_strip.json`). Every code line is present. |
+| `chunks/chunk_NNNN.txt` | corpus, address order; `Removing unreachable block` warnings stripped in place 2026-11-21 (668,998 lines / 42,145,998 B; per-chunk counts in `index.json`, pre-strip `index.pre_strip.json`); every code line present |
 | `index.json` | per-chunk bytes / first / last — source of truth for coverage |
 | `state.json` | machine ledger: next_chunk, per-pass entries, cumulative totals, all 7,952 registration hashes, all 326 `{id,hash}` rows with match flags |
 | `scripts/pass_measure.py` | the canonical per-pass measurement; stdout quoted verbatim in records; matches any function header name (1,204 Ghidra-named functions in chunks ≥235 are not `FUN_`-named) |
@@ -50,15 +50,16 @@ Total corpus: 2,228 chunks, 119,757 functions, 42,864,695 B `.text` (raw index b
 | 28 | `0239`–`0253` | `0x14054fea0`–`0x14057fe40` | 336 | 100,696 | `ranges/0x14054fea0-0x14057fe40.md` |
 | 29 | `0254`–`0266` | `0x14057ff10`–`0x1405b2ee0` | 401 | 141,297 | `ranges/0x14057ff10-0x1405b2ee0.md` |
 | 30 | `0267`–`0275` | `0x1405b3080`–`0x140610980` | 520 | 160,792 | `ranges/0x1405b3080-0x140610980.md` |
-| **total** | **276, contiguous** | `0x140001000`–`0x140610980` | **18,381** | **4,730,128** | machine-verified (`state.json`) |
-| pending | `0276`–`2227` | `0x140610980`→ | — | — | resume at `chunk_0276` |
+| 31 | `0276`–`0285` | `0x140610c60`–`0x1406446c0` | 446 | 154,182 | `ranges/0x140610c60-0x1406446c0.md` |
+| **total** | **286, contiguous** | `0x140001000`–`0x1406446c0` | **18,827** | **4,884,310** | machine-verified (`state.json`) |
+| pending | `0286`–`2227` | `0x1406446c0`→ | — | — | resume at `chunk_0286` |
 
-Machine-verified cumulative (`state.json` after pass 30): files 18,381 (15.35 %), Σ `size=`
-4,730,128 (11.03 % of `.text`); classes reg 7,956 / wrapper 1,954 / builder 1,717 / sorted 280 /
-atexit 261 / record 326 / other **5,887**; registrations 7,956 ciphertext rows all distinct (+4
+Machine-verified cumulative (`state.json` after pass 31): files 18,827 (15.72 %), Σ `size=`
+4,884,310 (11.39 % of `.text`); classes reg 7,956 / wrapper 1,954 / builder 1,717 / sorted 280 /
+atexit 261 / record 326 / other **6,333**; registrations 7,956 ciphertext rows all distinct (+4
 plaintext rows, one hash ×2 — Corrections 16); `d4f30` 1,188 / `d4f70` 1,350 / `d4fb0` 4,492 /
-`c2d70` 4,212 / `c2d50` 326 / `c7880` 261 / `atexit` 313; records 326. Passes 27–30 = consumer
-only, zero registration (four consecutive).
+`c2d70` 4,212 / `c2d50` 326 / `c7880` 261 / `atexit` 313; records 326. Passes 27–31 = consumer
+only, zero registration (five consecutive).
 
 ## Corrections ledger (machine-derived; supersedes prose in older records)
 
@@ -67,7 +68,7 @@ only, zero registration (four consecutive).
 3. **Nested-atexit builders: 261 cumulative**; shapes 526/542/558-B; initializer families grow per pass. The `atexit` counter rose to 313 in pass 29 but that call is a settings-id static, not a builder (ledger 25).
 4. **Provenance caveat:** passes 1–15 records state counts without a quoting script (their ad-hoc scripts were not kept). All passes' `files`/Σ `size=` are reproduced by `scripts/pass_measure.py`.
 5. **`--update` is forward-only; `--init` wipes the pass list.** `--update` over an already-counted range double-counts and rewinds `next_chunk`; repair is `--init` — why `state.json` lists only passes 16–28.
-6. **There is no shutdown table and no "move".** Shutdown rows are per-object global slots scattered by the linker (`0x1438e…`, `0x143ce7…`, `0x143e5e/6…`, `0x143c3ab20/ba40`, `0x143e92/94…`, `0x144101c90`, `0x144123ab0–af0`, `0x144126320–378`, `0x14412cd58/da0`, `0x14412e078–0b0`, `0x144136068–0a8`, ciphertext page `0x14398bc98–d58`). The code addresses each absolutely.
+6. **There is no shutdown table and no "move".** Shutdown rows are per-object global slots scattered by the linker (`0x1438e…`, `0x143ce7…`, `0x143e5e/6…`, `0x143c3ab20/ba40`, `0x143e92/94…`, `0x144101c90`, `0x144123ab0–af0`, `0x144126320–378`, `0x14412cd58/da0`, `0x14412e078–0b0`, `0x144136068–0a8`, `0x14398bc98–d58`); the code addresses each absolutely.
 7. **`pass_measure.py` prints no `ciphertext band:` line** — its `CTXT` regex needs `DAT_1438` + 6 hex digits; the band is now `0x1439a…`–`0x143b…`. Ciphertext extremes in records are read from the text, both addresses cited.
 8. **`pass_measure.py` `zones:` filter** prints only class `reg`/`record` runs with `cnt>=3`; 1–2-function builder/wrapper runs are absent from the skeleton (they exist in the text).
 9. **`record-hash = registration-hash` is a rule; the two historical exceptions are resolved by direct evidence.** `FUN_14036bb60` (chunk `0156`) registers `0x39091531`, the hash of record ids `0x3e`/`xcb`. The two `state.json` rows stay `matched:false`; treat them as stale.
@@ -90,83 +91,78 @@ only, zero registration (four consecutive).
 26. **`canary x69` (pass 29) is not a builder canary**: `FUN_1426c3d40` cookies + the hotfix `"canary"` literal. Same class as ledger 21.
 27. **`0x14384b7b0–0x14384b7bc` are plaintext floats** read without XOR by the HUD code, on the same page as XOR-8 strings. Pages are not homogeneous — check each datum.
 28. **MSVC concurrency bodies are in `.text`**: `0x140586870`/`0x1405868c0` are `Concurrency::details::UMSFreeThreadProxyFactory` scalar-deleting destructors (`Library Function - Single Match`).
-29. **The XOR-8 name pages are already decoded, in this repo.** `strpool.tsv` (address → text + recovered identity; regenerated by `../ship_strpool.py` from `../../strpool.txt` + `../../poolmap.tsv`) is anchored at **page base + 8** (the length word, key@+0, payload@+0xc). Read it through `scripts/strlookup.py` (address / `--band` / `--grep` / `--count`) and `scripts/strscan.py` (chunk → `DAT_` pages); both are stdlib-only and touch nothing outside this folder. Ledger 19's "no name decrypted yet" is superseded for naming. `Unknown` rows carry their stripped identity (class / field / enum value / enum type / owner; see `STRPOOL_UNKNOWN.md`). The 1,185 residual `Unknown` rows are genuine literal placeholders, confirmed by full-image Ghidra xrefs (0 new names).
+29. **The XOR-8 name pages are already decoded, in this repo.** `strpool.tsv` (regenerated by `../ship_strpool.py` from `../../strpool.txt` + `../../poolmap.tsv`) is anchored at **page base + 8** (the length word; key@+0, payload@+0xc). Read via `scripts/strlookup.py` (address/`--band`/`--grep`/`--count`) and `scripts/strscan.py` (chunk → `DAT_` pages); both stdlib-only. Ledger 19's "no name decrypted yet" is superseded for naming. `Unknown` rows carry their stripped identity (class/field/enum value/enum type/owner; `STRPOOL_UNKNOWN.md`); the 1,185 residual `Unknown` rows are genuine literal placeholders (full-image Ghidra xrefs, 0 new names).
 30. **`sum_size` is not coverage.** In pass 30 it is 42.0 % of the 383,232-B address span: `size=` collapses at `halt_baddata`/overlapping-instruction truncation (`FUN_1405d0c40 size=1`, `FUN_1405c7710 size=1482`). Always quote the address range, and count gaps from the per-function headers.
 31. **Alignment vs missing code.** 486 inter-entry gaps in pass 30 = 332 × ≤16 B (alignment), 142 × 17 B–1 KiB (mostly under-reported `size=`), **12 × >1 KiB = 48,640 B of genuinely un-decompiled code** (largest `0x1405ca0f1→0x1405cc1d0`, 8,415 B).
 32. **Two more hash families.** D: `h=(k0+k1)` and `(k0+2*k1)`, each `(x>>0x21^x)*-0xae502812aa7333` then `*-0x3b314601e57a13ad`, summed, `&(cap-1)`, `-1` sentinel (`0x1405d15c0`). E: descending-hash-ordered bucket chains with reserve flags `+0x8`/`+0x9`, rehash `<0x3fdc` (`0x1405d8710`).
 33. **Match-queue error enum 0–12** = `UserRequest, QueuePopped, QueueNotReserved, InvalidRulesetGUID, ServerError, ServerDraining, ReadyCheckTimeout, PartyNotFound, PartyAlreadyExistsInDifferentQueue, PartyFailedToJoinMatch, RulesetGUIDNotEnabled, CrossPlayChanged, MatchInputPoolChanged`, else `Invalid` (`FUN_1405ddb40`, pages `0x14384dad0…0x14384dc80`).
 
-## What the code is — cumulative synthesis (30 passes; evidence unless marked [inference])
+## What the code is — cumulative synthesis (31 passes; evidence unless marked [inference])
 
-`.text` is catalogued in entry-address order. After 276 chunks the cursor is at `0x140610980`
-(15.35 % of functions, 11.03 % of `.text`). Names printed `func_0x…` have **no decompiled body
+`.text` is catalogued in entry-address order. After 286 chunks the cursor is at `0x1406446c0`
+(15.72 % of functions, 11.39 % of `.text`). Names printed `func_0x…` have **no decompiled body
 in this dump** — registrar, decryptors `d4f30`/`d4f70`, writer `c2d50`, helpers `c2d70`/`c7880`,
 the `0x140543xx0`/`0x1405674xx` decoder family, settings accessors, component getters, the hotfix
 HTTP client and the CSV parse iterator — as does `tls_callback_0` (generic list insert/update).
 
 **Six layers, in address order:**
 
-1. **Library preamble** `0x140001000`–`0x140039fc0`. ISA-L/igzip-shaped DEFLATE inflate (12 fns);
-   `nvapi_QueryInterface` bootstrap (lazy per-id caches, Wine probe); 53 NVAPI entry wrappers;
-   `Initialize`/`Unload`; source of all 45 string literals.
+1. **Library preamble** `0x140001000`–`0x140039fc0`. ISA-L/igzip DEFLATE inflate (12 fns);
+   `nvapi_QueryInterface` bootstrap; 53 NVAPI entry wrappers; `Initialize`/`Unload`.
 2. **NVIDIA driver-loading shim** `0x14003a230`–`0x14003d330`. Replacement `LoadLibrary` for
    `nv*.dll` (D3DKMT, SetupAPI, service paths, Khronos keys).
 3. **CRT/C++ static-init sea** `0x14003ffe0`–`0x1400fa760`. Five generator templates: 181-B
    MSVC magic-static descriptor (**2,451**), 209-B locale/facet statics (354), 58-B event thunks
    (284), 134-B XOR-40 + cipher registrations (61), 37-B `_onexit` stubs; pass-1 tail: 864
    descriptors + 39 shared `PTR_DAT_14386a…` markers.
-4. **Typed registry machine** `0x1400fbcb0`–`0x14054ea50` (passes 2-tail–27). Nine cooperating
-   constructs. No gameplay/network/asset code; families: CompilerIDFilter, physics/serialization
-   schemas (`dm*`/`bc*`), telemetry (`circuitbreaker.*`, `gameruleset.gameoptions.*`), catch
-   descriptors, component id→handler registry, dispatch rows, plaintext struct schemas.
-   **Ends at `0x14054ea50`.**
-5. **Runtime bootstrap + obfuscated dispatchers** `0x14053f6b0`–`0x14058200x` (pass 27, zone
-   OPEN). PE `entry` trampoline `0x140540fd0`; module resolve + GetProcAddress; **signature
-   scanner** `FUN_140541200` (VirtualProtect + memcmp patterns ending `0x90`/`0xcc`) → patch
-   record at `0x143b79640`; anti-tamper (CPUID FPU gate, Steam getters, `"0x811C9DC5"`); under
-   it a masked-pointer/obfuscation layer with 16–47 KB bodies (`halt_baddata`, `rdtsc`, POPCOUNT
-   parity, LOCK copies, nibble-table byte reconstruction).
-6. **Engine runtime** `0x14054fea0`–`0x1405b2ee0+` (passes 28–29, **OPEN**). Consumer stratum:
-   app-object composition and teardown (~150 subsystems), the container/allocator/hash library
-   that everything else uses, **console-variable registration + reading** of layer 4's registrar
-   data, chat/voice (Vivox) channels, **a hotfix/patch downloader** (HTTP + SHA-256), a 20-thread
-   worker pool, a **parallel per-entity update** (≤64 chunks), the **HUD/marker layer**
-   (world→screen projection, occlusion, quads, icon/text draw), the **event bridge**
-   (`0xa4…`/`0x2400…`/`0xde0…` tags), debug tables, Battle.net "BGS" club plumbing, and
-   spatial/entity-component access by 64-bit id. [inference: this is the game client's own
-   runtime; `0x14054fea0` marks the end of data registration and the start of behaviour.]
+4. **Typed registry machine** `0x1400fbcb0`–`0x14054ea50` (passes 2-tail–27, CLOSED). Nine
+   constructs; families: CompilerIDFilter, physics/serialization schemas (`dm*`/`bc*`),
+   telemetry (`circuitbreaker.*`, `gameruleset.gameoptions.*`), catch descriptors, component
+   id→handler registry, dispatch rows, plaintext struct schemas.
+5. **Runtime bootstrap + obfuscated dispatchers** `0x14053f6b0`–`0x14058200x` (pass 27). PE
+   `entry` trampoline `0x140540fd0`; **signature scanner** `FUN_140541200` → patch record at
+   `0x143b79640`; anti-tamper (CPUID FPU gate, `"0x811C9DC5"`); masked-pointer/obfuscation
+   layer with 16–47 KB bodies (`halt_baddata`, `rdtsc`, POPCOUNT parity, nibble tables).
+6. **Engine runtime** `0x14054fea0`→ (passes 28–31, **OPEN**). Consumer stratum: app-object
+   composition and teardown (~150 subsystems), the container/allocator/hash library,
+   **console-variable registration + reading** of layer 4's registrar data, chat/voice
+   (Vivox), **hotfix/patch downloader** (HTTP + SHA-256), 20-thread worker pool, parallel
+   per-entity update, **HUD/marker layer**, **event bridge** (`0xa4…`/`0x2400…`/`0xde…` tags),
+   debug tables, Battle.net "BGS" club plumbing, spatial/entity access by 64-bit id — and
+   (pass 31) the match-lifecycle receive side: lobby/instance join, hero draft + match
+   phases, entity delta deserialization, saved matches, narrative viewer, JamMessage
+   dispatch tables, gameplay event bus. [inference: this is the game client's own runtime;
+   `0x14054fea0` marks the end of data registration and the start of behaviour.]
 
-**Layer 6 constructs (pass 28):** handle table (0xfff buckets, thread-lease in low 12 bits,
-8 resolvers, helper `FUN_140567590` ×494); hash A/B open addressing; container allocator pair;
-vector library (8/0x10/0x20/0x30/0x40-B, hottest `FUN_1405649b0` ×983); per-site 0x28-B logger
-static; named-service registry (`_DAT_144226c80`, only `"VivoxSDK"`); hotfix verifier (0x30-B
-records, SHA-256 of "", ids `0xde…`/`0x3c6…`); worker pool `FUN_141bb7520(0x20000,…,20)`;
-component access `func_0x140c503d0/140c506f0`; spatial raycast/LOS with `rsqrtss`+Newton; page
-allocator (`0x143a16e14–2c`); frame loop `FUN_140551c40` (tick + 0x32 ms sleep).
+**Layer 6 constructs (passes 28–30):** handle table (0xfff buckets, `FUN_140567590` ×494); hash
+A/B; container allocator pair; vector library (`FUN_1405649b0` ×983); per-site 0x28-B logger;
+named-service registry (`_DAT_144226c80`, `"VivoxSDK"`); hotfix verifier (0x30-B, SHA-256 of
+""); worker pool ×20; component access `func_0x140c503d0/140c506f0`; spatial raycast/LOS; page
+allocator; frame loop `FUN_140551c40`. Event bridge (payload writers under tags
+`0xa4…/0x24…/0xde…/0xd8…`; out-queue `FUN_140583fb0` + app vtable `+0x140/+0x150`; in-sink
+`FUN_1405ae0e0`); 0x19c-B fixed message (3 producers); bitstream reader `FUN_140586bc0`;
+parallel splitter; hotfix downloader (HTTP `FUN_141d16xxx`); settings-registrar copies;
+table/debug-UI API `FUN_141c64c10…651a0`; CSV iterator `func_0x1423887xx`; command dispatcher;
+hash family C `FUN_140599970`; HUD quad record; tracked-entity container; staged spawn queue
+(16-byte id-pair key, state `1→2/3`, ≤8 pending); compare/emit walk `FUN_1405b9740`; spatial
+instancing; dirty-bit API; presence component (`{bnet_dbid,title_id,group,field,unique_id}`);
+20-thread job pool (`0x436d705a`); Steam stats (`SteamUtils010`); XInput; TL rand; JSON parser
+(`0xc05`/`0x1c05`).
 
-**Layer 6 constructs (pass 29, new):** **event bridge** — typed payload writers
-(`FUN_141940c00` bool, `…0db0`, `…0e00`/`…0ea0`/`…0e00` 4-B, `…1360`/`…13b0` 8-B, `…93d210`
-struct) under 64-bit tags `0xa40000000xxxxx`, `0x24000000000xxx`, `0xde00000000xxxxx`,
-`0xd8000000000xxxx`; out-queue `FUN_140583fb0` (0x18-B `{ptr,ptr,u32,2}`) + app vtable
-`+0x140`/`+0x150`; in-sink `FUN_1405ae0e0(chan,msg)` with `func_0x14213ee60` +
-`func_0x1407de2f0(msg,id)`. **0x19c-B fixed message** (`FUN_141c23430(buf,0x19c)` +
-`func_0x141b39150` + `FUN_14200dee0`), 3 producers. **Bitstream reader** `FUN_140586bc0`.
-**Parallel splitter** `func_0x141c24990(&LAB_140595a00,0x10,name)`, `min(count>>2,0x40)` tasks,
-type table `{0x2e,0x30,0x2f}` @ `0x143b802a0`, interface factory `FUN_140595370`.
-**Hotfix downloader** (0x40-B rows, retry `FUN_141d16420`, HTTP `FUN_141d16050/16110/16190/16400`,
-SHA-256 of ""), **settings registrar copies** (3× ~50 vars, latch `DAT_143b80a9c`),
-**table/debug-UI API** (`FUN_141c64c10…651a0`), **CSV parse iterator** `func_0x1423887xx`,
-**command dispatcher** (ids 0x48/0x53/0x7c/0x7d/0xa5/0xb2/0x3a), **hash family C**
-(`FUN_140599970`), HUD quad record (0x90 B, verts `+0x540..0x578`), tracked-entity container
-(0x58/0x60/0x68-B rows; priorities `+0x38`, flags `+0x50`, four percentage floats `+0x6104`).
-
-**Layer 6 constructs (pass 30, new):** **staged spawn queue** (16-byte id-pair key, state
-`1→2/3`, `<100` retries, `<600` ticks, ≤8 pending, 7 payload kinds); **compare/emit walk**
-`FUN_1405b9740` (11 sub-arrays × `FUN_142d2c6f0`); **spatial instancing** (AABB `movmskps` tree,
-voxel grid, `+0x5c` priority list, cull+cluster merge+orient-to-normal); **dirty-bit API**;
-**presence component** (`{bnet_dbid,title_id,group,field,unique_id}`); **20-thread job pool**
-(zlib+decrypt, `0x436d705a`); **Steam** stats (`SteamUtils010`); **XInput** (0xbd/device,
-`+0x1230` mask, haptics); **TL rand**; **JSON parser** (`0xc05`/`0x1c05` tags, SSE2 spaces).
+**Layer 6 constructs (pass 31):** the **match-lifecycle receive side**, `0x140610c60`–
+`0x1406446c0`: bitstream codec (reader `FUN_1406232f0` ×341 / writer `FUN_1406264c0` ×248;
+entity header `FUN_140622f00`, field `FUN_140623120`, baseline/delta merge `FUN_1406251a0`,
+component apply `FUN_140625950` with byte-keyed handler registries `FUN_140621990/aa0`,
+entity-update dispatcher `FUN_140623900` 67 KB obf); obfuscated restore walkers
+`0x1406215f0/626970/62c810/62d940/62e410`; record introsort `0x140626df0`; saved-match enums
+`0x143850540/0x143850698`; match-phase names `0x143850ff8` (`BanResolved…Failed` after roles
+`None/Damage/Tank/Support`); **JSON serializer** `FUN_1406331b0` (double `FUN_140635480`,
+u64/u32 `FUN_140637450/371f0`); narrative-viewer schema (`narrative_viewer_chapter_entry`/
+`_movie_entry`, `NarrativeViewerContent`); **JamMessage dispatch** `0x140638ca0`+ (~50
+dispatchers, id blocks → handlers, default `FUN_140548d00` ×97, locator
+`func_0x000141c52420(app,&DAT_143bxxxxx)`); **event-bus subscribe** `0x14063ddf0`+ (~30
+registrars: 0xb0 desc + 0x30 listener, arms 1/2); telemetry HTTP #2 `0x1406195c0`;
+`player.clearChronicLeaverPenalty` literal `0x140616260`.
 
 **The registry machine — nine constructs/variants (layer 4, closed):** name buffers (XOR-8,
 24-bit len, bands in Corrections 19/23); **registration** `func_0x1421cd360(…,18 args)` — 7,956
@@ -182,10 +178,8 @@ stack cookies; registrations, wrappers and settings functions do not.
 
 | band | content |
 |---|---|
-| `0x143848d40`–`0x1438496xx`, `0x143849728`–`0x14384ad54` | XOR-8 name/payload ciphertext for runtime bootstrap, settings **and** the logger strings (key@+0, len@+8) |
-| `0x14384aa28`–`0x14384b7ac`, `0x14384bc40`–`0x14384caac`, `0x14384cc88`–`0x14384d534`, `0x143864e80`–`0x143864ed8` | pass-29 XOR-8 strings: hotfix/log format strings, ~50 console-variable names (3 copies), UI/event strings; same key@+0/len@+8/latch-0x48 layout. `0x14384b7b0–b7bc` on the same page are **plaintext** floats (Corrections 27) |
-| `0x1438b8e50`–`0x1439a9b2c`, `0x143a16e38–2e7b` | registry name/payload ciphertext; `PTR_s_CompilerIDFilter_*`; page-allocator + hotfix names |
-| `0x1439b0000`–`0x1439fa330` | triplet-stub object page (`func_0x000141c712f0` ×3 + flag per 66-B stub) |
+| `0x143848d40`–`0x14384ad54`, `0x143864e80`–`0x143864ed8` | XOR-8 name/payload ciphertext: runtime bootstrap, settings, logger strings, hotfix/log format strings, ~50 console-var names (3 copies), UI/event strings (key@+0, len@+8, latch-0x48). `0x14384b7b0–b7bc` on the same page are **plaintext** floats (Corrections 27) |
+| `0x1438b8e50`–`0x1439a9b2c`, `0x143a16e38–2e7b` | registry name/payload ciphertext; `PTR_s_CompilerIDFilter_*`; page-allocator + hotfix names; triplet-stub object page `0x1439b0000`–`0x1439fa330` (`func_0x000141c712f0` ×3 + flag per 66-B stub) |
 | `0x143a155xx`–`0x143aa36xx`, `0x143b0c…`–`0x143b77…` | XOR-40 key tables, settings names, locale/ciphertext, catch keys, `0x143a19b50–0x143a19b88` (camera/volume float block), `0x143a19938–44` (render defaults) |
 | `0x143b7a428`–`0x143b7af00` | pass-28 runtime block: per-site logger objects (`0x28` B), worker-pool state (`0x143b7af40/48/4c/c0`), object-id counter `0x143b91f50`, ~250 feature flags `0x143b945b8`–`0x143b9c5c0` |
 | `0x143cf0000`–`0x143d05000` + far `0x143f8…`–`0x143f94…` | RTTI type_info descriptors (Corrections 17) |
@@ -193,25 +187,29 @@ stack cookies; registrations, wrappers and settings functions do not.
 | `0x1441e18f0`–`0x1441e67c8` | plaintext reg outputs, registry-list head `_DAT_1441e1c70`, dispatch-slot columns + readiness bitfield |
 | `0x1442a1920`–`0x1442a1bd8` | plaintext struct-schema rows (`dmWorld`, `dmManifold`, `bcMtx44`, …) + field tables; record pools `0x1442e37xx–0x1442f14d2` |
 | `0x144226c70/80`, `0x1441d05xx` | named-service registry (lock + node list); voice levels/mic (`_DAT_1441d05e8`, `_DAT_1441d0578`) |
-| `0x143b7f410` / `0x143b7f1e0–238`, `0x143b808xx–0x143b81a0x`, `0x143b91f50` | pass-29: the single app object and its setters; per-HUD-object flags (`0x143b809cc/ce`, `0x143b80a90`, `0x143b8145c`, `0x143b8152c`), object-id counter `0x143b91f50` shared with the hotfix notifier |
+| `0x143b7f410` / `0x143b7f1e0–238`, `0x143b808xx–0x143b81a0x` | pass-29: the single app object and its setters; per-HUD-object flags (`0x143b809cc/ce`, `0x143b80a90`, `0x143b8145c`, `0x143b8152c`); object-id counter `0x143b91f50` shared with the hotfix notifier |
 | `0x144180ed0`/`0x144180f20`, `0x1441b3bb8`, `0x1441880e8`, `0x1441b8170–8198` | two 0x50-B settings-slot objects; "zero id" string; default 3-dword value; global refcounted id intern table (buckets `0x1441b8178`, counts `0x1441b8180/18c/198`, shutdown latch `0x1441b81cd`) |
 
 **What it is for.** Layers 1–2 are a vendored NVIDIA/igzip preamble; layer 3 is compiled-in C++
 static init; layer 4 registers ~8 k encrypted type names with sizes/alignment/category and builds
 instances, tables and id rows from them; layers 5–6 are the client that consumes that data —
-settings, telemetry, physics/serialization schemas, catch descriptors, chat/voice, hotfix
-patching, HUD markers and the spatial/entity runtime. No network game protocol (traffic goes
-through `FUN_141c62xxx`/`FUN_141d16xxx` and the `0x19c` packet), the render device is one opaque
-`FUN_141ff40f0` call, and no gameplay *rules* are in the read range — but the HUD and scoreboard
-builders are. Confidence: counts/shapes/bands measured; construct labels are shape-based
-inference; obfuscated bodies read structurally only.
+settings, telemetry, schemas, chat/voice, hotfix patching, HUD markers, the spatial/entity
+runtime, and (pass 31) the **receive side of the match lifecycle**: lobby/instance join, hero
+draft + match phases, entity delta deserialization, saved matches, the narrative viewer, the
+JamMessage dispatch tables and the gameplay event bus. No plaintext game protocol (entity
+traffic is the `FUN_1406232f0`/`FUN_1406264c0` bitstream over an unframed transport), the render
+device is one opaque `FUN_141ff40f0` call, and no gameplay *rules* are in the read range — but
+the HUD, scoreboard and match-state builders are. Confidence: counts/shapes/bands measured;
+construct labels are shape-based inference; obfuscated bodies read structurally only.
 
 **Known limits.** (a) `func_0x…` bodies absent (registrar, decryptors, `0x140543xx0` family,
-settings accessors, component getters, HTTP client, CSV iterator). (b) The XOR-8 *keys* are per-record random salts — there is no global key to
-recover; only the pool text exists (ledger 29), and `Unknown` pages get their identity
-(class / field / enum value / owner) from `../../poolmap.tsv`. (c) `0x142f0…`–`0x142f2b…` labelled thunks absent.
-(d) Corpus gaps: 48,640 B >1 KiB in pass 30 alone (ledger 31). (e) Obfuscated bodies resist
-decompilation; three ≥50 KB ones in pass 29, two 20–35 KB ones in pass 30.
+settings accessors, component getters, HTTP client, CSV iterator, event-bus bus/ctors
+`FUN_142e02e00/142e029b0/142e03480` + `FUN_142d8xxxx`). (b) XOR-8 keys are per-record random
+salts; only pool text exists (ledger 29); `Unknown` identity from `../../poolmap.tsv`. (c)
+`0x142f0…`–`0x142f2b…` labelled thunks absent. (d) Corpus gaps: pass 30's 12 × >1 KiB
+(48,640 B, ledger 31); pass 31's 39 × >1 KiB are `size=` under-reporting. (e) Obfuscated
+bodies resist decompilation; pass 31 adds five 17–40 KB ones (`0x140623900`, `0x14062d940`,
+`0x14062e410`, `0x14062f100`, `0x140613710`).
 ## Cross-cutting conventions (one line each; per-pass deltas in the records)
 
 | convention | rule | first seen |
@@ -243,59 +241,60 @@ decompilation; three ≥50 KB ones in pass 29, two 20–35 KB ones in pass 30.
 | **Per-site logger** | TLS-guarded 0x28-B static via `func_0x141c48370(buf,&DAT_143b93fa0,0x28)`; `FUN_141c48450` gate → `FUN_141c48330(obj,&name,args…)` | `0x1405601c0` |
 | **Handle table** | 0xfff buckets, entry `{u32 handle,u64 value}`; lease helper `FUN_140567590` (thread id in low 12 bits); resolve then vtable | `0x140567590` |
 | **Hash maps** | A: int64 keys `((~k + k*0x40000)>>31^)…*0x15 …*0x41`; B: u32 keys `k*0x1001+0x7ed55d16 …*9+0xfd7046c5`; tombstone `-1` | `0x140564ca0` |
-| **Container allocator** | `func_0x141c23490(&PTR_PTR_143a01d18,size[,align])` / free `func_0x140578190`; capacity word `sign|count` | `0x140558120` |
+| **Container allocator / worker pool** | alloc `func_0x141c23490(&PTR_PTR_143a01d18,size[,align])` / free `func_0x140578190` (capacity word `sign|count`); pool `FUN_141bb7520(0x20000,FUN_140573d40,ctx,name,0x14)`, enqueue `FUN_140573f10`, stop `FUN_140573fc0` | `0x140558120` |
 | **Hotfix/integrity** | 0x30-B record `{hash,idx,verified,handle,ts}` → SHA-256 memcmp; tags `"hotfix"`, `"canary"`; traps `"0x811C9DC5"`, `"0x2AEE6BD9"`, `"0xE430A66C"` | `0x14056cd40` |
-| **Worker pool** | `FUN_141bb7520(0x20000, FUN_140573d40, ctx, name, 0x14)`; enqueue `FUN_140573f10`; stop `FUN_140573fc0` | `0x140573d50` |
 | **Component access** | `func_0x140c503d0(entity,0xd8…id)` has / `func_0x140c506f0(entity,id,default)` get; ids `0xd80000000007a7b`, `…1cbb`, `…8016/8017`, `…ce5f`, `…4aa`, `…b141` | `0x14057a870` |
 | **Spatial query** | 4-float ray → `FUN_14206b500`/`FUN_14206a660` → `rsqrtss`+Newton normal (`_DAT_142f81720/81730`) → `divps` | `0x140579010` |
 | **Event tag / payload** | `FUN_140583fb0` pushes 0x18-B `{ptr,ptr,u32,2}`; fill with `FUN_141940c00`(bool)/`…0db0`/`…0e00`(4B)/`…1360`(8B)/`…93d210`(struct); ids `0xa4…`, `0x2400…`, `0xde0…`, `0xd8…`; send `FUN_1405ae0e0(chan,msg)` or app vtable `+0x140`/`+0x150` | `0x140584450` |
-| **0x19c message** | `FUN_141c23430(buf,0x19c)` + `func_0x141b39150(buf,u64,u32)` + `FUN_14200dee0(dst,buf,0)`; `0/0xffffffff` slot pairs | `0x140594cd0` |
+| **0x19c message** | `FUN_141c23430(buf,0x19c)` + `func_0x141b39150(buf,u64,u32)` + `FUN_14200dee0(dst,buf,0)`; `0/0xffffffff` slot pairs; consumers = pass-31 deserializer (thread 2) | `0x140594cd0` |
 | **Console-var registrar** | XOR-8 name pair → `FUN_141c29b00` (int/bool) \| `FUN_141c2a030(name,name,&t,&min,&max)` (float) \| `FUN_141c2bfd0` \| `FUN_141c285e0(...,&min,&max)`; defaults 100.0f/5.0f/1/0; 3 duplicated copies under latch `DAT_143b80a9c` | `0x140596b00` |
 | **HUD marker** | 0x90-B quad record (verts `+0x540..0x578`, `+0x530=5`), occlusion `FUN_142032690`, projection `FUN_14059d730`, draw `func_0x14206d250/2b0`, outline `func_0x14057acb0` | `0x14059dad0` |
 | **Tracked-entity row** | 0x58/0x60/0x68-B rows: key `+0`, prio `u32 +0x38`, flags `u32 +0x50`, slot `u32 +0x58`, state `u8 +0x5c`; expiry `double +0x10/+0x18`; four percentage floats at `+0x6104` | `0x140588370` |
 | **Table/debug UI** | `FUN_141c64c10` begin → `…64c30("col",0)` → `…64cd0` row → `…64df0`/`…64e30`/`…650c0`/`…65050` cells → `…651a0` end; plaintext `"BGS Result"`, `"Club ID"`, `"SYSTEM"`, `"%F %T"`, `"0x%016llX"` | `0x1405a2ba0` |
-| **Hash family C** | `h=(k*0x200000+~k); (h>>0x18^h)*0x109; (h>>0xe^h)*0x15; (h>>0x1c^h)*-0x7fffffff & (cap-1)`; chained `{next,key,val}` or range layout | `0x140599970` |
-| **Command dispatcher** | `(**(code**)(*disp+0x10))(disp,fn,id,0)` (and `+0x30`); ids `0x48,0x53,0x7c,0x7d,0xa5,0xb2`; event tags `0x14f0881d`, `0xdc0fc1fe`, `0xb4bed9f1` | `0x1405ac510` |
+| **Hash family C** | `h=(k*0x200000+~k); (h>>0x18^h)*0x109; (h>>0xe^h)*0x15; (h>>0x1c^h)*-0x7fffffff & (cap-1)`; chained `{next,key,val}` or range layout; byte-keyed handler registries `FUN_140621990/aa0` (pass 31) | `0x140599970` |
+| **Command dispatcher / JamMessage** | `(**(code**)(*disp+0x10))(disp,fn,id,0)` (and `+0x30`); ids `0x48,0x53,0x7c,0x7d,0xa5,0xb2`; ~50 `0x140638ca0`+ dispatchers map contiguous id blocks (`0x5014–0x5021, 0x5078–0x507e, 0x5140–0x515e, 53000/0xcf09–0xcf25, 0x8dcc–0x8de9, 0x5eec–0x5f0f, …`) to handlers via `func_0x000141c52420(app,&DAT_143bxxxxx)`; default `FUN_140548d00` ×97; `"Unhandled JamMessage, unable to dispatch"` | `0x1405ac510` |
 | **CSV parse iterator** | `func_0x1423887b0(&it)` open, `…388a00` step, `…388ab0(&i)`, `…388af0(&u64)`, `…3887e0` close; fills 0x20-B `{int,u64,string}` rows | `0x1405afc60` |
 | **Presence attribute** | `{bnet_dbid, title_id, group, field, unique_id}` reflected by `FUN_141c63bc0(this,"name",&vtable)`; row 0x58 B: class `+0x18`=0x8e74, group `+0x1c` 1\|2, field `+0x28` ∈ {1,2,3,4,5,0xc,0x16,0x19}, value tag `+0x50` (1 bool / 4 str / 5 vec / 6 nested) | `0x1405d9340` |
-| **JSON value** | 0x10-B `{data, u16 tag @ +0xe}`: `3` obj, `4` arr, `9/0xa` true/false, `0x?96/0x?d6` ints (0x20=signed, 0x40=32-bit, 0x100=wide), `0xc05` heap string, `0x1c05` inline (`len = 0xd - low byte`) | `0x14060fc90` |
+| **JSON value** | 0x10-B `{data, u16 tag @ +0xe}`: `3` obj, `4` arr, `9/0xa` true/false, `0x?96/0x?d6` ints (0x20=signed, 0x40=32-bit, 0x100=wide), `0xc05` heap string, `0x1c05` inline (`len = 0xd - low byte`); **writer** `FUN_1406331b0` (tags 0–5/num; double `FUN_140635480`, u64/u32 `FUN_140637450/371f0`, pair table `DAT_142f86ee0`) | `0x14060fc90` |
+| **Bitstream codec / entity delta** | reader `FUN_1406232f0` (≤64-bit spans, `{words,cur,idx@+0x1c}`) / writer `FUN_1406264c0`; entity header `FUN_140622f00` (0xc-bit flags → 0x76/0xa6/0x30/0x20/0x40/0x14e-bit fields, out 0x38-B); field `FUN_140623120`; baseline/delta `FUN_1406251a0`; component apply `FUN_140625950` (byte key grp<<6\|slot → popcount field table at `rec+0x80/0x130` → registries `FUN_140621990/aa0`); dispatcher `FUN_140623900`; event-bus subscribe `0x14063ddf0`+ (0xb0 desc + 0x30 listener, arms 1/2) | `0x1406232f0` |
 
 ## Open threads (cheapest next query each; check/update every pass)
 
-1. CLOSED (2026-11-21) — **the XOR-8 key is a per-record random salt, not a global key.** In the 30,933-row `Unknown` streak all 30,933 keys are distinct and per-byte entropy is 7.999 bits; no hash of the plaintext or record address reproduces one. `strpool.txt` already gives the correct text (ledger 29). See `STRPOOL_UNKNOWN.md` §Evidence 5.
-2. **`0x19c-B` message reader** — three producers (`0x140594cd0`, `0x140595ea0`, `0x140597280`), no consumer; grep forward for `FUN_14200dee0` and `0x19c`.
+1. CLOSED (2026-11-21) — **the XOR-8 key is a per-record random salt.** All 30,933 `Unknown`-streak keys distinct, entropy 7.999 bits; `strpool.txt` gives the text (ledger 29; `STRPOOL_UNKNOWN.md` §Evidence 5).
+2. **0x19c-B message transport framing** — the codec is found (pass 31: reader `FUN_1406232f0` 341 callers / writer `FUN_1406264c0` 248 callers; entity layouts `0x140622f00`/`140623120`/`1406251a0`); remaining: who calls the writer with a length prefix (framing) — grep forward for `FUN_1406264c0`.
 3. CLOSED — `0xde000000000030e`/`0x30f` are pass 30's presence-failure events (`FUN_1405d54f0`).
-4. **JSON writer + callers** — parser half mapped (`0x14060c6b0`–); grep forward for `FUN_14060fc90` and the `0xc05`/`0x1c05` tags.
+4. CLOSED (2026-11-21) — **JSON writer found** (pass 31): `FUN_1406331b0` value serializer (`null/false/true/{/[]/str/num`), doubles `FUN_140635480`, u64/u32 `FUN_140637450/371f0`; caller `FUN_140636150` serializes into a byte buffer for `FUN_141bba6d0`.
 5. **Command ids `0x48/0x53/0x7c/0x7d/0xa5/0xb2/0x3a`** — grep later chunks for `+0x10))(…,0x`/`+0x30))(…,0x`.
 6. **`FUN_141c2a030` min/max** — locals are `{0,5.0f}`/`{0,100.0f}`; find one site with a negative max.
-7. **CSV iterator bodies** (`func_0x1423887xx`) — read the consumer of the 0x20-B `{int,u64,string}` rows.
+7. CLOSED (2026-11-21) — **CSV iterator consumer found** (pass 31): `FUN_140637d10`/`FUN_140637f20` instantiate `func_0x0001423887b0` per 0x80-B row = narrative-viewer/JSON content entries keyed by u16/u32 (chunk 284).
 8. **`FUN_141c295b0` / `FUN_141c58170` / `FUN_142d2cf30` bodies** — `FUN_`-named, unread corpus (~chunk `15xx`).
 9. **`func_0x140543xx0` family** — absent; test `0x6c12bdf61cf839d6` against a known `.data` address.
 10. **`0x143b945b8`–`0x143b9c5c0` (~250 flags)** — grep forward for `143b94`/`143b95`/`143b9c` readers.
 11. **`_DAT_143b7f410` field map** — merge `FUN_140554220`/`5559c0`/`585220` for ~150 offsets.
 12. **Channel list `_DAT_143c00680`** — grep forward for it to find the renderer that walks it.
 13. **Hotfix file identity** — dump one 0x30-B record (`_DAT_1439d98c0`); `_DAT_1439d9890` = backoff table.
-14. **Gaps** — pass 30's 12 × >1 KiB gaps (ledger 31), largest `0x1405ca0f1→0x1405cc1d0`; plus `0x14059a007–0x14059c350` (9,033 B) and `0x1401a4e02–0x1401abad0` (27,854 B) still open.
+14. **Gaps** — pass 30's 12 × >1 KiB gaps (ledger 31), largest `0x1405ca0f1→0x1405cc1d0`; pass 31's 39 × >1 KiB gaps (74,624 B) are giant-function `size=` under-reporting, not missing code; plus `0x14059a007–0x14059c350` (9,033 B) and `0x1401a4e02–0x1401abad0` (27,854 B) still open.
 15. **CompilerIDFilter** — unchanged (last touched pass 21); payloads are regs.
+16. **Event-bus names** — the ~43 event-id name strings `PTR_DAT_143b3b190…143b564b0` (zone 10 of pass 31) sit outside the pool band; `strlookup.py <addr>` each to name the gameplay events. Also `FUN_140548d00` body (the 97× "ignore" dispatch arm) is in an earlier unread zone — verify it is a no-op.
 
-CLOSED (machine): fd9670 recount; provenance complete; `0x1411b8070` unread corpus; thread 43
-(`0x3fd91271`); thread 3 (`0xde…30e`/`0x30f`); ledgers 5, 6, 10, 11, 16, 17, 18, 20, 19 (for
-naming); update/init, shutdown slots, alias field, `0x39091531`, zero-reuse, type_info band, pad
-table, decompiler artifacts.
+CLOSED (machine): fd9670 recount; provenance; `0x1411b8070` unread corpus; thread 43 (`0x3fd91271`); JSON writer + CSV consumer (pass 31); ledgers 5, 6, 10, 11, 16, 17, 18, 20, 19 (naming); update/init, shutdown slots, alias field, `0x39091531`, zero-reuse, type_info band, pad table, decompiler artifacts.
 
 ## Next pass
 
-Resume at **`chunk_0276.txt`** — pass 30 ends at `FUN_140610980`, inside the JSON/container zone
-(`0x14060c6b0`–), with the engine-runtime stratum `0x14054fea0` OPEN. `state.json.next_chunk = 276`
-agrees; the pass **length comes from `python scripts/pass_next.py`** and this file names only the
-resume chunk. Run `pass_measure.py <start> <end>`, quote stdout verbatim in the record, run
-`--update`, refresh this file. Watch for: (a) the JSON parser's *writer* and its callers — the
-parser half is mapped, the serialiser is not; (b) the first **consumer** of the
-`0xde000000000030e`/`0x30f` presence events and of `0xde0000000000329/32a/32b`; (c) the 0x110-B
-spatial record's field map (pass-30 record, thread 3); (d) more `SteamUserStats` vtable slots and any
-`ISteamFriends`/`ISteamRemoteStorage` interface string, since `SteamUtils010` proved the SDK is
-linked by plaintext interface name; (e) whether an `{id,hash}` record or `cd360` registration
-returns after four passes without; (f) new plaintext schema-field names like `"bnet_dbid"` — they
-name layers cheaply. Do not re-run a counted range through `--update` (ledger 5); no ciphertext
-script line (ledger 7); leave the stale flags (ledgers 11/16) alone; never treat a
-`0x826e…`/`0xca334801` address as data (ledger 20), and use ledger 24/31 for corpus gaps.
+Resume at **`chunk_0286.txt`** — pass 31 ends at `FUN_1406446c0`, inside the event-bus
+subscription zone (`0x14063ddf0`–), engine-runtime stratum `0x14054fea0` OPEN;
+`state.json.next_chunk = 286` agrees; the pass **length comes from `python scripts/pass_next.py`**
+and this file names only the resume chunk. Run `pass_measure.py <start> <end>`, quote stdout
+verbatim in the record, run `--update`, refresh this file. Watch for: (a) the **rest of the
+event-bus layer** — `FUN_142e02e00/142e029b0/142e03480` and the `FUN_142d8xxxx` descriptor ctors
+are `func_0x…`/absent; the next zone likely holds the bus dispatcher and the first
+`FUN_140548d00` body (thread 16); (b) the **bitstream writer's caller** with a length prefix
+(thread 2, transport framing); (c) whether a **`cd360` registration or `{id,hash}` record
+returns** after five passes without; (d) new plaintext names — `narrative_viewer_*`,
+`HeroDraft*`, `player.clearChronicLeaverPenalty` name layers cheaply; (e) `SteamUserStats`
+slots / any `ISteamFriends`/`ISteamRemoteStorage` string; (f) the 0x110-B spatial record map
+via `FUN_1405c1120` merge. Do not re-run a counted range through `--update` (ledger 5); no
+ciphertext script line (ledger 7); leave the stale flags (ledgers 11/16) alone; never treat a
+`0x826e…`/`0xca334801` address as data (ledger 20); ledger 24/31 for gaps; `size=` is not
+coverage (ledger 30).
+
