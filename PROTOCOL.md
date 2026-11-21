@@ -6,7 +6,9 @@ leave one detailed record per pass. Nothing skipped, nothing sampled.
 ## Source
 
 All paths below are relative to this repo root (the chunk corpus, `index.json`,
-`state.json`); the decompiler output and build tools sit two levels up.
+`state.json`); the decompiler output and build tools sit two levels up. One exception:
+the decoded string pool is copied in as `strpool.tsv`, so `scripts/strlookup.py` and
+`scripts/strscan.py` need nothing outside this folder (ledger 29).
 
 `../../corpus/b5120..b5167` — 119,757 Ghidra `.c` files, one per function, named by entry
 address. `../../tools/flood_build.py` repacks them into `chunks/chunk_NNNN.txt`:
